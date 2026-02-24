@@ -1,7 +1,6 @@
 # builtins.py
-# Tipe dasar Python yang sesuai dengan nama di grammar
-from ..Exceptions.Exceptions import VariabelGalat, FinalGalat
-from ..AST_node.ast_nodes import *
+from ..Exceptions.Exceptions import VariabelGalat, FinalGalat, TipeGalat
+from ..AST_node.ast_nodes import BasicType
 
 TYPES = {
     'teks': str,
@@ -9,15 +8,14 @@ TYPES = {
     'desimal': float,
     'boolean': bool,
     'kekosongan': type(None),
-    'apapun': object,  # special
+    'apapun': object,
     'daftar': list,
     'kamus': dict,
     'fungsi': callable,
     'pointer': str,
+    'tipe': type,
 }
 
-
-# Konstanta built-in
 BUILTINS = {
     'benar': True,
     'salah': False,
@@ -32,65 +30,109 @@ BUILTINS = {
 def get_builtin_type(name):
     return TYPES.get(name, object)
 
-def builtins_fungsi(self, function_name: str, /, *, type_ann: type = object, body: callable = lambda: None):
+def builtins_fungsi(self, function_name=None, /, *, type_ann=None, body=None):
+    """
+    builtins_fungsi: untuk manipulasi fungsi
+    - Jika hanya function_name: return apakah itu fungsi
+    - Jika dengan type_ann dan body: buat fungsi baru
+    """
+    if function_name is None:
+        # Return semua fungsi yang ada
+        return {name: info for name, info in self.current_scope.vars.items() 
+                if info['type'].name == 'fungsi'}
+    
     try:
-        self.current_scope.get(function_name)
-        return callable(function_name)
-    except VariabelGalat:
-        def app(*args, **kwargs):
-            result = body(*args, **kwargs)
-            self._check_type(result, type_ann)
-            
-            return result
-            
-        self.current_scope.declare(
-            function_name,
-            app,
-            BasicType(type_ann),
-            hex(id(app)),
-            True,
-        )
-
-def builtins_vars(self, name=None, /, *, value=None, type_ann=None, constant=False, cek=True):
-    if not name:
-        return self.current_scope.vars
-    else:
-        if not value:
-            if cek:
-                inputan = input('Apakah kamu yakin untuk menampilkannya Y[a] atau T[idak]: ')
-                
-                inputan_bool = True if inputan == 'Y' else False
-                
-                if inputan_bool:
-                    return self.current_scope.has(name)
-            return self.current_scope.has(name)
-        else:
-            if self.current_scope.has(name):
-                obj = self.current_scope.get(name)
-                
-                if constant or obj['constant']:
-                    raise FinalGalat(f'Variabel {name!r} memiliki ketidak konsistenan terhadap data dan nilai konstannya')
-                
-                self.current_scope.set(
-                    name,
-                    value,
-                    obj['type'],
-                    hex(id(value)),
-                    obj['constant']
-                )
-            
-            if not type_ann:
-                raise TipeGalat(f'Variabel {name!r} tidak memiliki tipe yang ada')
-            
-            self._check_type(value, type_ann)
+        obj = self.current_scope.get(function_name)
+        is_func = callable(obj['value'])
+        
+        if type_ann is not None and body is not None:
+            # Buat fungsi baru
+            def new_func(*args, **kwargs):
+                result = body(*args, **kwargs)
+                if type_ann != 'apapun':
+                    expected = TYPES.get(type_ann, object)
+                    if not isinstance(result, expected):
+                        raise TipeGalat(f"Fungsi harus mengembalikan tipe {type_ann}")
+                return result
             
             self.current_scope.declare(
-                name,
-                value,
-                BasicType(type_ann),
-                hex(id(value)),
-                constant
+                function_name,
+                new_func,
+                BasicType('fungsi'),
+                hex(id(new_func)),
+                True
             )
+            return True
+        
+        return is_func
+        
+    except VariabelGalat:
+        return False
+
+def builtins_vars(self, name=None, /, *, value=None, type_ann=None, constant=False):
+    """
+    builtins_vars: untuk manipulasi variabel
+    - Tanpa argumen: return semua variabel
+    - Dengan name saja: return apakah variabel ada
+    - Dengan name dan value: buat/ubah variabel
+    """
+    if name is None:
+        # Return semua variabel
+        return {n: {
+            'value': info['value'],
+            'type': info['type'].name if isinstance(info['type'], BasicType) else str(info['type']),
+            'constant': info['constant']
+        } for n, info in self.current_scope.vars.items()}
+    
+    if value is None:
+        # Cek apakah variabel ada
+        ada = self.current_scope.has(name)
+        return ada
+    
+    # Buat atau ubah variabel
+    try:
+        # Cek apakah sudah ada
+        obj = self.current_scope.get(name)
+        
+        # Validasi konstanta
+        if obj['constant'] and not constant:
+            raise FinalGalat(f"Variabel '{name}' adalah final")
+        
+        # Validasi tipe
+        if type_ann:
+            expected = TYPES.get(type_ann, object)
+            if not isinstance(value, expected):
+                raise TipeGalat(f"Nilai tidak sesuai tipe {type_ann}")
+        else:
+            type_ann = obj['type'].name if isinstance(obj['type'], BasicType) else 'apapun'
+        
+        # Update
+        self.current_scope.set(
+            name,
+            value,
+            BasicType(type_ann),
+            hex(id(value)),
+            constant or obj['constant']
+        )
+        
+    except VariabelGalat:
+        # Buat baru
+        if type_ann is None:
+            type_ann = 'apapun'
+        else:
+            expected = TYPES.get(type_ann, object)
+            if not isinstance(value, expected):
+                raise TipeGalat(f"Nilai tidak sesuai tipe {type_ann}")
+        
+        self.current_scope.declare(
+            name,
+            value,
+            BasicType(type_ann),
+            hex(id(value)),
+            constant
+        )
+    
+    return True
 
 BUILTINS_FUNCTIONS = {
     'Fungsi': builtins_fungsi,

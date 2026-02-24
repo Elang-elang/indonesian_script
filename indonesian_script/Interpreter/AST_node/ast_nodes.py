@@ -175,6 +175,10 @@ class LambdaFunc(Expression):
     expr: Expression
 
 @dataclass
+class TypeOf(Expression):
+    var: Variable
+
+@dataclass
 class IsStmt(Expression):  # sebenarnya ini expression boolean
     left: str
     right: str

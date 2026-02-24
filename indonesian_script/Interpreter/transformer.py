@@ -339,6 +339,9 @@ class ASTBuilder(Transformer):
         params, expr = items
         return LambdaFunc(params=params, expr=expr)
     
+    def type_of(self, items):
+        return TypeOf(var=items[0])
+    
     def is_stmt(self, items):
         return items[0]
     

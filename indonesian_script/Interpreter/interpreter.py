@@ -637,6 +637,17 @@ class Interpreter:
     
         return lambda_wrapper
     
+    # Perbaiki visit_TypeOf
+    def visit_TypeOf(self, node: TypeOf):
+        var_name = node.var.name
+        obj = self.current_scope.get(var_name)
+        
+        # Kembalikan nama tipe sebagai string
+        if isinstance(obj['type'], BasicType):
+            return obj['type'].name
+        else:
+            return str(obj['type'])
+    
     def visit_IsStmt(self, node: IsStmt):
         left_info = self.current_scope.get(node.left)
         right_info = self.current_scope.get(node.right)

@@ -94,6 +94,7 @@ term: prefix postfix*
     | lambda_func
     | return_stmt
     | throw_stmt
+    | type_of
 
 prefix: "(" expression ")"
       | expression
@@ -108,6 +109,7 @@ postfix: getattr
 lambda_func: "lambda" params "{" expression "}"
 return_stmt: "kembalikan" "{" expression "}"
 throw_stmt: "kegalatan" "<" ID ">" "{" expression "}"
+type_of: "tipe" "dari" VAR_NAME
 
 is_stmt: is_bool
        | is_not_bool
