@@ -186,7 +186,6 @@ class IsStmt(Expression):  # sebenarnya ini expression boolean
 
 
 # --- Functions ---
-@dataclass
 class FunctionNode(Node):
     "Untuk attribute dan kerangka function"
     pass
@@ -220,6 +219,38 @@ class Return(Expression):
 class Throw(Expression):
     name: str
     expr: Expression
+
+# --- Module ---
+class Module(Node):
+    """Dataclass terkait module"""
+    pass
+
+@dataclass
+class Export(Module):
+    exports: List['ExportArgument']
+
+@dataclass
+class ExportArgument(Module):
+    name: Variable
+    alias: Optional[str]
+
+@dataclass
+class Import(Module):
+    imports: List['ImportArgument']
+    from_path: 'PathID'
+
+@dataclass
+class ImportArgument(Module):
+    name: str
+    alias: Optional[str]
+
+@dataclass
+class PathID(Module):
+    path: List['PathArg']
+
+@dataclass
+class PathArg(Module):
+    arg: str
 
 # --- Types ---
 class Type(Node):

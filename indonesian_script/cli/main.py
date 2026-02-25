@@ -67,10 +67,9 @@ def run_file(filename, show_ast=False):
             print_color("="*50, Fore.WHITE + Style.BRIGHT)
             
             # Redirect output untuk capture jika perlu
-            interpreter.run(console=True)
+            interpreter.run()
             
             print_color("="*50, Fore.WHITE + Style.BRIGHT)
-            print_color("✅ Program selesai", Fore.GREEN)
         
         return 0
         

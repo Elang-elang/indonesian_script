@@ -39,6 +39,10 @@ class MemoriGalat(Galat):
     """Error terkait memori/pointer"""
     pass
 
+class ModulGalat(Galat):
+    """Error terkait modul"""
+    pass
+    
 # Galat turunan kedua
 class TitikKomaGalat(PenulisanGalat):
     """Error titik koma"""
@@ -74,6 +78,26 @@ class AlamatMemoriGalat(MemoriGalat):
 
 class JalurGalat(PenulisanGalat):
     """Error jalur file tidak ditemukan"""
+    pass
+
+class EksporGalat(ModulGalat):
+    """Error ekpor modul"""
+    pass
+
+class BerkasGalat(ModulGalat):
+    """Error terkair File/Berkas"""
+    pass
+
+class DirektoriGalat(ModulGalat):
+    """Error terkair Direktori/Folder"""
+    pass
+
+class PaketGalat(ModulGalat):
+    """Error terkair paket/package"""
+    pass
+
+class ImporGalat(ModulGalat):
+    """Error terkair impor modul"""
     pass
 
 # Galat turunan ketiga

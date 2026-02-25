@@ -11,6 +11,7 @@ block: "{" stmt* "}"
 stmt: buttom_stmt ";"
     | func_def
     | ctrl_flow
+    | module_stmt
 
 buttom_stmt: expression
            | cli_stmt
@@ -63,6 +64,26 @@ try_ctrl: try_stmt catch_stmt finnaly_stmt?
 try_stmt: "coba" block
 catch_stmt: "tangkap" "(" ID ")" block
 finnaly_stmt: "akhiri" block
+
+
+module_stmt: export_stmt
+           | import_stmt
+
+export_stmt: "ekspor" "{" exp_params "}"
+exp_params: exp_arg ("," exp_arg)*
+exp_arg: VAR_NAME ("sebagai" ID)?
+
+import_stmt: "impor" "{" imp_params? "}" "dari" path_stmt
+imp_params: imp_arg ("," imp_arg)*
+imp_arg: ID ("sebagai" ID)?
+
+path_stmt: path_params
+path_params: path_args (":" path_args)*
+path_args: parent_path | path_arg
+path_arg: ID ("." ID)*
+parent_path: once_dot | two_dot
+once_dot: "."
+two_dot: ".."
 
 expression: equal
 

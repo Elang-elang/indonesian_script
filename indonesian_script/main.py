@@ -14,11 +14,12 @@ class IndonesianScriptInterpreter:
     Bisa digunakan secara langsung atau di-import
     """
     
-    def __init__(self, filename=None, code=None):
+    def __init__(self, filename=None, code=None, ismodule=False):
         self.filename = Path(filename) if filename else None
         self.code = code
         self.result = None
         self.error = None
+        self.ismodule = ismodule
         
         # Load grammar
         grammar_path = Path(__file__).parent / 'grammar.txt'
@@ -44,7 +45,7 @@ class IndonesianScriptInterpreter:
         self.code = code
         return self
     
-    def run(self, console=False):
+    def run(self, console=False, get_interpreter=False):
         """
         Jalankan interpreter
         console: jika True, tampilkan output lengkap
@@ -71,12 +72,15 @@ class IndonesianScriptInterpreter:
             ast = builder.transform(tree)
             
             # Interpretasi
-            interpreter = Interpreter()
+            interpreter = Interpreter(filename=str(self.filename))
+            
             self.result = interpreter.load(ast)
             
             if console:
                 self._console_output(interpreter)
             
+            if get_interpreter:
+                return self.result, interpreter
             return self.result
             
         except Exception as e:

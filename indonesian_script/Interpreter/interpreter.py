@@ -1,7 +1,9 @@
 # interpreter.py
 from .Exceptions.Exceptions import *
 from .AST_node.ast_nodes import *
+from .transformer import *
 from .Builtins.builtins import BUILTINS, TYPES, BUILTINS_FUNCTIONS
+from pathlib import Path
 
 class Scope:
     def __init__(self, parent=None):
@@ -59,13 +61,24 @@ class Scope:
         return name in self.vars
 
 class Interpreter:
-    def __init__(self):
+    def __init__(self, filename='utama'):
         self.global_scope = Scope()
         self.current_scope = self.global_scope
         self._init_builtins()
         
         self._output = []
+        self._exports = {}
+        self._module = {}
         self._infunction = False
+        
+        self._filename = filename
+        
+        self.current_scope.declare(
+            'lokasi_berkas',
+            filename,
+            BasicType('teks'),
+            hex(id(filename))
+        )
     
     def _init_builtins(self):
         # Masukkan tipe bawaan dan konstanta
@@ -484,6 +497,69 @@ class Interpreter:
             self.visit(stmt)
         self.current_scope = old_scope
     
+    # --- Module ---
+    def visit_Export(self, node: Export):
+        exports = [self.visit(arg) for arg in node.exports if arg is not None]
+        
+        for i, export in enumerate(exports):
+            self._exports.update(export)
+    
+    def visit_ExportArgument(self, node: ExportArgument):
+        name = node.name
+        alias = node.alias
+        
+        obj = None
+        try:
+            obj = self.current_scope.get(name)
+        except VariabelGalat as e:
+            raise EksporGalat(e.message)
+        
+        if alias:
+            name = alias
+        
+        return {name: obj}
+    
+    def visit_Import(self, node: Import):
+        imports = node.imports  # List of ImportArgument
+        path_str = self.visit(node.from_path)  # String path
+    
+        # Load module
+        module_interp, module_exports = self._load_module(path_str)
+    
+        # Proses setiap import
+        for imp in imports:
+            name = imp.name
+            alias = imp.alias or name
+        
+            if name not in module_exports:
+                raise ImporGalat(f"'{name}' tidak ditemukan di module {path_str}")
+        
+            obj = module_exports[name]
+        
+            # Deklarasikan di scope saat ini
+            self.current_scope.declare(
+                alias,
+                obj['value'],
+                obj['type'],
+                obj['address'],
+                obj['constant']
+            )
+    
+    def visit_ImportArgument(self, node: ImportArgument):
+        return [node.name, node.alias]
+    
+    def visit_PathID(self, node: PathID):
+        args = [self.visit(arg) for arg in node.path if arg is not None]
+        
+        path = Path()
+        for arg in args:
+            path /= arg
+        
+        return str(path)
+    
+    def visit_PathArg(self, node: PathArg):
+        return Path(node.arg)
+    
     # --- Expressions ---
     def visit_BinaryOp(self, node: BinaryOp):
         left = self.visit(node.left)
@@ -762,3 +838,59 @@ class Interpreter:
             elif type_ann.name == 'boolean':
                 return s.lower() == 'benar'
         return s
+    
+    def _load_module(self, path_str: str) -> tuple:
+        """
+        Memuat module dari path string
+        Returns: (interpreter, exports)
+        - interpreter: instance Interpreter dari module
+        - exports: dictionary exports dari module
+        """
+        from ..main import IndonesianScriptInterpreter  # Import di dalam fungsi untuk hindari circular
+    
+        # 1. Parse path string
+        path = Path(self._filename).parent / path_str
+    
+        # 2. Cek apakah sudah pernah di-load (cache)
+        path_key = str(path)
+        if path_key in self._module:
+            return self._module[path_key]
+    
+        # 3. Validasi path
+        if not path.exists():
+            raise JalurGalat(f"Jalur modul '{path_str}' tidak ditemukan")
+    
+        # 4. Jika direktori, cari file inisiasi.is
+        if path.is_dir():
+            init_file = path / 'inisiasi.is'
+            if not init_file.exists():
+                raise PaketGalat(f"Paket '{path.name}' tidak memiliki file inisiasi.is")
+            path = init_file
+    
+        # 5. Baca dan load module
+        try:
+            code = path.read_text(encoding='utf-8')
+        
+            # Buat interpreter untuk module
+            module_interp = IndonesianScriptInterpreter(
+                filename=str(path),
+                code=code,
+                ismodule=True
+            )
+        
+            # Jalankan module (tanpa console output)
+            result, interpreter = module_interp.run(
+                console=False,
+                get_interpreter=True
+            )
+        
+            # Simpan ke cache
+            cache_entry = (interpreter, interpreter._exports)
+            self._module[path_key] = cache_entry
+        
+            return cache_entry
+        
+        except (VariabelGalat, FinalGalat) as e:
+            raise ImporGalat(e.message)
+        except IndexError:
+            raise ImporGalat(f'{name!r} tidak ada')

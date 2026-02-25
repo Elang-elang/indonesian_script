@@ -200,6 +200,60 @@ class ASTBuilder(Transformer):
     def read_stmt(self, items):
         return ReadStmt(expr=items[0])
     
+    # --- Module ---
+    def module_stmt(self, items):
+        return items[0]
+    
+    def export_stmt(self, items):
+        return Export(exports=items[0])
+    
+    def exp_params(self, items):
+        return items
+    
+    def exp_arg(self, items):
+        name = items[0].name
+        alias = None
+        if len(items) == 2:
+            alias = str(items[1])
+        
+        return ExportArgument(name=name, alias=alias)
+    
+    def import_stmt(self, items):
+        imports, _from = items
+        return Import(imports=imports, from_path=_from)
+    
+    def imp_params(self, items):
+        return items
+    
+    def imp_arg(self, items):
+        name = str(items[0])
+        alias = None
+        if len(items) == 2:
+            alias = str(items[1])
+        
+        return ImportArgument(name=name, alias=alias)
+    
+    def path_stmt(self, items):
+        return PathID(path=items[0])
+    
+    def path_params(self, items):
+        return items
+    
+    def path_args(self, items):
+        return PathArg(arg=str(items[0]))
+        
+    def path_arg(self, items):
+        return '.'.join(items)
+    
+    def parent_path(self, items):
+        return str(items[0])
+    
+    def once_dot(self, items):
+        return str(".")
+        
+    def two_dot(self, items):
+        return str("..")
+    
     # --- Expressions (Binary, Unary, etc.) ---
     def expression(self, items):
         return items[0]
