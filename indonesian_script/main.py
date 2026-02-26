@@ -4,9 +4,9 @@ from pathlib import Path
 import sys
 
 # Import dari submodule
-from .Interpreter.transformer import ASTBuilder
-from .Interpreter.interpreter import Interpreter
-from .Interpreter.Exceptions.Exceptions import *
+from Interpreter.transformer import ASTBuilder
+from Interpreter.interpreter import Interpreter
+from Interpreter.Exceptions.Exceptions import *
 
 class IndonesianScriptInterpreter:
     """
@@ -81,7 +81,7 @@ class IndonesianScriptInterpreter:
             
             if get_interpreter:
                 return self.result, interpreter
-            return self.result
+            return self.result, None
             
         except Exception as e:
             self.error = e
