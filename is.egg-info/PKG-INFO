@@ -1,0 +1,116 @@
+Metadata-Version: 2.4
+Name: is
+Version: 0.1.10
+Summary: A programming language designed to make life easier for the Indonesian people
+Home-page: https://github.com/yourusername/is
+Author: Elang muhammad
+Author-email: elangmahammad888@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: lark-parser>=0.12.0
+Requires-Dist: regex>=2026.1.15
+Requires-Dist: colorama>=0.4.6
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
+# Indonesian Script
+
+Bahasa pemrograman dalam Bahasa Indonesia - Programming language in Indonesian
+
+## Instalasi
+
+### Yang dibutuhkan
+
+```txt
+python>=3.12
+```
+
+### Dan jalankan
+
+```bash
+git clone https://github.com/Elang-elang/is.git
+cd is
+./instalasi
+```
+
+## Penggunaan CLI
+
+### Menjalankan file
+
+```bash
+is run program.is
+```
+
+### Melihat AST (Abstract Syntax Tree)
+
+```bash
+is ast program.is
+```
+
+### Mode REPL interaktif
+
+```bash
+is repl
+```
+
+### Melihat versi
+
+```bash
+is version
+```
+
+### Contoh Kode
+
+```is
+// hello.is
+tuliskan "Halo, Dunia!"; // untuk primitif node
+tampilkan("Halo, Dunia!"); // untuk modern node
+
+teks nama = "Budi";
+angka umur = 25;
+
+jika (umur >= 18) maka {
+    tuliskan(nama + " sudah dewasa");
+} namun tidak {
+    tuliskan(nama + " masih anak-anak");
+}
+
+angka faktorial(angka n) {
+    jika (n <= 1) maka {
+        kembalikan 1;
+    }
+    kembalikan n * faktorial(n - 1);
+}
+
+tampilkan("Faktorial 5 = " + faktorial(5));
+```
+
+## Fitur
+
+· ✅ Variabel (var_decl, final_decl, def_decl)
+· ✅ Tipe data: teks, angka, desimal, boolean, daftar, kamus
+· ✅ Operator aritmatika dan logika
+· ✅ Control flow: jika, selama, untuk
+· ✅ Function dengan return dan throw
+· ✅ Lambda expression
+· ✅ Array dan Dictionary
+· ✅ Pointer (& dan *)
+· ✅ Try-catch-finally
+· ✅ Input/Output (tuliskan, bacalah)
+· ✅ REPL interaktif
+
+## Lisensi
+
+[MIT](./indonesian_script/License)
+
+```

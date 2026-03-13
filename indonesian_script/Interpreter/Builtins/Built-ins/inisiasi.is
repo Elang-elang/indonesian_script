@@ -1,0 +1,5 @@
+impor { jangkauan_tipe, rentang } dari .modul.jangkauan.is
+impor {} dari .modul.objek.is
+
+
+ekspor { jangkauan_tipe, rentang }

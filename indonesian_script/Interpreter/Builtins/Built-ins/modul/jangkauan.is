@@ -1,0 +1,29 @@
+kondisi jangkauan_tipe(apapun Tipe, apapun Isi) {
+    jika (tipe dari Isi adalah daftar) {
+        untuk ( apapun isi didalam Isi ) {
+            jika (tipe dari isi adalah Tipe) {
+                kembalikan { benar };
+            }
+        }
+        kembalikan { salah };
+    } namun tidak {
+        kembalikan { tipe dari Isi adalah Tipe };
+    }
+}
+
+
+daftar rentang(angka akhir, angka awal = 0, angka jalan = 1) {
+    jika (jalan == 0) {
+        kegalatan<RentangGalat>{"Jika jalan adalah 0, bagaimana cara menyelesaikan Rentang"};
+    }
+    
+    daftar hasil = [];
+    selama (awal <= akhir) {
+        hasil.append(awal);
+        awal = awal + jalan;
+    }
+    
+    kembalikan { hasil };
+}
+
+ekspor { jangkauan_tipe, rentang }

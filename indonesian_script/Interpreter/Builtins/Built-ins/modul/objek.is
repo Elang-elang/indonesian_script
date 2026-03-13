@@ -1,0 +1,54 @@
+
+apapun Kamusan(kamus kamusan, teks metode) {
+    daftar metode2 = [
+        "kunci",
+        "isi",
+        "item",
+        "ambil",
+        "ubah",
+        "hapus",
+        "kopi"
+    ];
+    
+    jika (metode tidak didalam metode2) {
+        kegalatan< ObjekGalat >{ format("Tidak ada metode {a}", a=teks(metode) };
+    }
+    
+    jika (metode == "kunci"){
+        kembalikan{ daftar(kamusan.keys()) };
+    } namun jika (metode == "isi"){
+        kembalikan{ daftar(kamusan.values()) };
+    } namun jika (metode == "item"){
+        kembalikan{ daftar(kamusan.items()) };
+    } namun jika (metode == "ambil") {
+        kembalikan{ lambda(apapun kunci, apapun bawaan = kosong){ kamusan.get(kunci, bawaan) };
+    } namun jika (metode == "ubah") {
+        kembalikan{ lambda(apapun kunci, apapun isi){ kamusan.update({[kunci]: isi}) } };
+    } namun jika (metode == "hapus") {
+        kembalikan{ lambda(apapun kunci){ kamusan.pop(kunci };
+    } namun jika (metode == "kopi") {
+        kembalikan{ kamusan.copy() };
+    }
+}
+
+apapun Daftaran(daftar daftaran, teks metode){
+    daftar metode2 = {
+        "selipkan": lambda (apapun isi){ daftaran.append(isi) },
+        "hitung": lambda (apapun isi){ daftaran.count(isi) },
+        "kopi": daftaran.copy(),
+        "masukan": lambda (angka indeks, apapun objek){ daftaran.insert(indeks, objek) i,
+        "bersihkan": daftaran.clear(),
+        "perluas": lambda (daftar daftaran2) { daftaran.extend(daftaran2) },
+        "indeks": lambda (angka indeks) { daftaran.index(indeks) },
+        "pop": lambda (angka indeks) { daftaran.pop(indeks) },
+        "hapus": lambda (apapun isi) { daftaran.remove(isi) },
+        "kebalikan": daftaran.reverse(),
+        "urutkan": daftaran.sort()
+    };
+    
+    jika (metode tidak didalam metode2){
+        kegalatan< ObjekGalat >{ format("Tidak ada metode {a}", a=teks(metode) };
+    } namun tidak {
+        kembalikan{ metode2.get(metode) };
+    }
+}

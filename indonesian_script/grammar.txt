@@ -1,0 +1,201 @@
+start: program
+
+program: top_stmt*
+
+top_stmt: non_block
+        | block
+
+non_block: stmt*
+block: "{" stmt* "}"
+
+stmt: buttom_stmt ";"
+    | decoreted_stmt
+    | func_def
+    | ctrl_flow
+    | module_stmt
+
+buttom_stmt: expression
+           | cli_stmt
+           | vars_stmt
+
+cli_stmt: write_stmt
+        | read_stmt
+
+write_stmt: "tuliskan" expression
+read_stmt: "bacalah" VAR_NAME
+
+vars_stmt: alias_decl
+         | pointer_stmt
+         | final_decl
+         | var_decl
+         | def_decl
+         | redecl
+
+pointer_stmt: pointer_decl | unpointer_decl
+
+redecl: ID "=" expression
+alias_decl: "alias" ID "=" ID
+pointer_decl: "&" ID "=" ID
+unpointer_decl: "*" ID "=" ID
+final_decl: "final" type_ann ID "=" expression
+def_decl: type_ann ID
+var_decl: type_ann ID "=" expression
+
+decoreted_stmt: "#" "[" ID postfix* "]" "{" func_def "}"
+
+func_def: type_ann ID params block_func
+block_func: "{" stmt* "}"
+
+ctrl_flow: if_ctrl
+         | while_ctrl
+         | for_ctrl
+         | try_ctrl
+
+if_ctrl: if_stmt elif_stmt* else_stmt?
+if_stmt: "jika" "(" expression ")" "maka" block
+elif_stmt: "namun" "jika" "(" expression ")" "maka" block
+else_stmt: "namun" "tidak" block
+
+while_ctrl: while_stmt
+while_stmt: "selama" "(" expression ")" "lakukan" block
+
+for_ctrl: for_stmt
+for_stmt: "untuk" "(" for_expr ")" "lakukan" block
+for_expr: def_decl "didalam" expression
+
+try_ctrl: try_stmt catch_stmt finnaly_stmt?
+try_stmt: "coba" block
+catch_stmt: "tangkap" "(" ID ")" block
+finnaly_stmt: "akhiri" block
+
+
+module_stmt: export_stmt
+           | import_stmt
+
+export_stmt: "ekspor" "{" exp_params "}"
+exp_params: exp_arg ("," exp_arg)*
+exp_arg: VAR_NAME ("sebagai" ID)?
+
+import_stmt: "impor" "{" imp_params? "}" "dari" path_stmt
+imp_params: imp_arg ("," imp_arg)*
+imp_arg: ID ("sebagai" ID)?
+
+path_stmt: path_params
+path_params: path_args (":" path_args)*
+path_args: parent_path | path_arg
+path_arg: ID ("." ID)*
+parent_path: once_dot | two_dot
+once_dot: "."
+two_dot: ".."
+
+expression: equal
+
+equal: not_equal ("==" not_equal)*
+not_equal: great_equal ("!=" great_equal)*
+
+great_equal: great_than (">=" great_than)*
+great_than: less_equal (">" less_equal)*
+less_equal: less_than ("<=" less_than)*
+less_than: not_bool ("<" not_bool)*
+
+not_bool: /tidak/ or_bool
+        | or_bool
+or_bool: and_bool ("atau" and_bool)*
+and_bool: in_bool ("dan" in_bool)*
+
+in_bool: not_in ("dalam" not_in)?
+not_in: add ("tidak" "didalam" add)?
+
+add: minus ("+" minus)*
+minus: multi ("-" multi)*
+multi: divide ("*" divide)*
+divide: modular ("/" modular)*
+modular: pow ("%" pow)*
+pow: floor_divide ("**" floor_divide)*
+floor_divide: term ("//" term)*
+
+term: prefix postfix*
+    | lambda_func
+    | return_stmt
+    | throw_stmt
+    | type_of
+
+prefix: "(" expression ")"
+      | expression
+      | literal
+      | is_stmt
+      | VAR_NAME
+
+postfix: getattr
+       | getindex
+       | call_params
+
+lambda_func: "lambda" params "{" expression "}"
+return_stmt: "kembalikan" "{" expression "}"
+throw_stmt: "kegalatan" "<" ID ">" "{" expression "}"
+type_of: "tipe" "dari" VAR_NAME
+
+is_stmt: is_bool
+       | is_not_bool
+
+
+is_bool: ID "adalah" ID
+is_not_bool: ID "bukanlah" ID
+
+getattr: "." ID
+getindex: "[" expression+ "]"
+call_params: "(" call_args? ")"
+call_args: call_arg ("," call_arg)*
+call_arg: (ID "=")? expression
+
+type_ann: basic_type
+
+basic_type: /teks|angka|desimal|boolean|kekosongan|apapun|daftar|kamus|fungsi/ | VAR_NAME
+
+literal: basic_literal
+       | object_literal
+
+basic_literal: string
+             | integer
+             | float
+             | boolean
+
+object_literal: array
+              | dictinary
+
+array: "[" ( expression ("," expression)* )? "]"
+dictinary: "{" ( dict_bodies ("," dict_bodies)* )? "}"
+
+dict_bodies: key_params ":" value_params
+key_params: basic_literal
+          | "[" VAR_NAME "]"
+          | ID
+
+value_params: expression
+
+%import common.SIGNED_INT
+%import common.DECIMAL
+%import common.ESCAPED_STRING
+
+string: ESCAPED_STRING
+integer: SIGNED_INT
+float: DECIMAL
+
+boolean: /benar|salah/
+
+VAR_NAME: ID+
+ID: /[a-zA-Z_][a-zA-Z0-9_]*/
+
+
+params: "(" param? ")"
+param: args ( "," args)*
+args: type_ann ID ("=" expression)?
+
+%import common.CPP_COMMENT
+%import common.C_COMMENT
+%import common.WS
+
+%ignore CPP_COMMENT
+%ignore C_COMMENT
+%ignore WS
+
