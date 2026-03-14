@@ -9,4 +9,5 @@ from .main import IndonesianScriptInterpreter, isi
 # from .Interpreter.interpreter import Interpreter
 from .Interpreter.transformer import ASTBuilder as Loader
 from .Interpreter.AST_node import ast_nodes as AST
+from .Interpreter.Builtins import builtins 
 from .bridge import module as ModuleBridge

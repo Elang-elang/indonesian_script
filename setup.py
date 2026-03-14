@@ -4,7 +4,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
     long_description = fh.read()
 
 setup(
-    name="is",
+    name="indonesian_script",
     version="0.1.10",
     author="Elang muhammad",
     author_email="elangmahammad888@gmail.com",
@@ -15,7 +15,7 @@ setup(
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "Development Status :: 3 - Alpha"
+        "Development Status :: 4 - Beta",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],

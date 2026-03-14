@@ -1,7 +1,7 @@
 # transformer.py
 from lark import Transformer, v_args
 from .AST_node.ast_nodes import *
-from .Exceptions.Exceptions import *
+from .Exceptions.exceptions import *
 from .Builtins.builtins import get_builtin_type
 
 class ASTBuilder(Transformer):

@@ -6,7 +6,7 @@ import sys
 # Import dari submodule
 from .Interpreter.transformer import ASTBuilder
 from .Interpreter.interpreter import Interpreter
-from .Interpreter.Exceptions.Exceptions import *
+from .Interpreter.Exceptions.exceptions import *
 
 class IndonesianScriptInterpreter:
     """

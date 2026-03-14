@@ -1,5 +1,5 @@
 # builtins.py
-from ..Exceptions.Exceptions import VariabelGalat, FinalGalat, TipeGalat
+from ..Exceptions.exceptions import VariabelGalat, FinalGalat, TipeGalat
 from ..AST_node.ast_nodes import BasicType
 from decimal import Decimal
 TYPES = {

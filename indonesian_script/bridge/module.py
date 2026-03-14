@@ -6,7 +6,7 @@ import inspect
 import typing as T
 from ..Interpreter.AST_node import ast_nodes as AST
 from ..Interpreter.interpreter import Interpreter
-from ..Interpreter.Exceptions import Exceptions as Exp
+from ..Interpreter.Exceptions import exceptions as Exp
 from decimal import Decimal
 
 # @var

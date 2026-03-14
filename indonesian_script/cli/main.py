@@ -10,7 +10,7 @@ from pathlib import Path
 # Import dari parent directory
 # sys.path.insert(0, str(Path(__file__).parent.parent))
 from ..main import IndonesianScriptInterpreter
-from ..Interpreter.Exceptions.Exceptions import *
+from ..Interpreter.Exceptions.exceptions import *
 
 # Warna untuk output (opsional)
 try:

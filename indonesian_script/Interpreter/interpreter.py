@@ -1,5 +1,5 @@
 # interpreter.py
-from .Exceptions.Exceptions import *
+from .Exceptions.exceptions import *
 from .AST_node.ast_nodes import *
 from .transformer import *
 from .Builtins.builtins import BUILTINS, TYPES, BUILTINS_FUNCTIONS
