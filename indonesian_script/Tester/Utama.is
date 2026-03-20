@@ -1,11 +1,5 @@
-fungsi log(fungsi func){
-    tampilkan(format("Nama fungsi {func}", func=teks(func)));
-    kembalikan{func};
-}
 
-#[log]{
-teks app(){
-    kembalikan{"app"};
-}}
+#[tampilkan];
+fungsi[kekosongan] app(){}
 
-app();
+tampilkan(tampilkan);

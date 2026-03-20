@@ -2,7 +2,7 @@
 from .Exceptions.exceptions import *
 from .AST_node.ast_nodes import *
 from .transformer import *
-from .Builtins.builtins import BUILTINS, TYPES, BUILTINS_FUNCTIONS
+from .Builtins.builtins import BUILTINS, TYPES, BUILTINS_FUNCTIONS, Fungsi
 from pathlib import Path
 
 class Scope:
@@ -91,25 +91,32 @@ class Interpreter:
         for name, value in BUILTINS.items():
             if callable(value):
                 # fungsi built-in
-                self.global_scope.declare(name, value, BasicType('fungsi'), hex(id(str(value))), constant=True)
+                value = Fungsi(value)
+                value.__name__ = name
+                self.global_scope.declare(name, value, BasicType('fungsi'), hex(id(value)), constant=True)
             else:
                 # konstanta seperti benar, salah, kosong
                 type_name = type(value).__name__
-                self.global_scope.declare(name, value, BasicType(type_name), hex(id(str(value))), constant=True)
+                self.global_scope.declare(name, value, BasicType(type_name), hex(id(value)), constant=True)
         
         # khusus untuk BUILTINS_FUNCTIONS yang membutuhkan 'self'
-        
-        def set_func(func, *args, **kwargs):
-            return func(self, *args, **kwargs)
-        
         for name, func_builtins in BUILTINS_FUNCTIONS.items():
+            func = Fungsi(lambda *args, **kwargs: func_builtins(self, *args, **kwargs))
+            func.__name__ = name
+            func.__dict__.update({
+                'nama': name,
+                'isi': func,
+                'tipe': 'fungsi',
+                'lokasi': hex(id(func))
+            })
+            func.__id__ = id(func)
+            func.__hex__ = hex(id(func))
+            
             self.current_scope.declare(
                 name,
-                lambda *args, **kwargs: set_func(
-                    func_builtins, *args, **kwargs
-                ),
+                func,
                 BasicType('fungsi'),
-                hex(id(str(func_builtins))),
+                func.__hex__,
                 True
             )
         
@@ -126,6 +133,7 @@ class Interpreter:
     def visit(self, node):
         method_name = f'visit_{type(node).__name__}'
         visitor = getattr(self, method_name, self.generic_visit)
+        # print(node)
         return visitor(node)
     
     def generic_visit(self, node):
@@ -167,19 +175,58 @@ class Interpreter:
         self._check_type(value, var_info['type'])
         self.current_scope.set(node.name, value, var_info['type'], hex(id(value)), constant=var_info['constant'])
     
-    def visit_PointerDecl(self, node: PointerDecl):
-        # Pointer menyimpan alamat memori (simulasi dengan id)
-        target = self.current_scope.get(node.target)
-        # Kita simpan pointer sebagai objek khusus? Sederhananya simpan id
-        self.current_scope.declare(node.name, target['address'], BasicType('pointer'), hex(id(target['address'])), constant=False)
-    
-    def visit_UnpointerDecl(self, node: UnpointerDecl):
-        target_ptr = self.current_scope.get(node.target)
+    def visit_SetObj(self, node: SetObj):
+        obj = node.obj
+        value = self.visit(node.value)
         
-        # Mencari memory yang sama
-        target = self.current_scope.get(target_ptr['value'], 'address')
+        target_arr = []
+        while True:
+            if isinstance(obj, GetObj):
+                target_arr.append(obj.target)
+                obj = obj.obj
+            else:
+                target_arr.append(obj)
+                break
         
-        self.current_scope.declare(node.name, target['value'], target['type'], target['address'], target['constant'])
+        base_name = target_arr[-1]
+        target_arr = target_arr[:-1][::-1]
+        
+        base = self.current_scope.get(base_name)
+        base_val = base['value']
+        obj = None
+        for i, target in enumerate(target_arr):
+            if isinstance(target, Node):
+                target = self.visit(target)
+            
+            if i != len(target_arr)-1:
+                try:
+                    if isinstance(base_val, dict):
+                        base_val = base_val[target]
+                    else:
+                        try:
+                            base_val = getattr(base_val, target)
+                        except:
+                            return None
+                except (KeyError, IndexError):
+                    base_val = getattr(base_val, target)
+                except:
+                    return None
+                
+            else:
+                try:
+                    if isinstance(base_val, dict):
+                        base_val[target] = value
+                    else:
+                        try:
+                            setattr(base_val, target, value)
+                        except:
+                            return None
+                except (KeyError, IndexError):
+                    setattr(base_val, target, value)
+                except:
+                    return None
+        
+        self.current_scope.vars[base_name] = base
     
     def visit_Function(self, node: Function):
         type_ann = node.type_ann
@@ -244,16 +291,30 @@ class Interpreter:
                 self.current_scope = old_scope
                 self._infunction = False
         
+        func_def = Fungsi(func_wrapper)
+        func_def.__name__ = name
+        
+        func_def.__dict__ = {
+            'nama': name,
+            'isi': func_def,
+            'tipe': {
+                'kembalikan': type_ann.name
+            },
+            'lokasi': hex(id(func_def))
+        }
+        
+        func_def.__id__ = id(func_def)
+        func_def.__hex__ = hex(id(func_def))
         # Daftarkan function
         self.current_scope.declare(
-            name, 
-            func_wrapper, 
-            type_ann, 
-            hex(id(func_wrapper)), 
+            func_def.__dict__['nama'], 
+            func_def.__dict__['isi'],
+            type_ann,
+            func_def.__dict__['lokasi'],
             constant=True
         )
         
-        return func_wrapper
+        return func_def
     
     def visit_Return(self, node: Return):
         """Return statement - mengirim sinyal return"""
@@ -267,6 +328,23 @@ class Interpreter:
         message = self.visit(node.expr)
         classThrow = get_exc(node.name, message)
         raise classThrow
+    
+    def visit_Decoreted(self, node: Decoreted):
+        func_call = node.func_call
+        target = node.func_target
+        
+        self.visit(target)
+        func_def = self.current_scope.get(target.name)['value']
+        
+        func_call.params.args.append(
+            CallArgument(
+                name=None,
+                value=Literal(value=func_def.__dict__)
+            )
+        )
+        
+        result_called = self.visit(func_call)
+        self.current_scope.vars[target.name]['value'] = result_called
     
     def visit_WriteStmt(self, node: WriteStmt):
         # print(self.current_scope.vars)
@@ -628,7 +706,60 @@ class Interpreter:
             raise IsiGalat(f"Unary operator {node.op} tidak dikenal")
     
     def visit_Literal(self, node: Literal):
-        return node.value
+        value = node.value
+        if isinstance(value, Node):
+            value = self.visit(value)
+        
+        return value
+    
+    def visit_Array(self, node: Array):
+        values = node.values
+        
+        arr = []
+        for val in values:
+            if isinstance(val, Unpacking):
+                arr.extend(self.visit(val.value))
+            elif isinstance(val, Node):
+                arr.append(self.visit(val))
+            else:
+                arr.append(val)
+        
+        return arr
+    
+    def visit_Dictionary(self, node: Dictionary):
+        keys = node.keys
+        values = node.values
+        
+        if len(keys) != len(values):
+            raise AtributGalat(f"Mengapa panjang dari kunci dan isi tidak sama?")
+        
+        idx = 0
+        obj = {}
+        while len(keys) == len(values) and idx < len(keys):
+            key = keys[idx]
+            val = values[idx]
+            idx += 1
+            
+            if isinstance(val, Node) and key is None:
+                sbj = self.visit(val)
+                obj.update(sbj)
+                continue
+            
+            if isinstance(val, Node) and key:
+                sbj = self.visit(val)
+                obj[key] = sbj
+                continue
+            
+            if isinstance(key, Node):
+                key = self.visit(key)
+            
+            if isinstance(val, Node):
+                val = self.visit(val)
+            
+            if (not isinstance(key, Node) and key) and (not isinstance(val, Node) and val):
+                obj[key] = val
+            
+        return obj
     
     def visit_Variable(self, node: Variable):
         name = node.name
@@ -640,20 +771,44 @@ class Interpreter:
         var_info = self.current_scope.get(node.name)
         return var_info['value']
     
-    def visit_GetAttr(self, node: GetAttr):
+    def visit_GetObj(self, node: GetObj):
         obj = self.visit(node.obj)
+        target = node.target
+        
+        if isinstance(target, Node):
+            target = self.visit(target)
+        
         try:
-            return getattr(obj, node.attr)
-        except AttributeError:
-            raise AtributGalat(f'Tidak ada atribut {str(node.attr)!r} pada {str(obj)!r}')
+            return obj[target]
+        except (KeyError, IndexError):
+            return getattr(obj, node.target)
+            # raise IndeksGalat(f'Tidak ada indeks {str(idx)!r} pada {str(obj)!r}')
+        except:
+            return None
+            # raise AtributGalat(f'Tidak ada atribut {str(node.attr)!r} pada {str(obj)!r}')
     
-    def visit_GetIndex(self, node: GetIndex):
-        obj = self.visit(node.obj)
-        idx = self.visit(node.index)
-        try:
-            obj[idx]
-        except IndexError:
-            raise IndeksGalat(f'Tidak ada indeks {str(idx)!r} pada {str(obj)!r}')
+    def visit_Crement(self, node: Crement):
+        if not isinstance(node.obj, Variable):
+            raise VariabelGalat('Peningkatan harus berupa variabel, bukan non-variabel')
+        
+        obj_name = node.obj.name
+        obj = self.current_scope.get(obj_name)
+        
+        if (not isinstance(obj['value'], int)) or obj['type'].name != 'angka':
+            raise TipeGalat('Peningkatan pada isi dari variabel harus berupa angka')
+        
+        if node.negated:
+            obj['value'] -= 1
+        else:
+            obj['value'] += 1
+            
+        self.current_scope.set(
+            obj_name,
+            obj['value'],
+            obj['type'],
+            hex(id(obj['value'])),
+            obj['constant']
+        )
     
     def visit_CallFunc(self, node: CallFunc):
         func = self.visit(node.func)
@@ -776,6 +931,15 @@ class Interpreter:
         else:
             return str(obj['type'])
     
+    def visit_GetAddr(self, node: GetAddr):
+        var = node.var
+        negated = node.negated
+        if negated:
+            addr = self.current_scope.get(var)['value']
+            return self.current_scope.get(addr, 'address')
+        else:
+            return self.current_scope.get(var)['address']
+    
     def visit_IsStmt(self, node: IsStmt):
         left_info = self.current_scope.get(node.left)
         right_info = self.current_scope.get(node.right)
@@ -857,6 +1021,9 @@ class Interpreter:
         app.param_name = name
 
         return app
+    
+    def visit_BasicType(self, node: BasicType):
+        return node.name
     
     # --- Helpers ---
     def _check_type(self, value, type_ann):

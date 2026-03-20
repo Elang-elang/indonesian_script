@@ -16,13 +16,17 @@ TYPES = {
     'tipe': type,
 }
 
+def format(string: str, /, **kwargs) -> str:
+    return string.format(**kwargs)
+
 BUILTINS = {
     'benar': True,
     'salah': False,
     'kosong': None,
     'enter': '\n',
     'tab': '\t',
-    'format': lambda val, **kwargs: str(val).format(**kwargs),
+    'format': format,
+    'f': format,
     'tampilkan': print,
     **TYPES
 }
@@ -138,3 +142,25 @@ BUILTINS_FUNCTIONS = {
     'Fungsi': builtins_fungsi,
     'Variabel': builtins_vars
 }
+
+import inspect
+
+class Fungsi:
+    __value__ = None
+    __name__ = 'Fungsi'
+    __id__ = id('Fungsi')
+    __hex__ = hex(id('Fungsi'))
+    __dict__ = {}
+    
+    def __init__(self, func):
+        self.__value__ = func
+        self.__name__ = func.__name__
+        self.__id__ = id(func)
+        self.__hex__ = hex(self.__id__)
+        self.__dict__ = dict(getattr(func, '__dict__', {}))
+    
+    def __call__(self, *args, **kwargs):
+        return self.__value__(*args, **kwargs)
+    
+    def __repr__(self):
+        return f"<Fungsi {self.__name__!r} pada {self.__hex__}>"

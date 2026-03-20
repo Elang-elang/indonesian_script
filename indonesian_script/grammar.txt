@@ -25,31 +25,28 @@ write_stmt: "tuliskan" expression
 read_stmt: "bacalah" VAR_NAME
 
 vars_stmt: alias_decl
-         | pointer_stmt
          | final_decl
          | var_decl
          | def_decl
          | redecl
-
-pointer_stmt: pointer_decl | unpointer_decl
+         | setobj
 
 redecl: ID "=" expression
-alias_decl: "alias" ID "=" ID
-pointer_decl: "&" ID "=" ID
-unpointer_decl: "*" ID "=" ID
-final_decl: "final" type_ann ID "=" expression
-def_decl: type_ann ID
-var_decl: type_ann ID "=" expression
+alias_decl: "alias" "[" ID "]" "sebagai" ID
+final_decl: "final" "[" type_ann "]" ID "=" expression
+def_decl: "def" "[" type_ann "]" ID
+var_decl: "var" "[" type_ann "]" ID "=" expression
+setobj: ID getobj+ "=" expression
 
-decoreted_stmt: "#" "[" ID postfix* "]" "{" func_def "}"
-
-func_def: type_ann ID params block_func
+decoreted_stmt: "#" "[" ID postfix* "]" ";" /\n/ func_def
+func_def: "fungsi" "[" type_ann "]" ID params block_func
 block_func: "{" stmt* "}"
 
 ctrl_flow: if_ctrl
          | while_ctrl
          | for_ctrl
          | try_ctrl
+         | switch_ctrl
 
 if_ctrl: if_stmt elif_stmt* else_stmt?
 if_stmt: "jika" "(" expression ")" "maka" block
@@ -68,6 +65,12 @@ try_stmt: "coba" block
 catch_stmt: "tangkap" "(" ID ")" block
 finnaly_stmt: "akhiri" block
 
+switch_ctrl: switch_stmt
+switch_stmt: "pilah" "(" expression ")" block_switch
+block_switch: "{" body_switch+ "}"
+body_switch: case_stmt+ default_stmt?
+case_stmt: "kalau" expression ":" stmt+
+default_stmt: "bawaannya" ":" stmt+
 
 module_stmt: export_stmt
            | import_stmt
@@ -111,14 +114,16 @@ minus: multi ("-" multi)*
 multi: divide ("*" divide)*
 divide: modular ("/" modular)*
 modular: pow ("%" pow)*
-pow: floor_divide ("**" floor_divide)*
-floor_divide: term ("//" term)*
+pow: term ("**" term)*
 
 term: prefix postfix*
     | lambda_func
     | return_stmt
     | throw_stmt
     | type_of
+    | pointer
+    | unpointer
+    | crement
 
 prefix: "(" expression ")"
       | expression
@@ -126,24 +131,30 @@ prefix: "(" expression ")"
       | is_stmt
       | VAR_NAME
 
-postfix: getattr
-       | getindex
+postfix: getobj
        | call_params
 
 lambda_func: "lambda" params "{" expression "}"
 return_stmt: "kembalikan" "{" expression "}"
 throw_stmt: "kegalatan" "<" ID ">" "{" expression "}"
 type_of: "tipe" "dari" VAR_NAME
+pointer: "&" ID
+unpointer: "*" ID
 
 is_stmt: is_bool
        | is_not_bool
 
-
 is_bool: ID "adalah" ID
 is_not_bool: ID "bukanlah" ID
 
+getobj: getattr | getindex
 getattr: "." ID
 getindex: "[" expression+ "]"
+
+crement: (increment | decrement) VAR_NAME
+increment: "++"
+decrement: "--"
+
 call_params: "(" call_args? ")"
 call_args: call_arg ("," call_arg)*
 call_arg: (ID "=")? expression
@@ -163,15 +174,20 @@ basic_literal: string
 object_literal: array
               | dictinary
 
-array: "[" ( expression ("," expression)* )? "]"
-dictinary: "{" ( dict_bodies ("," dict_bodies)* )? "}"
+array: "[" ( array_body ("," array_body)* )? "]"
+array_body: expression | unpacking
 
-dict_bodies: key_params ":" value_params
+dictinary: dict_body
+dict_body: "{" ( dict_bodies ("," dict_bodies)* )? "}"
+dict_bodies: VAR_NAME | dict_items | unpacking
+dict_items: key_params ":" value_params
 key_params: basic_literal
           | "[" VAR_NAME "]"
           | ID
 
 value_params: expression
+
+unpacking: "..." (literal | VAR_NAME)
 
 %import common.SIGNED_INT
 %import common.DECIMAL

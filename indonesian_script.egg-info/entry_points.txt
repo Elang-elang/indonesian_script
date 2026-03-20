@@ -1,2 +1,0 @@
-[console_scripts]
-is = indonesian_script.cli.main:main

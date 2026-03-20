@@ -1,0 +1,14 @@
+include indonesian_script/*
+include indonesian_script/grammar.txt
+include indonesian_script/Interpreter/*
+include indonesian_script/Compiler/*
+include indonesian_script/Tester/*
+include indonesian_script/Interpreter/Exceptions/*
+include indonesian_script/Interpreter/Builtins/*
+include indonesian_script/Interpreter/AST_Node/*
+include indonesian_script/Interpreter/brigde/*
+include indonesian_script/Interpreter/cli/*
+
+recursive-include indonesian_script *.is
+recursive-exclude * *.pyc
+recursive-exclude * __pycache__

@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="indonesian_script",
-    version="0.1.10",
+    version="0.1.11a4",
     author="Elang muhammad",
     author_email="elangmahammad888@gmail.com",
     description="A programming language designed to make life easier for the Indonesian people",
@@ -15,7 +15,7 @@ setup(
     packages=find_packages(),
     classifiers=[
         "Programming Language :: Python :: 3",
-        "Development Status :: 4 - Beta",
+        "Development Status :: 3 - Alpha",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
@@ -30,8 +30,5 @@ setup(
             "is=indonesian_script.cli.main:main",
         ],
     },
-    include_package_data=True,
-    package_data={
-        "is": ["indonesian_script/grammar.txt"],
-    },
+    include_package_data=True
 )

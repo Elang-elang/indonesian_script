@@ -114,6 +114,12 @@ class ASTBuilder(Transformer):
     def finally_stmt(self, items):
         return FinallyStmt(body=items[0])
     
+    def switch_ctrl(self, items):
+        return items[0]
+    
+    def switch_stmt(self, items):
+        pass
+    
     # --- Statements ---
     def vars_stmt(self, items):
         return items[0]
@@ -131,35 +137,37 @@ class ASTBuilder(Transformer):
         return DefDecl(type_ann=type_ann, name=str(name))
     
     def alias_decl(self, items):
-        alias, target = items
+        target, alias = items
         return AliasDecl(alias=str(alias), target=str(target))
     
     def redecl(self, items):
         name, value = items
         return Redecl(name=str(name), value=value)
     
-    def pointer_stmt(self, items):
-        return items[0]
-    
-    def pointer_decl(self, items):
-        name, target = items
-        return PointerDecl(name=str(name), target=str(target))
+    def setobj(self, items):
+        obj = items[0]
         
-    def unpointer_decl(self, items):
-        name, target = items
-        return UnpointerDecl(name=str(name), target=str(target))
+        idx = 1
+        while idx < len(items[:-1]) and items[idx]:
+            if isinstance(items[idx], GetObj):
+                obj = GetObj(obj=obj, target=items[idx].target)
+            else:
+                obj = GetObj(obj=obj, target=items[idx])
+            idx += 1
+        
+        value = items[idx]
+        
+        return SetObj(obj=obj, value=value)
     
     def decoreted_stmt(self, items):
-        """# [decorator] { function_definition }"""
-        # items: ['#', '[', decorator, postfix*, ']', '{', func_def, '}']
+        """# [decorator] function_definition """
+        # items: [ decorator, postfix*, '\n', func_def]
         
         # Ambil decorator (ID)
-        decorator = items[0]  # Index 2 adalah ID setelah '['
-        
-        # Ambil postfix (getattr, getindex, call_params) jika ada
+        decorator = items[0]
         postfixes = []
         idx = 1
-        while idx < len(items) and items[idx] not in (']', '{'):
+        while idx < len(items) - 2 and items[idx] not in (']', '{'):
             if items[idx] not in (']', '{'):
                 postfixes.append(items[idx])
             idx += 1
@@ -187,20 +195,23 @@ class ASTBuilder(Transformer):
                 # Ini adalah pemanggilan decorator dengan parameter
                 base = CallFunc(func=base, params=post)
         
+        if isinstance(base, Variable):
+            base = CallFunc(
+                func=base, params=CallParameter(
+                    args=[]
+                )
+            )
+        
         # Sekarang base adalah decorator yang sudah diproses
         # Kita perlu membuat AST untuk: @decorator
         # yaitu: decorator(function_definition)
         
         # Buat CallArgument untuk fungsi
-        func_arg = CallArgument(name=None, value=func_def)
-        
         # Panggil decorator dengan fungsi sebagai argumen
-        decorated_call = CallFunc(
-            func=base,
-            params=CallParameter(args=[func_arg])
+        return Decoreted(
+            func_call=base,
+            func_target=func_def
         )
-        
-        return decorated_call
     
     def func_def(self, items):
         index = 0
@@ -397,10 +408,8 @@ class ASTBuilder(Transformer):
         
         base = items[0]
         for post in items[1:]:
-            if isinstance(post, GetAttr):
-                base = GetAttr(obj=base, attr=post.attr)
-            elif isinstance(post, GetIndex):
-                base = GetIndex(obj=base, index=post.index)
+            if isinstance(post, GetObj):
+                base = GetObj(obj=base, target=post.target)
             elif isinstance(post, CallParameter):
                 base = CallFunc(func=base, params=post)
         return base
@@ -416,14 +425,26 @@ class ASTBuilder(Transformer):
     def postfix(self, items):
         return items[0]
     
+    def getobj(self, items):
+        return items[0]
+    
     def getattr(self, items):
         # items: [ID] setelah titik
-        return GetAttr(obj=object, attr=str(items[0]))
+        return GetObj(obj=object, target=items[0])
     
     def getindex(self, items):
         # items: [expression]
-        return GetIndex(obj={}, index=items[0])
-        
+        return GetObj(obj={}, target=items[0])
+    
+    def crement(self, items):
+        return Crement(obj=items[1], negated=items[0].negated)
+    
+    def decrement(self, items):
+        return Crement(obj=0, negated=True)
+    
+    def increment(self, items):
+        return Crement(obj=0, negated=False)
+    
     def call_params(self, items):
         # items adalah list of call_args atau None
         if items:
@@ -455,16 +476,22 @@ class ASTBuilder(Transformer):
     def type_of(self, items):
         return TypeOf(var=items[0])
     
+    def pointer(self, items):
+        return GetAddr(var=str(items[0]), negated=False)
+    
+    def unpointer(self, items):
+        return GetAddr(var=str(items[0]), negated=True)
+    
     def is_stmt(self, items):
         return items[0]
     
     def is_bool(self, items):
         # items: [ID, 'adalah', ID]
-        return IsStmt(left=str(items[0]), right=str(items[2]), negated=False)
+        return IsStmt(left=str(items[0]), right=str(items[1]), negated=False)
     
     def is_not_bool(self, items):
         # items: [ID, 'bukanlah', ID]
-        return IsStmt(left=str(items[0]), right=str(items[2]), negated=True)
+        return IsStmt(left=str(items[0]), right=str(items[1]), negated=True)
     
     def VAR_NAME(self, items):
         return Variable(name=str(items))
@@ -494,17 +521,40 @@ class ASTBuilder(Transformer):
         return Literal(value=(items[0] == 'benar'))
     
     def array(self, items):
-        return Literal(value=list(items))
+        return Literal(value=Array(values=list(items)))
+    
+    def array_body(self, items):
+        return items[0]
     
     def dictinary(self, items):
+        return items[0]
+    
+    def dict_body(self, items):
         # items adalah list of dict_bodies yang masing-masing punya satu pasang
-        d = {}
+        key = []
+        value = []
         for body in items:
-            d.update(body)
-        return Literal(value=d)
+            if isinstance(body, Variable):
+                key.append(body.name)
+                value.append(body)
+            elif isinstance(body, Unpacking):
+                key.append(None)
+                value.append(body.value)
+            else:
+                for k, v in body.items():
+                    key.append(k)
+                    value.append(v)
+        return Literal(value=Dictionary(
+            keys=key, values=value
+        ))
     
     def dict_bodies(self, items):
+        return items[0]
+    
+    def dict_items(self, items):
         key, value = items
+        if isinstance(key, Literal):
+            key = key.value
         return {key: value}
     
     def key_params(self, items):
@@ -514,6 +564,8 @@ class ASTBuilder(Transformer):
     def value_params(self, items):
         return items[0]
     
+    def unpacking(self, items):
+        return Unpacking(value=items[0])
     # --- Types ---
     def type_ann(self, items):
         return items[0]

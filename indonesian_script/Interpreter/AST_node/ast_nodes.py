@@ -20,19 +20,23 @@ class Statement(Node):
     pass
 
 @dataclass
-class VarDecl(Statement):
+class Declare(Statement):
+    pass
+
+@dataclass
+class VarDecl(Declare):
     type_ann: 'Type'
     name: str
     value: Optional['Expression']
 
 @dataclass
-class FinalDecl(Statement):
+class FinalDecl(Declare):
     type_ann: 'Type'
     name: str
     value: 'Expression'
 
 @dataclass
-class DefDecl(Statement):
+class DefDecl(Declare):
     type_ann: 'Type'
     name: str
 
@@ -42,19 +46,14 @@ class AliasDecl(Statement):
     target: str
 
 @dataclass
-class Redecl(Statement):
+class Redecl(Declare):
     name: str
     value: 'Expression'
 
 @dataclass
-class PointerDecl(Statement):
-    name: str
-    target: str
-
-@dataclass
-class UnpointerDecl(Statement):
-    name: str
-    target: str
+class SetObj(Declare):
+    obj: 'GetObj'
+    value: 'Expression'
 
 @dataclass
 class WriteStmt(Statement):
@@ -122,6 +121,17 @@ class CatchStmt(CtrlFlow):
 class FinallyStmt(CtrlFlow):
     body: Block
 
+@dataclass
+class SwitchStmt(CtrlFlow):
+    expr: 'Expression'
+    case: List['CaseStmt']
+    default: 'CaseStmt'
+
+@dataclass
+class CaseStmt(CtrlFlow):
+    expr: 'Expression'
+    body: Statement
+
 # --- Expressions ---
 class Expression(Node):
     pass
@@ -142,19 +152,32 @@ class Literal(Expression):
     value: Any
 
 @dataclass
+class Unpacking(Expression):
+    value: Union[Dict | List]
+
+@dataclass
+class Dictionary(Expression):
+    keys: List[Any]
+    values: List[Any]
+
+@dataclass
+class Array(Expression):
+    values: List[Any]
+
+@dataclass
 class Variable(Expression):
     name: str
     value: Any = None
 
 @dataclass
-class GetAttr(Expression):
-    obj: Expression
-    attr: str
+class Crement(Expression):
+    obj: Variable
+    negated: bool = False
 
 @dataclass
-class GetIndex(Expression):
+class GetObj(Expression):
     obj: Expression
-    index: Expression
+    target: str
 
 @dataclass
 class CallFunc(Expression):
@@ -178,6 +201,11 @@ class LambdaFunc(Expression):
 @dataclass
 class TypeOf(Expression):
     var: Variable
+
+@dataclass
+class GetAddr(Expression):
+    var: Variable
+    negated: bool = False
 
 @dataclass
 class IsStmt(Expression):  # sebenarnya ini expression boolean
@@ -220,6 +248,11 @@ class Return(Expression):
 class Throw(Expression):
     name: str
     expr: Expression
+
+@dataclass
+class Decoreted(Statement):
+    func_call: CallFunc
+    func_target: Function
 
 # --- Module ---
 class Module(Node):
