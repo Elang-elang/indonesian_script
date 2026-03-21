@@ -1,5 +1,12 @@
+var[kondisi] apakah_hidup = benar;
 
-#[tampilkan];
-fungsi[kekosongan] app(){}
-
-tampilkan(tampilkan);
+pilah(apakah_hidup) {
+    kalau benar:
+        tampilkan("ternyata dia hidup!");
+        berhentikan!;
+    kalau salah:
+        tampilkan("dia telah tiada");
+        berhentikan!;
+    kalau tidak:
+        tampilkan("data tidak diketahui");
+}
