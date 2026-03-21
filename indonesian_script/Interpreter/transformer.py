@@ -118,7 +118,27 @@ class ASTBuilder(Transformer):
         return items[0]
     
     def switch_stmt(self, items):
-        pass
+        expr, body = items
+        return SwitchStmt(expr=expr, body=list(body))
+    
+    def block_switch(self, items):
+        return items[0]
+    
+    def body_switch(self, items):
+        return items
+    
+    def case_stmt(self, items):
+        expr, stmt = items
+        return CaseStmt(expr=list(expr), body=list(stmt))
+    
+    def default_stmt(self, items):
+        return CaseStmt(expr=['_'], body=list(items[0]))
+    
+    def case_expr(self, items):
+        return items
+    
+    def body_case(self, items):
+        return items
     
     # --- Statements ---
     def vars_stmt(self, items):
@@ -492,6 +512,12 @@ class ASTBuilder(Transformer):
     def is_not_bool(self, items):
         # items: [ID, 'bukanlah', ID]
         return IsStmt(left=str(items[0]), right=str(items[1]), negated=True)
+    
+    def continue_stmt(self, items):
+        return Looping(is_continue=True)
+        
+    def break_stmt(self, items):
+        return Looping(is_continue=False)
     
     def VAR_NAME(self, items):
         return Variable(name=str(items))

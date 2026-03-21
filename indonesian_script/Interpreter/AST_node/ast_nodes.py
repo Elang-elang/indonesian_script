@@ -124,13 +124,12 @@ class FinallyStmt(CtrlFlow):
 @dataclass
 class SwitchStmt(CtrlFlow):
     expr: 'Expression'
-    case: List['CaseStmt']
-    default: 'CaseStmt'
+    body: List['CaseStmt']
 
 @dataclass
 class CaseStmt(CtrlFlow):
-    expr: 'Expression'
-    body: Statement
+    expr: List['Expression']
+    body: List[Statement]
 
 # --- Expressions ---
 class Expression(Node):
@@ -213,6 +212,18 @@ class IsStmt(Expression):  # sebenarnya ini expression boolean
     right: str
     negated: bool = False
 
+@dataclass
+class Return(Expression):
+    expr: Expression
+
+@dataclass
+class Throw(Expression):
+    name: str
+    expr: Expression
+
+@dataclass
+class Looping(Expression):
+    is_continue: bool
 
 # --- Functions ---
 class FunctionNode(Node):
@@ -239,15 +250,6 @@ class Argument(FunctionNode):
     type_ann: 'Type'
     name: str
     value: Optional[Expression] = None
-
-@dataclass
-class Return(Expression):
-    expr: Expression
-
-@dataclass
-class Throw(Expression):
-    name: str
-    expr: Expression
 
 @dataclass
 class Decoreted(Statement):

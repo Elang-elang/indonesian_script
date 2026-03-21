@@ -73,6 +73,7 @@ class Interpreter:
             'berkas': 'utama' if not ismodule else filename
         }
         
+        self._isloop = False
         self._infunction = False
         self._inclass = False
         
@@ -133,7 +134,7 @@ class Interpreter:
     def visit(self, node):
         method_name = f'visit_{type(node).__name__}'
         visitor = getattr(self, method_name, self.generic_visit)
-        # print(node)
+        #print(node)
         return visitor(node)
     
     def generic_visit(self, node):
@@ -408,14 +409,23 @@ class Interpreter:
         self.visit(node.body)
     
     def visit_WhileStmt(self, node: WhileStmt):
+        self._isloop = True
+        
         while self.visit(node.condition):
             try:
                 self.visit(node.body)
+            except BreakSignal:
+                break
+            except ContinueSignal:
+                continue
             except (ReturnSignal, ThrowSignal) as e:
                 # Propagate return/throw dari dalam loop
                 raise e
+            finally:
+                self._isloop = False
     
     def visit_ForStmt(self, node: ForStmt):
+        self._isloop = True
         expr = self.visit(node.expr)  # expr adalah instance IterHelper
         body = node.body
     
@@ -439,9 +449,15 @@ class Interpreter:
             )
             
             try:
-                self.visit(body)
+                self.visit(node.body)
+            except BreakSignal:
+                break
+            except ContinueSignal:
+                continue
             except (ReturnSignal, ThrowSignal) as e:
                 raise e
+            finally:
+                self._isloop = False
         
     def visit_ForExpr(self, node: ForExpr):
         name = node.name
@@ -581,7 +597,52 @@ class Interpreter:
                 self.current_scope = old_scope
     
         return app
+    
+    def visit_SwitchStmt(self, node: SwitchStmt):
+        expr = self.visit(node.expr)
+        case_func = [self.visit(stmt) for stmt in node.body if stmt is not None]
         
+        self._isloop = True
+        for func in case_func:
+            try:
+                func(expr)
+            except BreakSignal:
+                break
+            except ContinueSignal:
+                continue
+            except (ReturnSignal, ThrowSignal) as e:
+                raise e
+            finally:
+                self._isloop = False
+        
+    def visit_CaseStmt(self, node: CaseStmt):
+        if len(node.expr) == 1 and node.expr[0] == '_':
+            def wrapper(expr):
+                for stmt in node.body:
+                    try:
+                        self.visit(stmt)
+                    except (ReturnSignal, ThrowSignal, BreakSignal, ContinueSignal) as e:
+                        raise e
+                return True
+            
+            return wrapper
+            
+        exprs = [self.visit(expr) for expr in node.expr if expr is not None]
+        
+        def wrapper(expr):
+            if expr in exprs:
+                for stmt in node.body:
+                    try:
+                        self.visit(stmt)
+                    except (ReturnSignal, ThrowSignal, BreakSignal, ContinueSignal) as e:
+                        raise e
+                    
+                return True
+                
+            return False
+        
+        return wrapper
+    
     def visit_Block(self, node: Block):
         # Masuk scope baru
         old_scope = self.current_scope
@@ -949,6 +1010,14 @@ class Interpreter:
         if node.negated:
             return not same
         return same
+    
+    def visit_Looping(self, node: Looping):
+        if not self._isloop:
+            raise PenulisanGalat(f'Ekspresi {'lanjutkan' if node.is_continue else 'berhentikan'} harus berada pada perulangan')
+            
+        if node.is_continue:
+            raise ContinueSignal()
+        raise BreakSignal()
     
     def visit_Parameter(self, node: Parameter):
         if not node.args:

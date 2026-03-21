@@ -15,6 +15,16 @@ class ThrowSignal(ControlSignal):
         self.message = message
         super().__init__(message)
 
+class ContinueSignal(ControlSignal):
+    """Sinyal untuk return value"""
+    def __init__(self):
+        super().__init__("Continue")
+
+class BreakSignal(ControlSignal):
+    """Sinyal untuk throw exception"""
+    def __init__(self):
+        super().__init__("Break")
+
 # Galat dasar
 class Galat(Exception):
     """Base class untuk semua error Indonesian Script"""

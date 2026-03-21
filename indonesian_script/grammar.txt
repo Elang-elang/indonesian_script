@@ -67,10 +67,12 @@ finnaly_stmt: "akhiri" block
 
 switch_ctrl: switch_stmt
 switch_stmt: "pilah" "(" expression ")" block_switch
-block_switch: "{" body_switch+ "}"
+block_switch: "{" body_switch "}"
 body_switch: case_stmt+ default_stmt?
-case_stmt: "kalau" expression ":" stmt+
-default_stmt: "bawaannya" ":" stmt+
+case_stmt: "kalau" case_expr ":" body_case
+default_stmt: "kalau" "tidak" ":" body_case
+case_expr: expression ("," expression)* 
+body_case: stmt+
 
 module_stmt: export_stmt
            | import_stmt
@@ -120,6 +122,8 @@ term: prefix postfix*
     | lambda_func
     | return_stmt
     | throw_stmt
+    | continue_stmt
+    | break_stmt
     | type_of
     | pointer
     | unpointer
@@ -137,6 +141,8 @@ postfix: getobj
 lambda_func: "lambda" params "{" expression "}"
 return_stmt: "kembalikan" "{" expression "}"
 throw_stmt: "kegalatan" "<" ID ">" "{" expression "}"
+continue_stmt: "lanjutkan!"
+break_stmt: "berhentikan!"
 type_of: "tipe" "dari" VAR_NAME
 pointer: "&" ID
 unpointer: "*" ID
