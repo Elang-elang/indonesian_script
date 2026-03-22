@@ -164,3 +164,22 @@ class Fungsi:
     
     def __repr__(self):
         return f"<Fungsi {self.__name__!r} pada {self.__hex__}>"
+
+class Lambda(Fungsi):
+    __value__ = None
+    __id__ = id('Fungsi')
+    __hex__ = hex(id('Fungsi'))
+    __dict__ = {}
+    
+    def __init__(self, func):
+        self.__value__ = func
+        self.__id__ = id(func)
+        self.__hex__ = hex(self.__id__)
+        self.__dict__ = dict(getattr(func, '__dict__', {}))
+    
+    def __call__(self, *args, **kwargs):
+        return self.__value__(*args, **kwargs)
+    
+    def __repr__(self):
+        return f"<Fungsi Lambda 'anonimus' pada {self.__hex__}>"
+    

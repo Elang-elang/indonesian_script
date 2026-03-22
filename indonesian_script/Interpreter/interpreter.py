@@ -2,7 +2,7 @@
 from .Exceptions.exceptions import *
 from .AST_node.ast_nodes import *
 from .transformer import *
-from .Builtins.builtins import BUILTINS, TYPES, BUILTINS_FUNCTIONS, Fungsi
+from .Builtins.builtins import BUILTINS, TYPES, BUILTINS_FUNCTIONS, Fungsi, Lambda
 from pathlib import Path
 
 class Scope:
@@ -978,8 +978,10 @@ class Interpreter:
             finally:
                 # Kembalikan scope lama
                 self.current_scope = old_scope
-    
-        return lambda_wrapper
+        
+        func_def = Lambda(lambda_wrapper)
+        
+        return func_def
     
     # Perbaiki visit_TypeOf
     def visit_TypeOf(self, node: TypeOf):
