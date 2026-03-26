@@ -97,7 +97,7 @@ Adapun keuntungan dan kekurangan dari menjalankan bahasa ini, yakni:
 
 ## Bantuan / Dokumentasi untuk 
 
-[**Daftar bantuan**](./indonesian_script/interpreter/ListHelpper.md)
+[**Daftar bantuan**](./indonesian_script/Interpreter/ListHelpper.md)
 
 > sedang dikembangkan
 
