@@ -297,6 +297,39 @@ class BasicType(Type):
     name: str  # 'teks', 'angka', dll.
 
 @dataclass
-class ArrayType(Type):
+class ObjectType(Type):
+    pass
+
+@dataclass
+class DictType(ObjectType):
+    length: int
+    key_type: BasicType
+    value_type: BasicType
+    name: str = 'tipe_objek[kamus]'
+
+@dataclass
+class ArrayType(ObjectType):
     length: int  # 0 untuk dinamis
-    element_type: Type
+    value_type: Type
+    name: str = 'tipe_objek[daftar]'
+
+@dataclass
+class FunctionType(ObjectType):
+    args_type: Optional[List[Type]]
+    return_type: Type
+    name: str = 'tipe_objek[fungsi]'
+
+@dataclass
+class UnionType(ObjectType):
+    types: List[Type]
+    name: str = 'tipe_objek[gabungan]'
+
+@dataclass
+class LiteralType(ObjectType):
+    literal: List[Literal]
+    name: str = 'tipe_objek[literal]'
+
+@dataclass
+class OptionalType(ObjectType):
+    type_ann: Type
+    name: str = 'tipe_objek[opsional]'

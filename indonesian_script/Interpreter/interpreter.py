@@ -4,6 +4,9 @@ from .AST_node.ast_nodes import *
 from .transformer import *
 from .Builtins.builtins import BUILTINS, TYPES, BUILTINS_FUNCTIONS, Fungsi, Lambda
 from pathlib import Path
+import types as T1
+import typing as T2
+import inspect as I
 
 class Scope:
     def __init__(self, parent=None):
@@ -39,6 +42,7 @@ class Scope:
         if self.parent and self.parent.has(name):
             self.parent.set(name, value, type_ann, address, constant)
             return
+        
         # Jika tidak ada, buat baru di scope lokal
         self.vars[name] = {
             'type': type_ann,
@@ -50,6 +54,7 @@ class Scope:
     def declare(self, name, value, type_ann, address, constant=False):
         if name in self.vars:
             raise VariabelGalat(f"Variabel '{name}' sudah dideklarasikan di scope ini")
+        
         self.vars[name] = {
             'type': type_ann,
             'value': value,
@@ -148,6 +153,7 @@ class Interpreter:
             value = self._default_value(node.type_ann)
         # Cek tipe
         self._check_type(value, node.type_ann)
+        
         self.current_scope.declare(node.name, value, node.type_ann, hex(id(value)), constant=False)
         
         #print(self.current_scope.get(node.name))
@@ -233,8 +239,11 @@ class Interpreter:
         type_ann = node.type_ann
         name = node.name
         params_func = None
+        signature = I.Signature()
+        
         if node.params and node.params.args:
             params_func = self.visit(node.params)  # Fungsi untuk proses parameter
+            signature = I.Signature(params_func.signature.values(), return_annotation=type_ann)
         
         inner_stmts = node.inner if node.inner else []  # List of statements
 
@@ -283,7 +292,7 @@ class Interpreter:
                     self._check_type(result, type_ann)
                 elif type_ann.name != 'kekosongan' and inner_stmts:
                     # Function harus return sesuatu jika ada isi dan bukan void
-                    raise TipeGalat(f"Function {name} harus mengembalikan nilai tipe {type_ann.name}")
+                    raise TipeGalat(f"Fungsi {name!r} harus mengembalikan nilai tipe {type_ann.name}")
             
                 return result
             
@@ -294,6 +303,7 @@ class Interpreter:
         
         func_def = Fungsi(func_wrapper)
         func_def.__name__ = name
+        func_def.__annotations__ = signature
         
         func_def.__dict__ = {
             'nama': name,
@@ -947,7 +957,11 @@ class Interpreter:
     
     def visit_LambdaFunc(self, node: LambdaFunc):
         # Dapatkan function pembuat parameter
-        param_func = self.visit(node.params)  # returns app(params) function
+        signature = I.Signature()
+        if node.params and node.params.args:
+            params_func = self.visit(node.params)  # Fungsi untuk proses parameter
+            signature = I.Signature(params_func.signature.values(), return_annotation=type_ann)
+        
         expr = node.expr
     
         def lambda_wrapper(*args, **kwargs):
@@ -980,6 +994,20 @@ class Interpreter:
                 self.current_scope = old_scope
         
         func_def = Lambda(lambda_wrapper)
+        func_def.__name__ = name
+        func_def.__annotations__ = signature
+        
+        func_def.__dict__ = {
+            'nama': name,
+            'isi': func_def,
+            'tipe': {
+                'kembalikan': type_ann.name
+            },
+            'lokasi': hex(id(func_def))
+        }
+        
+        func_def.__id__ = id(func_def)
+        func_def.__hex__ = hex(id(func_def))
         
         return func_def
     
@@ -1026,9 +1054,14 @@ class Interpreter:
             # Fungsi tanpa parameter
             def app(*args, **kwargs):
                 return []
+            app.signature = {}
             return app
         
         arg_functions = [self.visit(arg) for arg in node.args]
+        
+        args_sig = {}
+        for arg in arg_functions:
+            args_sig[arg.name] = arg.signature
 
         def app(*args, **kwargs):
             # Map positional args ke parameter
@@ -1061,7 +1094,8 @@ class Interpreter:
                             raise IsiGalat(f'Argumen {param_name!r} wajib diisi (tidak memiliki nilai default)')
 
             return result_def
-
+        
+        app.signature = args_sig
         return app
 
     def visit_Argument(self, node: Argument):
@@ -1078,7 +1112,7 @@ class Interpreter:
                     raise IsiGalat(f'Argumen {name!r} wajib diisi (tidak memiliki nilai default)')
     
             # Validasi tipe (opsional, bisa diaktifkan nanti)
-            # self._check_type(val, type_ann)
+            self._check_type(val, type_ann)
     
             return {
                 'name': name,
@@ -1089,26 +1123,210 @@ class Interpreter:
             }
 
         # Simpan nama parameter untuk referensi di visit_Parameter
-        app.param_name = name
-
+        app.name = name
+        app.type = type_ann
+        app.value = default_value
+        app.signature = I.Parameter(
+            name=name,
+            default=default_value or I._empty,
+            annotation=type_ann,
+            kind=I._ParameterKind(1)
+        )
+        
         return app
     
     def visit_BasicType(self, node: BasicType):
-        return node.name
+        obj = self.current_scope.get(node.name)['value']
+        return {
+            'type': 'basic',
+            'data_type': {
+                'name': node.name,
+                'value': obj
+            }
+        }
+    
+    def visit_DictType(self, node: DictType):
+        return {
+            'type': 'dict',
+            'data_type': {
+                'length': int(node.length),
+                'key': node.key_type,
+                'value': node.value_type,
+                'origin': dict
+            }
+        }
+        
+    def visit_ArrayType(self, node: ArrayType):
+        return {
+            'type': 'array',
+            'data_type': {
+                'length': int(node.length),
+                'value': node.value_type,
+                'origin': list
+            }
+        }
+    
+    def visit_FunctionType(self, node: FunctionType):
+        return {
+            'type': 'function',
+            'data_type': {
+                'arguments': [arg for arg in node.args_type if arg is not None] if node.args_type else [],
+                'return_type': node.return_type,
+                'origin': T1.FunctionType
+            }
+        }
+    
+    def visit_UnionType(self, node: UnionType):
+        return {
+            'type': 'union',
+            'data_type': {
+                'types': [type for type in node.types if type is not None],
+                'origin': T1.UnionType
+            }
+        }
+    
+    def visit_LiteralType(self, node: LiteralType):
+        return {
+            'type': 'literal',
+            'data_type': {
+                'literal': [l for l in node.literal if l is not None],
+                'origin': T2.Literal
+            }
+        }
+    
+    def visit_OptionalType(self, node: OptionalType):
+        return {
+            'type': 'optional',
+            'data_type': {
+                'type': node.type_ann,
+                'origin': T2.Optional
+            }
+        }
+    
     
     # --- Helpers ---
     def _check_type(self, value, type_ann):
-        if isinstance(type_ann, BasicType):
-            expected = TYPES.get(type_ann.name)
-            if expected == callable:
-                if not callable(value):
-                    raise TipeGalat(f"Nilai {value} tidak sesuai tipe {type_ann.name}")
-            else:
-                if expected and not isinstance(value, expected):
-                    raise TipeGalat(f"Nilai {value} tidak sesuai tipe {type_ann.name}")
-        # Untuk array type dll, perlu penanganan lebih lanjut
-        # ...
+        if not self._check_instance(value, type_ann):
+            raise TipeGalat(f'Tipe dari {type_ann.name!r} tidak sesuai dengan isi-nya \'{value}\'')
+        
     
+    def _check_instance(self, value, type_ann):
+        inspect = I
+        
+#         print("inspek isi:")
+#         print(value)
+#         print("\ninspek tipe:")
+#         print(type_ann, end='\n\n')
+        
+        if type(value) is type(type_ann):
+            return True
+        
+        if not isinstance(type_ann, Type):
+            raise TipeGalat(f"Ini {type_ann.__name__ or type_ann.__class__.__name__!r} bukanlah sebuah tipe")
+        
+        if isinstance(type_ann, (list, tuple, set)):
+            return any([self._check_instance(value, i) for i in type_ann])
+        
+        type_ann = self.visit(type_ann)
+        data_type = type_ann['data_type']
+        
+        if type_ann['type'] == 'basic':
+            if data_type['name'] == 'apapun':
+                return True
+                
+            if data_type['name'] == 'kekosongan' and value == None:
+                return True
+            return isinstance(value, data_type['value'])
+        
+        elif type_ann['type'] == 'dict' and isinstance(value, dict):
+            if len(value) > data_type['length']:
+                return False
+            elif not any([
+                self._check_instance(
+                    val, data_type['key']) for val in value.keys()
+                ]):
+                return False
+            elif not any([
+                self._check_instance(
+                    val, data_type['value']) for val in value.values()
+                ]):
+                return False
+            else:
+                return True
+        
+        elif type_ann['type'] == 'array' and isinstance(value, list):
+            if len(value) > data_type['length']:
+                return False
+            elif not any([
+                self._check_instance(val, data_type['value']) for val in value
+            ]):
+                return False
+            else:
+                return True
+        
+        elif type_ann['type'] == 'function' and callable(value):
+            signature = None
+            if isinstance(value, Fungsi):
+                signature = value.__annotations__
+            else:
+                try:
+                    signature = inspect.signature(value)
+                except:
+                    if data_type['arguments']:
+                        return False
+            
+            if signature:
+#                 print("inspek tanda tangannya")
+#                 print(signature, end='\n'*2)
+                
+                args_type = [t for t in data_type['arguments']]
+                args_ann = []
+                for t in signature.parameters.values():
+                    t = t.annotation
+                    if t is not inspect._empty:
+                        args_ann.append(t)
+                    else:
+                        args_ann.append(
+                            self.visit(BasicType(name='apapun'))
+                        )
+                
+                for i, arg_ in enumerate(args_ann):
+                    if i < len(args_type):
+                        if not self._check_instance(arg_, args_type[i]):
+                            return False
+                    else:
+                        return False
+                
+                return_type = signature.return_annotation
+                if isinstance(return_type, Type):
+                    # return_type = self.visit(return_type)
+                    if not self._check_instance(
+                        data_type['return_type'],
+                        return_type,
+                    ):
+                        return False
+                    return True
+            else:
+                return False
+            return True
+        
+        elif type_ann['type'] == 'union' and data_type['origin'] is T1.UnionType:
+            return any([self._check_instance(value, t) for t in data_type['types']])
+            
+        elif type_ann['type'] == 'literal' and data_type['origin'] is T2.Literal:
+            return any([value == l for l in data_type['literal']])
+            
+        elif type_ann['type'] == 'optional' and data_type['origin'] is T2.Optional:
+            if value is None:
+                return True
+            return self._check_instance(value, data_type['type'])
+            
+        else:
+            if isinstance(type_ann, type):
+                return isinstance(value, type_ann)
+            return False
+        
+        
     def _default_value(self, type_ann):
         if isinstance(type_ann, BasicType):
             if type_ann.name == 'teks':

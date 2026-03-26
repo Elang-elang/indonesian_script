@@ -1,5 +1,5 @@
 # transformer.py
-from lark import Transformer, v_args
+from lark import Transformer, v_args, Token
 from .AST_node.ast_nodes import *
 from .Exceptions.exceptions import *
 from .Builtins.builtins import get_builtin_type
@@ -590,7 +590,7 @@ class ASTBuilder(Transformer):
     def value_params(self, items):
         return items[0]
     
-    def unpacking(self, items):
+    def unpack(self, items):
         return Unpacking(value=items[0])
     # --- Types ---
     def type_ann(self, items):
@@ -598,9 +598,45 @@ class ASTBuilder(Transformer):
     
     def basic_type(self, items):
         # items[0] adalah ID dari tipe (misal 'teks')
-        type_name = str(items[0])
-        # Dapatkan tipe Python dari builtins
-        return BasicType(name=type_name)
+        name = items[0]
+        if isinstance(name, Token):
+            name = name.value
+        return BasicType(name=name)
+    
+    def object_type(self, items):
+        return items[0]
+    
+    def dict_type(self, items):
+        length = items[0]
+        key_type = items[1]
+        value_type = items[2]
+        
+        return DictType(length=int(length.value), key_type=key_type, value_type=value_type)
+    
+    def array_type(self, items):
+        length = items[0]
+        value_type = items[1]
+        
+        return ArrayType(length=int(length.value), value_type=value_type)
+    
+    def func_type(self, items):
+        types = []
+        if len(items) == 1:
+            return FunctionType(args_type=[], return_type=items[-1])
+            
+        for i in items[:-1]:
+            types.append(i)
+        
+        return FunctionType(args_type=types, return_type=items[-1])
+    
+    def union_type(self, items):
+        return UnionType(types=items)
+    
+    def literal_type(self, items):
+        return LiteralType(literal=items)
+    
+    def optional_type(self, items):
+        return OptionalType(type_ann=items[0])
     
     # --- IDs ---
     def ID(self, token):

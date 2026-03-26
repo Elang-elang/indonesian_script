@@ -166,8 +166,23 @@ call_args: call_arg ("," call_arg)*
 call_arg: (ID "=")? expression
 
 type_ann: basic_type
+        | object_type
 
-basic_type: /teks|angka|desimal|boolean|kekosongan|apapun|daftar|kamus|fungsi/ | VAR_NAME
+basic_type: /teks|angka|desimal|boolean|kekosongan|apapun/
+object_type: dict_type
+           | array_type
+           | func_type
+           | union_type
+           | literal_type
+           | optional_type
+
+dict_type: "kamus" "<" integer ">" "{" type_ann ":" type_ann "}"
+array_type: "daftar" "<" integer ">" "[" type_ann "]"
+func_type: "fungsi" "[" "{" (type_ann ("," type_ann)* )? "}" "," type_ann "]"
+union_type: "[" type_ann ("," type_ann)* "]"
+literal_type: "[" literal ("," literal)* "]"
+optional_type: "?" type_ann
+
 
 literal: basic_literal
        | object_literal
@@ -181,11 +196,11 @@ object_literal: array
               | dictinary
 
 array: "[" ( array_body ("," array_body)* )? "]"
-array_body: expression | unpacking
+array_body: expression | unpack
 
 dictinary: dict_body
 dict_body: "{" ( dict_bodies ("," dict_bodies)* )? "}"
-dict_bodies: VAR_NAME | dict_items | unpacking
+dict_bodies: VAR_NAME | dict_items | unpack
 dict_items: key_params ":" value_params
 key_params: basic_literal
           | "[" VAR_NAME "]"
@@ -193,7 +208,7 @@ key_params: basic_literal
 
 value_params: expression
 
-unpacking: "..." (literal | VAR_NAME)
+unpack: "..." (literal | VAR_NAME)
 
 %import common.SIGNED_INT
 %import common.DECIMAL

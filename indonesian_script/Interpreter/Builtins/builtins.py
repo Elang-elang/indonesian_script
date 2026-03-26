@@ -147,10 +147,12 @@ import inspect
 
 class Fungsi:
     __value__ = None
+    __annotations__ = None
     __name__ = 'Fungsi'
     __id__ = id('Fungsi')
     __hex__ = hex(id('Fungsi'))
     __dict__ = {}
+    __origin__ = None
     
     def __init__(self, func):
         self.__value__ = func
@@ -158,28 +160,209 @@ class Fungsi:
         self.__id__ = id(func)
         self.__hex__ = hex(self.__id__)
         self.__dict__ = dict(getattr(func, '__dict__', {}))
+        self.__origin__ = type(func)
+        
+        try:
+            self.__annotations__ = inspect.signature(self.__value__)
+        except:
+            pass
+        
     
     def __call__(self, *args, **kwargs):
         return self.__value__(*args, **kwargs)
+    
+    def __instancecheck__(self, instance, /):
+        if isinstance(self.__value__, type):
+            return isinstance(instance, self.__value__)
+        return isinstance(instance, Fungsi)
+    
+    def __eq__(self, value, /):
+        if isinstance(value, Fungsi):
+            return self.__value__ == value.__value__
+        else:
+            if isinstance(value, type):
+                return self.__value__ == value
+            return NotImplemented
+    
+    def __ne__(self, value, /):
+        return not self.__eq__(value)
+    
+    def __gt__(self, value, /): return NotImplemented
+    def __lt__(self, value, /): return NotImplemented
+    def __ge__(self, value, /): return NotImplemented
+    def __le__(self, value, /): return NotImplemented
     
     def __repr__(self):
         return f"<Fungsi {self.__name__!r} pada {self.__hex__}>"
 
 class Lambda(Fungsi):
     __value__ = None
+    __annotations__ = None
+    __name__ = 'Fungsi'
     __id__ = id('Fungsi')
     __hex__ = hex(id('Fungsi'))
     __dict__ = {}
+    __origin__ = None
     
     def __init__(self, func):
         self.__value__ = func
+        self.__name__ = func.__name__
         self.__id__ = id(func)
         self.__hex__ = hex(self.__id__)
         self.__dict__ = dict(getattr(func, '__dict__', {}))
+        self.__origin__ = type(func)
+        
+        try:
+            self.__annotations__ = inspect.signature(self.__value__)
+        except:
+            pass
     
     def __call__(self, *args, **kwargs):
         return self.__value__(*args, **kwargs)
     
     def __repr__(self):
-        return f"<Fungsi Lambda 'anonimus' pada {self.__hex__}>"
+        return f"<Fungsi <Lambda> 'anonimus' pada {self.__hex__}>"
+
+class Karakter:
+    __value__ = '\x00'
+    __id__ = 0
+    __hex__ = ord('\x00')
     
+    def __init__(self, Chr):
+        if isinstance(Chr, int):
+            Chr = chr(Chr)
+        elif isinstance(Chr, float):
+            Chr = chr(int(Chr))
+        
+        if len(Chr) != 1:
+            raise TipeGalat(f"Tipe karakter harus benar-benar berisi 1 karakter, jangan lebih")
+        
+        self.__value__ = Chr
+        self.__id__ = ord(Chr)
+        self.__hex__ = hex(self.__id__)
+    
+    def _set(self, val: int, /):
+        if isinstance(val, Karakter):
+            val = val.__id__
+        self.__id__ += val
+        self.__value__ = chr(self.__id__)
+        self.__hex__ = hex(self.__id__)
+    
+    def __add__(self, val, /):
+        if isinstance(val, Karakter):
+            val = val.__id__
+        
+        if val < 0:
+            return NotImplemented
+        
+        self.__id__ += val
+        self.__value__ = chr(self.__id__)
+        self.__hex__ = hex(self.__id__)
+        return self.__value__
+    
+    def __eq__(self, val, /):
+        if isinstance(val, Karakter):
+            return self.__value__ == val.__value__
+        if isinstance(val, (int, float)):
+            return self.__id__ == int(val)
+        else:
+            return NotImplemented
+    
+    def __ne__(self, val, /):
+        return not self.__eq__(val)
+    
+    def __floordiv__(self, val, /):
+        if isinstance(val, Karakter):
+            return self.__id__ // val.__id__
+        if isinstance(val, (int, float)):
+            return self.__id__ // val
+        else:
+            return NotImplemented
+    
+    def __ge__(self, val, /):
+        if isinstance(val, Karakter):
+            return seld.__id__ >= val.__id__
+        if isinstance(val, (int, float)):
+            return self.__id__ >= val
+        else:
+            return NotImplemented
+            
+    def __gt__(self, val, /):
+        if isinstance(val, Karakter):
+            return seld.__id__ > val.__id__
+        if isinstance(val, (int, float)):
+            return self.__id__ > val
+        else:
+            return NotImplemented
+    
+    def __hash__(self):
+        return self.__hex__
+    
+    def __int__(self):
+        return self.__id__
+    
+    def __invert__(self):
+        return NotImplemented
+    
+    def __le__(self, val: int, /):
+        if isinstance(val, Karakter):
+            return seld.__id__ <= val.__id__
+        if isinstance(val, (int, float)):
+            return self.__id__ <= val
+        else:
+            return NotImplemented
+    
+    def __lt__(self, val: int, /):
+        if isinstance(val, Karakter):
+            return seld.__id__ < val.__id__
+        if isinstance(val, (int, float)):
+            return self.__id__ < val
+        else:
+            return NotImplemented
+    
+    def __mod__(self, val, /):
+        return NotImplemented
+    
+    def __mul__(self, val, /):
+        if isinstance(val, Karakter):
+            val = val.__id__
+        
+        if val < 0:
+            return NotImplemented
+        
+        self.__id__ *= val
+        self.__value__ = chr(self.__id__)
+        self.__hex__ = hex(self.__id__)
+        return self.__value__
+    
+    def __neg__(self, val, /):
+        return NotImplemented
+    
+    def __getattribute__(self, name, /):
+        if name == 'value':
+            return self.__value__
+        elif name == 'id':
+            return self.__id__
+        elif name == 'hex':
+            return self.__hex__
+        else:
+            raise AttributeError(f"type object 'Karakter' has no attribute '{name}'")
+    
+    def __setattribute__(self, name, value, /):
+        return NotImplemented
+    
+    def __repr__(self):
+        return self.__value__
+    
+    def __str__(self):
+        return self.__value__
+    
+    def __format__(self, f, /):
+        if f in ('%s', '%c'):
+            return f'{str(self.__value__)}'
+        elif f in ('%d', '%i'):
+            return f'{str(self.__id__)}'
+        elif f == '%h':
+            return f'{str(self.__hex__)}'
+        else:
+            return NotImplemented(f)

@@ -6,16 +6,23 @@ Bahasa pemrograman dalam Bahasa Indonesia - Programming language in Indonesian
 
 ### Yang dibutuhkan
 
+* Python (Utama) >= 3.12
+* lark-parser (Utama) >= 0.12.0
+* regex (Utama) >= 2026.1.15
+* colorama (Opsional) >= 0.4.6
+
 ```txt
-python>=3.12
+lark-parser>=0.12.0,
+regex>=2026.1.15,
+colorama>=0.4.6,
 ```
 
 ### Dan jalankan
 
 ```bash
-git clone https://github.com/Elang-elang/is.git
+git clone https://github.com/Elang-elang/indonesian_script.git
 cd is
-./instalasi
+pip install -e . # atau pip install -r requirements.txt
 ```
 
 ## Penggunaan CLI
@@ -26,11 +33,12 @@ cd is
 is run program.is
 ```
 
-### Melihat AST (Abstract Syntax Tree)
-
+### Kompil kode (Python3, C, C++) 
 ```bash
-is ast program.is
+is compile {Python3|C|C++} program.is
 ```
+>komen ini sedang tahap perkembangan
+
 
 ### Mode REPL interaktif
 
@@ -46,13 +54,13 @@ is version
 
 ### Contoh Kode
 
-```is
+```indonesian_script
 // hello.is
 tuliskan "Halo, Dunia!"; // untuk primitif node
 tampilkan("Halo, Dunia!"); // untuk modern node
 
-teks nama = "Budi";
-angka umur = 25;
+var[teks] nama = "Budi";
+var[angka] umur = 25;
 
 jika (umur >= 18) maka {
     tuliskan(nama + " sudah dewasa");
@@ -60,32 +68,38 @@ jika (umur >= 18) maka {
     tuliskan(nama + " masih anak-anak");
 }
 
-angka faktorial(angka n) {
+fungsi[angka] faktorial(angka n) {
     jika (n <= 1) maka {
         kembalikan 1;
     }
-    kembalikan n * faktorial(n - 1);
+    kembalikan{n * faktorial(n - 1)};
 }
 
 tampilkan("Faktorial 5 = " + faktorial(5));
 ```
 
-## Fitur
+## Tentang
+**indonesian_script** atau disingkat ***is*** adalah sebuah bahasa pemrograman yang terkompilasi serta membawa bahasa lokal, yakni bahasa Indonesia. Sintaks yang ada di bawakan untuk mempermudah, mempersingkat, dan memperdetail untuk dibaca. Bahasa pemrograman ini dikompilasi dengan bahasa Python versi 3 (**Python3**) yang membawa perpustakaan **lark-parser** sebagai pe-parse (penguraian bahasa) dan grammarnya sebagai lexer (leksikal).
 
-· ✅ Variabel (var_decl, final_decl, def_decl)
-· ✅ Tipe data: teks, angka, desimal, boolean, daftar, kamus
-· ✅ Operator aritmatika dan logika
-· ✅ Control flow: jika, selama, untuk
-· ✅ Function dengan return dan throw
-· ✅ Lambda expression
-· ✅ Array dan Dictionary
-· ✅ Pointer (& dan *)
-· ✅ Try-catch-finally
-· ✅ Input/Output (tuliskan, bacalah)
-· ✅ REPL interaktif
+## Keuntungan & Kekurangan
+Adapun keuntungan dan kekurangan dari menjalankan bahasa ini, yakni:
+
+### Keuntungan
+* Bahasa mudah dibaca
+* Dapat diinterpreterasikan & dikompilasikan
+* Sintaks sangat mudah dipahami, detail, dan berbahasa lokal
+* Kode-nya terbuka sumbernya
+
+### Kekurangan
+* Sangat lambat dari Python
+* Mungking ada yang sebagian dari sintaksnya yang mungkin tidak dikenali
+* Belum adanya dokumentasi yang lengkap
+
+## Bantuan / Dokumentasi untuk 
+
+[**Daftar bantuan**](indonesian_script/interpreter/ListHelpper.md)
+
+> sedang dikembangkan
 
 ## Lisensi
-
-[MIT](./indonesian_script/License)
-
-```
+[MIT](indonesian_script/License)
