@@ -71,7 +71,6 @@ class Interpreter:
         self.current_scope = self.global_scope
         self._init_builtins()
         
-        self._output = []
         self._module = {
             'ekspor': {},
             'impor': {},
@@ -91,6 +90,21 @@ class Interpreter:
             hex(id(self._module['berkas'])),
             False
         )
+    
+    def load_interp(self, interp):
+        vars = interp.global_scope.vars
+        
+        for var_name, obj in vars.items():
+            if not self.global_scope.has(var_name):
+                self.global_scope.declare(
+                    var_name,
+                    obj['value'],
+                    obj['type'],
+                    obj['address'],
+                    obj['constant']
+                )
+        
+        return self
     
     def _init_builtins(self):
         # Masukkan tipe bawaan dan konstanta
@@ -128,13 +142,20 @@ class Interpreter:
         
     def load(self, node: Node):
         """Method utama untuk mengeksekusi AST. Mengembalikan hasil akhir (misal output)."""
+        result = None
         if isinstance(node, Program):
             for stmt in node.statements:
-                self.visit(stmt)
+                r = self.visit(stmt)
+                if not isinstance(type(stmt), Expression):
+                    result = None
+                
         else:
-            self.visit(node)
+            result = self.visit(stmt)
+            if not isinstance(type(stmt), Expression):
+                result = None
+            
         # Kembalikan sesuatu? Mungkin output yang dikumpulkan
-        return self._output  # kita perlu koleksi output
+        return result  # kita perlu koleksi output
     
     def visit(self, node):
         method_name = f'visit_{type(node).__name__}'

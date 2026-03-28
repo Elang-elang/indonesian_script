@@ -6,10 +6,10 @@ Bahasa pemrograman dalam Bahasa Indonesia - Programming language in Indonesian
 
 ### Yang dibutuhkan
 
-* Python (Utama) >= 3.12
-* lark-parser (Utama) >= 0.12.0
-* regex (Utama) >= 2026.1.15
-* colorama (Opsional) >= 0.4.6
+* Python
+* Lark (PyPI)
+* Regex (PyPI)
+* Colorama (PyPI)
 
 ```txt
 lark-parser>=0.12.0,

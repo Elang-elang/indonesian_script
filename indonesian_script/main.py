@@ -9,11 +9,28 @@ from .Interpreter.interpreter import Interpreter
 from .Interpreter.Exceptions.exceptions import *
 from . import Compiler
 
+# var
+grammar_path = Path(__file__).parent / 'grammar.txt'
+if not grammar_path.exists():
+    raise JalurGalat(f"File grammar tidak ditemukan di {grammar_path}")
+
+with open(grammar_path, 'r', encoding='utf-8') as f:
+    grammar = f.read()
+
 class IndonesianScriptInterpreter:
     """
     Auto Interpreter untuk Indonesian Script
     Bisa digunakan secara langsung atau di-import
     """
+    
+    parser = Lark(
+        grammar,
+        parser='earley',
+        lexer='dynamic',
+        start='program',
+        regex=True,
+        ambiguity='resolve'
+    )
     
     def __init__(self, filename=None, code=None, ismodule=False):
         self.filename = Path(filename) if filename else None
@@ -21,6 +38,8 @@ class IndonesianScriptInterpreter:
         self.result = None
         self.error = None
         self.ismodule = ismodule
+        self.interpreter = Interpreter(filename=str(self.filename))
+        self.builder = ASTBuilder()
         
         # Load grammar
         grammar_path = Path(__file__).parent / 'grammar.txt'
@@ -46,6 +65,17 @@ class IndonesianScriptInterpreter:
         self.code = code
         return self
     
+    def load_interp(self, interp):
+        self.interpreter.load_interp(interp)
+        return self
+    
+    def get_ast(self, code=None):
+        if code:
+            self.code = code
+        
+        tree = self._exc_check(self.parser, self.code)
+        return self.builder.transform(tree)
+    
     def run(self, console=False, get_interpreter=False):
         """
         Jalankan interpreter
@@ -54,34 +84,20 @@ class IndonesianScriptInterpreter:
         if not self.code:
             raise IsiGalat("Tidak ada kode untuk dijalankan")
         
-        # Buat parser
-        parser = Lark(
-            self.grammar,
-            parser='earley',
-            lexer='dynamic',
-            start='program',
-            regex=True,
-            ambiguity='resolve'
-        )
-        
         try:
             # Parse kode
-            tree = self._exc_check(parser, self.code)
+            tree = self._exc_check(self.parser, self.code)
             
             # Transform ke AST
-            builder = ASTBuilder()
-            ast = builder.transform(tree)
+            ast = self.builder.transform(tree)
             
-            # Interpretasi
-            interpreter = Interpreter(filename=str(self.filename))
-            
-            self.result = interpreter.load(ast)
+            self.result = self.interpreter.load(ast)
             
             if console:
-                self._console_output(interpreter)
+                self._console_output(self.interpreter)
             
             if get_interpreter:
-                return self.result, interpreter
+                return self.result, self.interpreter
             return self.result
             
         except Exception as e:
@@ -90,7 +106,6 @@ class IndonesianScriptInterpreter:
                 print(f"\n❌ Error: {e}", file=sys.stderr)
             raise
     
-    @classmethod
     def _exc_check(self, parser, code):
         """Cek exception saat parsing"""
         try:
@@ -104,7 +119,6 @@ class IndonesianScriptInterpreter:
         except Exception as e:
             raise PenulisanGalat(f"Error parsing: {str(e)}")
     
-    @classmethod
     def _get_exc_text(self, exception, filename='<string>'):
         """Buat teks exception"""
         if hasattr(self, 'filename'):
