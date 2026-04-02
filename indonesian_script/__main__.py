@@ -5,7 +5,7 @@ python -m indonesian_script <filename>
 """
 
 import sys
-from .cli.main import main
+from .Cli.main import main
 
 if __name__ == "__main__":
     sys.exit(main())

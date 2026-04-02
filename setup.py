@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setup(
     name="indonesian_script",
-    version="0.1.14",
+    version="0.1.14a2",
     author="Elang muhammad",
     author_email="elangmahammad888@gmail.com",
     description="A programming language designed to make life easier for the Indonesian people",
@@ -27,8 +27,9 @@ setup(
     ],
     entry_points={
         "console_scripts": [
-            "cs=indonesian_script.cli:main",
-            "is=indonesian_script.cli:main"
+            "cs=indonesian_script.Cli:main",
+            "is=indonesian_script.Cli:main",
+            "is_test=indonesian_script.Cli.main:app"
         ],
     },
     include_package_data=True

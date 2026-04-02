@@ -50,8 +50,8 @@ ctrl_flow: if_ctrl
 
 if_ctrl: if_stmt elif_stmt* else_stmt?
 if_stmt: "jika" "(" expression ")" "maka" block
-elif_stmt: "namun" "jika" "(" expression ")" "maka" block
-else_stmt: "namun" "tidak" block
+elif_stmt: "kalau" "jika" "(" expression ")" "maka" block
+else_stmt: "kalau" "tidak" block
 
 while_ctrl: while_stmt
 while_stmt: "selama" "(" expression ")" "lakukan" block
@@ -108,8 +108,8 @@ not_bool: /tidak/ or_bool
 or_bool: and_bool ("atau" and_bool)*
 and_bool: in_bool ("dan" in_bool)*
 
-in_bool: not_in ("dalam" not_in)?
-not_in: add ("tidak" "didalam" add)?
+in_bool: not_in ("termasuk" not_in)?
+not_in: add ("terkecuali" add)?
 
 add: minus ("+" minus)*
 minus: multi ("-" multi)*
@@ -139,8 +139,8 @@ postfix: getobj
        | call_params
 
 lambda_func: "lambda" params "{" expression "}"
-return_stmt: "kembalikan" "{" expression "}"
-throw_stmt: "kegalatan" "<" ID ">" "{" expression "}"
+return_stmt: "kembalikan!" "{" expression "}"
+throw_stmt: "kegalatan!" "{" expression "}"
 continue_stmt: "lanjutkan!"
 break_stmt: "berhentikan!"
 type_of: "tipe" "dari" VAR_NAME
@@ -168,7 +168,7 @@ call_arg: (ID "=")? expression
 type_ann: basic_type
         | object_type
 
-basic_type: /teks|angka|desimal|boolean|kekosongan|apapun/
+basic_type: /teks|karakter|angka|desimal|boolean|kekosongan|apapun/
 object_type: dict_type
            | array_type
            | func_type
@@ -191,6 +191,7 @@ basic_literal: string
              | integer
              | float
              | boolean
+             | character
 
 object_literal: array
               | dictinary
@@ -217,6 +218,7 @@ unpack: "..." (literal | VAR_NAME)
 string: ESCAPED_STRING
 integer: SIGNED_INT
 float: DECIMAL
+character: "'" /[^']/ "'"
 
 boolean: /benar|salah/
 

@@ -219,7 +219,7 @@ class ISRepl:
         """
         Menjalankan satu prompt dan menampilkan hasilnya.
         """
-        from .. import IndonesianScriptInterpreter
+        from .. import ISCompile
         
         if not prompt.strip():
             return
@@ -238,11 +238,13 @@ class ISRepl:
                 full_code = full_code.rstrip() + ';'
             
             # Buat interpreter baru atau gunakan yang sudah ada
-            interp = IndonesianScriptInterpreter(
+            interp = ISCompile(
                 filename='<repl>',
                 code=full_code,
                 ismodule=False
             )
+            
+            interp()
             
             ast = interp.get_ast()
             

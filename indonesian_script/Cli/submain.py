@@ -3,7 +3,7 @@ from pathlib import Path
 from ._argparse import ArgumentParser, Colors, f, s
 
 # Import dari parent directory
-from ..main import IndonesianScriptInterpreter, IndonesianScriptCompiler
+from ..Interpreter.compile import Compile
 
 class ISArgument:
     def __init__(self):
@@ -18,13 +18,13 @@ class ISArgument:
         arg_run = args.add_command('run', aliases=['r'], help='Untuk menjalankan berkas')
         arg_run.add_argument('file', help='Berkas yang ingin dijalankan')
         
-        arg_compile = args.add_command('compile', aliases=['c'], help='Kompilasi berkas Indonesian Script')
-        arg_compile.add_argument('--compiler', '-c',
-            choices=list(IndonesianScriptCompiler._list_compiler.keys()),
-            help='Target Kompilasi'
-        )
-        arg_compile.add_argument('--input', '-i', help='Berkas yang ingin dijalankan')
-        arg_compile.add_argument('--output', '-o', nargs='?', help='Untuk keluaran berkas')
+#         arg_compile = args.add_command('compile', aliases=['c'], help='Kompilasi berkas Indonesian Script')
+#         arg_compile.add_argument('--compiler', '-c',
+#             choices=list(IndonesianScriptCompiler._list_compiler.keys()),
+#             help='Target Kompilasi'
+#         )
+#         arg_compile.add_argument('--input', '-i', help='Berkas yang ingin dijalankan')
+#         arg_compile.add_argument('--output', '-o', nargs='?', help='Untuk keluaran berkas')
         
         arg_repl = args.add_command('repl', help='Mode interaktif REPL')
         arg_repl.add_argument('--debug', '-d', action='store_true', help='Untuk mendebugging error')
@@ -35,7 +35,7 @@ class ISArgument:
     
     def main(self):
         args = self.parser
-        print(args)
+#         print(args)
         if getattr(args, 'version', False):
             from .. import __version__, __status__
             print(
@@ -57,16 +57,12 @@ class ISArgument:
             file = args.file
             if not file.endswith('.is'):
                 raise NameError(f'Berkas harus berakhiran .is')
-            
-            with open(file, 'r') as file:
-                try:
-                    interp = IndonesianScriptInterpreter(file, file.read(), False)
-                    interp.run()
-                    return 0
-                except:
-                    raise
-                finally:
-                    return 1
+            try:
+                with open(file, 'r') as f:
+                    interp = Compile(f, None, False)
+                    interp()
+            except Exception as e:
+                raise e
             return 0
         
         elif args.command in ['c', 'compile']:

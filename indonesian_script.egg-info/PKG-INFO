@@ -1,3 +1,29 @@
+Metadata-Version: 2.4
+Name: indonesian_script
+Version: 0.1.14a2
+Summary: A programming language designed to make life easier for the Indonesian people
+Home-page: https://github.com/yourusername/is
+Author: Elang muhammad
+Author-email: elangmahammad888@gmail.com
+Classifier: Programming Language :: Python :: 3
+Classifier: Development Status :: 3 - Alpha
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: lark-parser>=0.12.0
+Requires-Dist: regex>=2026.1.15
+Requires-Dist: colorama>=0.4.6
+Dynamic: author
+Dynamic: author-email
+Dynamic: classifier
+Dynamic: description
+Dynamic: description-content-type
+Dynamic: home-page
+Dynamic: requires-dist
+Dynamic: requires-python
+Dynamic: summary
+
 # Indonesian Script
 
 Bahasa pemrograman dalam Bahasa Indonesia - Programming language in Indonesian

@@ -1,6 +1,0 @@
-
-fungsi[angka] tambah(angka ang1, angka ang2){
-    kembalikan{ang1 + ang2};
-}
-
-var[fungsi[{angka, angka}, angka]] add = tambah;

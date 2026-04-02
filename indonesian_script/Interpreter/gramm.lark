@@ -1,0 +1,41 @@
+start: program
+program: top_stmt*
+
+top_stmt: block | stmt
+block: "{" stmt* "}"
+
+stmt: vars_stmt
+    | expression ws? ";"
+    | ws
+    | n
+
+
+vars_stmt: var_decl
+
+var_decl: "var" ws? "[" ws? type_ann ws? "]" ws? ID ( ws? "=" ws? expression)? ";"
+
+type_ann: "teks"|"karakter"|"angka"|"desimal"|"boolean"|"kekosongan"|"apapun"
+
+
+expression: literal
+literal: integer | decimal | string
+
+integer: SIGNED_INT
+decimal: DECIMAL
+string: ESCAPED_STRING
+
+%import common.SIGNED_INT
+%import common.DECIMAL
+%import common.ESCAPED_STRING
+%import common.NEWLINE
+%import common.WS_INLINE
+
+ws: WS_INLINE
+n: NEWLINE
+ID: /[a-zA-Z_][a-zA-Z0-9_]*/
+
+%import common.CPP_COMMENT
+%import common.C_COMMENT
+
+%ignore CPP_COMMENT
+%ignore C_COMMENT

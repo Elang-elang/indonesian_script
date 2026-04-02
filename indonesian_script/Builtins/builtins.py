@@ -1,38 +1,8 @@
 # builtins.py
-from ..Exceptions.exceptions import VariabelGalat, FinalGalat, TipeGalat
-from ..AST_node.ast_nodes import BasicType
+from ..Exceptions import VariabelGalat, FinalGalat, TipeGalat
+from ..Interpreter.AST_node.ast_nodes import BasicType
 from decimal import Decimal
-TYPES = {
-    'teks': str,
-    'angka': int,
-    'desimal': Decimal,
-    'boolean': bool,
-    'kekosongan': type(None),
-    'apapun': object,
-    'daftar': list,
-    'kamus': dict,
-    'fungsi': callable,
-    'pointer': str,
-    'tipe': type,
-}
-
-def format(string: str, /, **kwargs) -> str:
-    return string.format(**kwargs)
-
-BUILTINS = {
-    'benar': True,
-    'salah': False,
-    'kosong': None,
-    'enter': '\n',
-    'tab': '\t',
-    'format': format,
-    'f': format,
-    'tampilkan': print,
-    **TYPES
-}
-
-def get_builtin_type(name):
-    return TYPES.get(name, object)
+import inspect
 
 def builtins_fungsi(self, function_name=None, /, *, type_ann=None, body=None):
     """
@@ -138,13 +108,6 @@ def builtins_vars(self, name=None, /, *, value=None, type_ann=None, constant=Fal
     
     return True
 
-BUILTINS_FUNCTIONS = {
-    'Fungsi': builtins_fungsi,
-    'Variabel': builtins_vars
-}
-
-import inspect
-
 class Fungsi:
     __value__ = None
     __annotations__ = None
@@ -226,39 +189,47 @@ class Lambda(Fungsi):
 class Karakter:
     __value__ = '\x00'
     __id__ = 0
-    __hex__ = ord('\x00')
+    __hex__ = hex(ord('\x00'))
+    
+    isi = '\x00'
+    id = 0
+    hex = hex(ord('\x00'))
     
     def __init__(self, Chr):
-        if isinstance(Chr, int):
-            Chr = chr(Chr)
-        elif isinstance(Chr, float):
+        if isinstance(Chr, (int, float, bool)):
             Chr = chr(int(Chr))
+        elif isinstance(Chr, str):
+            if len(Chr) != 1:
+                raise TipeGalat(f"Tipe karakter harus benar-benar berisi 1 karakter, jangan lebih")
         
-        if len(Chr) != 1:
-            raise TipeGalat(f"Tipe karakter harus benar-benar berisi 1 karakter, jangan lebih")
+        self.isi = Chr
+        self.id = ord(Chr)
+        self.hex = hex(self.id)
         
-        self.__value__ = Chr
-        self.__id__ = ord(Chr)
-        self.__hex__ = hex(self.__id__)
-    
-    def _set(self, val: int, /):
-        if isinstance(val, Karakter):
-            val = val.__id__
-        self.__id__ += val
-        self.__value__ = chr(self.__id__)
-        self.__hex__ = hex(self.__id__)
+        self.__value__ = self.isi
+        self.__id__ = self.id
+        self.__hex__ = self.hex
     
     def __add__(self, val, /):
         if isinstance(val, Karakter):
             val = val.__id__
-        
-        if val < 0:
-            return NotImplemented
+        elif isinstance(val, (str, int, float, bool)):
+            if isinstance(val, str):
+                if len(val) == 1:
+                    val = ord(val)
+                else:
+                    raise TypeError()
+            val = int(val)
         
         self.__id__ += val
+        if self.__id__ < 0:
+            self.__id__ = 0
         self.__value__ = chr(self.__id__)
         self.__hex__ = hex(self.__id__)
-        return self.__value__
+        return self
+    
+    def __sub__(self, val, /):
+        self.__add__(-val)
     
     def __eq__(self, val, /):
         if isinstance(val, Karakter):
@@ -324,29 +295,10 @@ class Karakter:
         return NotImplemented
     
     def __mul__(self, val, /):
-        if isinstance(val, Karakter):
-            val = val.__id__
-        
-        if val < 0:
-            return NotImplemented
-        
-        self.__id__ *= val
-        self.__value__ = chr(self.__id__)
-        self.__hex__ = hex(self.__id__)
-        return self.__value__
+        return NotImplemented
     
     def __neg__(self, val, /):
         return NotImplemented
-    
-    def __getattribute__(self, name, /):
-        if name == 'value':
-            return self.__value__
-        elif name == 'id':
-            return self.__id__
-        elif name == 'hex':
-            return self.__hex__
-        else:
-            raise AttributeError(f"type object 'Karakter' has no attribute '{name}'")
     
     def __setattribute__(self, name, value, /):
         return NotImplemented
@@ -365,4 +317,86 @@ class Karakter:
         elif f == '%h':
             return f'{str(self.__hex__)}'
         else:
-            return NotImplemented(f)
+            return NotImplemented
+    
+    def __instancecheck__(self, instance, /):
+        if isinstance(instance, str):
+            if len(instance) != 1:
+                return False
+            return True
+        elif isinstance(instance, (int, bool, float)):
+            instance = int(instance)
+            if instance < 0:
+                return False
+            return True
+        return type(instance) is Karakter
+
+
+KEYWORD = {
+    # CLI
+    'tuliskan', 'bacakanlah',
+    
+    # VAR
+    'alias', 'var', 'def', 'final', 'fungsi',
+    
+    # FLOW CTRL
+    'jika', 'maka', 'kalau', 'tidak',
+    'selama', 'untuk', 'lakukan', 'didalam',
+    'coba', 'tangkap', 'akhiri', 'pilah',
+    
+    # MODULE
+    'impor', 'ekspor', 'dari', 'sebagai',
+    
+    # EXPRS
+    'atau', 'dan', 'termasuk', 'terkecuali',
+    'lambda', 'kembalikan', 'kegalatan', 'lanjutkan',
+    'berhentikan', 'adalah', 'bukanlah',
+    
+    # Tipe
+    'tipe', 'teks', 'angka', 'desimal', 'boolean',
+    'kekosongan', 'apapun', 'kamus', 'daftar',
+    
+}
+
+SOFT_KEYWORD = {
+    'var', 'fungsi', 'tipe', 'teks', 'angka', 'desimal', 'boolean',
+    'kekosongan', 'apapun', 'kamus', 'daftar'
+}
+
+TYPES = {
+    'teks': str,
+    'angka': int,
+    'desimal': Decimal,
+    'boolean': bool,
+    'kekosongan': type(None),
+    'apapun': object,
+    'daftar': list,
+    'kamus': dict,
+    'fungsi': callable,
+    'pointer': str,
+    'tipe': type,
+    'karakter': Karakter
+}
+
+def format(string: str, /, **kwargs) -> str:
+    return string.format(**kwargs)
+
+BUILTINS = {
+    'benar': True,
+    'salah': False,
+    'kosong': None,
+    'enter': '\n',
+    'tab': '\t',
+    'format': format,
+    'f': format,
+    'tampilkan': print,
+    **TYPES
+}
+
+BUILTINS_FUNCTIONS = {
+    'Fungsi': builtins_fungsi,
+    'Variabel': builtins_vars
+}
+
+def get_builtin_type(name):
+    return TYPES.get(name, object)

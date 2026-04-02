@@ -1,0 +1,3 @@
+
+var[karakter] a = 'a';
+tampilkan(a);

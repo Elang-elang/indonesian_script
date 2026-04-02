@@ -151,6 +151,11 @@ class Literal(Expression):
     value: Any
 
 @dataclass
+class Character(Expression):
+    id: int
+    char: str
+
+@dataclass
 class Unpacking(Expression):
     value: Union[Dict | List]
 
@@ -218,7 +223,6 @@ class Return(Expression):
 
 @dataclass
 class Throw(Expression):
-    name: str
     expr: Expression
 
 @dataclass

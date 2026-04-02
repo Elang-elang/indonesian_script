@@ -123,19 +123,6 @@ class IsiGalat(KarakterGalat):
     """Error isi tidak valid"""
     pass
 
-def get_exc(name, message):
-    """Buat exception class dinamis"""
-    # Buat class exception baru
-    exc_class = type(
-        name,
-        (ThrowSignal,),
-        {
-            '__init__': lambda self, msg: ThrowSignal.__init__(self, msg),
-            '__str__': lambda self: f"{name}: {self.message}"
-        }
-    )
-    return exc_class(message)
-
 # Untuk kompatibilitas dengan kode lama
 def get_exc_text(exception, code, path='__main__'):
     """Buat teks exception (untuk kompatibilitas)"""

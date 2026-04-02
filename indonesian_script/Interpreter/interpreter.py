@@ -1,8 +1,9 @@
 # interpreter.py
-from .Exceptions.exceptions import *
+from ..Exceptions import *
 from .AST_node.ast_nodes import *
 from .transformer import *
-from .Builtins.builtins import BUILTINS, TYPES, BUILTINS_FUNCTIONS, Fungsi, Lambda
+from ..Builtins import BUILTINS, TYPES, BUILTINS_FUNCTIONS, Fungsi, Lambda, KEYWORD, SOFT_KEYWORD, Karakter
+from decimal import Decimal
 from pathlib import Path
 import types as T1
 import typing as T2
@@ -16,6 +17,8 @@ class Scope:
     def get(self, attr, getindex: ['name', 'address'] = 'name'):
         # __import__('pprint').pprint(self.vars)
         if getindex == 'name':
+            if attr in KEYWORD and attr not in SOFT_KEYWORD:
+                raise PenulisanGalat(f'{attr!r} adalah kata kunci keras (tidak boleh menggunakannya sebagai nama)')
             if attr in self.vars:
                 return self.vars[attr]
             if self.parent:
@@ -33,6 +36,8 @@ class Scope:
     
     def set(self, name, value, type_ann, address, constant=False):
         # Cek apakah sudah ada di scope ini atau parent (untuk reassign)
+        if name in KEYWORD and name not in SOFT_KEYWORD:
+            raise PenulisanGalat(f'{name!r} adalah kata kunci keras (tidak boleh menggunakannya sebagai nama)')
         if name in self.vars:
             if self.vars[name]['constant']:
                 raise FinalGalat(f"Variabel '{name}' adalah final, tidak bisa diubah")
@@ -52,6 +57,9 @@ class Scope:
         }
     
     def declare(self, name, value, type_ann, address, constant=False):
+        if name in KEYWORD and name not in SOFT_KEYWORD:
+            raise PenulisanGalat(f'{name!r} adalah kata kunci keras (tidak boleh menggunakannya sebagai nama)')
+        
         if name in self.vars:
             raise VariabelGalat(f"Variabel '{name}' sudah dideklarasikan di scope ini")
         
@@ -358,8 +366,7 @@ class Interpreter:
     def visit_Throw(self, node: Throw):
         """Throw statement - mengirim sinyal throw"""
         message = self.visit(node.expr)
-        classThrow = get_exc(node.name, message)
-        raise classThrow
+        raise ThrowSignal(message)
     
     def visit_Decoreted(self, node: Decoreted):
         func_call = node.func_call
@@ -804,6 +811,14 @@ class Interpreter:
         
         return value
     
+    def visit_Character(self, node: Character):
+        id = node.id
+        char = Karakter(node.char)
+        if char.__id__ != id:
+            raise IsiGalat('Tipe Karakter tidak sesuai dengan kode id nya')
+        
+        return char
+    
     def visit_Array(self, node: Array):
         values = node.values
         
@@ -1130,7 +1145,7 @@ class Interpreter:
                     val = default_value
                 else:
                     # Beri pesan error yang jelas
-                    raise IsiGalat(f'Argumen {name!r} wajib diisi (tidak memiliki nilai default)')
+                    raise IsiGalat(f'Argumen {name!r} wajib diisi (tidak memiliki nilai bawaan)')
     
             # Validasi tipe (opsional, bisa diaktifkan nanti)
             self._check_type(val, type_ann)
@@ -1228,7 +1243,7 @@ class Interpreter:
     # --- Helpers ---
     def _check_type(self, value, type_ann):
         if not self._check_instance(value, type_ann):
-            raise TipeGalat(f'Tipe dari {type_ann.name!r} tidak sesuai dengan isi-nya \'{value}\'')
+            raise TipeGalat(f'Tipe dari {type_ann.name!r} tidak sesuai dengan isi-nya \'{str(value)}\'')
         
     
     def _check_instance(self, value, type_ann):
@@ -1239,7 +1254,7 @@ class Interpreter:
 #         print("\ninspek tipe:")
 #         print(type_ann, end='\n\n')
         
-        if type(value) is type(type_ann):
+        if type(value) is type_ann:
             return True
         
         if not isinstance(type_ann, Type):
@@ -1257,6 +1272,8 @@ class Interpreter:
                 
             if data_type['name'] == 'kekosongan' and value == None:
                 return True
+#             print('tipe b: ', type(value))
+#             print('isinstance: ', isinstance(value, data_type['value']))
             return isinstance(value, data_type['value'])
         
         elif type_ann['type'] == 'dict' and isinstance(value, dict):
@@ -1355,7 +1372,7 @@ class Interpreter:
             elif type_ann.name == 'angka':
                 return 0
             elif type_ann.name == 'desimal':
-                return 0.0
+                return Decimal('0.0')
             elif type_ann.name == 'boolean':
                 return False
             elif type_ann.name == 'kekosongan':
@@ -1366,6 +1383,8 @@ class Interpreter:
                 return {}
             elif type_ann.name == 'panggilan':
                 return lambda: None
+            elif type_ann.name == 'karakter':
+                return Karakter(0)
         return None
     
     def _convert(self, s, type_ann):
@@ -1387,7 +1406,7 @@ class Interpreter:
         - interpreter: instance Interpreter dari module
         - exports: dictionary exports dari module
         """
-        from ..main import IndonesianScriptInterpreter  # Import di dalam fungsi untuk hindari circular
+        from .compile import Compile # Import di dalam fungsi untuk hindari circular
 
         # 1. Parse path string
         path = Path(self._filename).parent / path_str
@@ -1441,17 +1460,17 @@ class Interpreter:
             code = path.read_text(encoding='utf-8')
     
             # Buat interpreter untuk module
-            module_interp = IndonesianScriptInterpreter(
+            module_interp = Compile(
                 filename=str(path),
                 code=code,
                 ismodule=True
             )
+            
+            # Jalankan
+            result = module_interp()
     
             # Jalankan module (tanpa console output)
-            result, interpreter = module_interp.run(
-                console=False,
-                get_interpreter=True
-            )
+            interpreter = module_interp.get_interp()
     
             # Simpan ke cache
             cache_entry = (interpreter, interpreter._module['ekspor'])

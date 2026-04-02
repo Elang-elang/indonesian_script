@@ -1,0 +1,4 @@
+[console_scripts]
+cs = indonesian_script.Cli:main
+is = indonesian_script.Cli:main
+is_test = indonesian_script.Cli.main:app

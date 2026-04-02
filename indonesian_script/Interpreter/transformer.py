@@ -1,12 +1,28 @@
 # transformer.py
-from lark import Transformer, v_args, Token
+from lark import Transformer, v_args, Token, Lark
 from .AST_node.ast_nodes import *
-from .Exceptions.exceptions import *
-from .Builtins.builtins import get_builtin_type
+from ..Exceptions import *
+from ..Builtins import get_builtin_type
+import lark_rust
 
 class ASTBuilder(Transformer):
     def __init__(self):
-        self._scope_stack = []  # optional, untuk validasi semantik (misal cek duplikat)
+        pass
+    
+    def load(self, code):
+        gramm = None
+        with open('grammar.txt', 'r') as f:
+            gramm = f.read()
+        
+        parser = Lark(
+            gramm,
+            parser='lalr', # 'earley',
+            start='program',
+            _plugins=lark_rust.plugins
+        )
+        tree = parser.parse(code)
+        ast = self.transformer(tree)
+        return ast
     
     # --- Program & Blocks ---
     
@@ -273,8 +289,8 @@ class ASTBuilder(Transformer):
         return Return(expr=expr)  # Langsung Return node
 
     def throw_stmt(self, items):
-        name, expr = items
-        return Throw(name=str(name), expr=expr)
+        expr = items
+        return Throw(expr=expr)
     
     def cli_stmt(self, items):
         return items[0]
@@ -537,11 +553,16 @@ class ASTBuilder(Transformer):
         s = items[0][1:-1]  # buang quotes
         return Literal(value=s)
     
+    def character(self, items):
+        char = items[0]
+        return Literal(value=Character(id=ord(char), char=char))
+    
     def integer(self, items):
         return Literal(value=int(items[0]))
     
     def float(self, items):
-        return Literal(value=float(items[0]))
+        from decimal import Decimal
+        return Literal(value=Decimal(items[0]))
     
     def boolean(self, items):
         return Literal(value=(items[0] == 'benar'))
