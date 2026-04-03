@@ -1,0 +1,4375 @@
+// auto-generated: "lalrpop 0.23.1"
+// sha3: 016dbd16ca6ea10dfa410af5f65c5dbbdd1740034f0d494edd15802eade436ef
+use crate::lib::transformer::*;
+use std::collections::HashMap;
+use std::str::FromStr;
+#[allow(unused_extern_crates)]
+extern crate lalrpop_util as __lalrpop_util;
+#[allow(unused_imports)]
+use self::__lalrpop_util::state_machine as __state_machine;
+#[allow(unused_extern_crates)]
+extern crate alloc;
+
+#[rustfmt::skip]
+#[allow(explicit_outlives_requirements, non_snake_case, non_camel_case_types, unused_mut, unused_variables, unused_imports, unused_parens, clippy::needless_lifetimes, clippy::type_complexity, clippy::needless_return, clippy::too_many_arguments, clippy::match_single_binding, clippy::clone_on_copy, clippy::unit_arg)]
+mod __parse__Program {
+
+    use crate::lib::transformer::*;
+    use std::collections::HashMap;
+    use std::str::FromStr;
+    #[allow(unused_extern_crates)]
+    extern crate lalrpop_util as __lalrpop_util;
+    #[allow(unused_imports)]
+    use self::__lalrpop_util::state_machine as __state_machine;
+    #[allow(unused_extern_crates)]
+    extern crate alloc;
+    use self::__lalrpop_util::lexer::Token;
+    #[allow(dead_code)]
+    pub(crate) enum __Symbol<'input>
+     {
+        Variant0(&'input str),
+        Variant1(Option<&'input str>),
+        Variant2((String, Expression)),
+        Variant3(alloc::vec::Vec<(String, Expression)>),
+        Variant4(Expression),
+        Variant5(alloc::vec::Vec<Expression>),
+        Variant6(String),
+        Variant7(FinalDecl),
+        Variant8(Identifier),
+        Variant9(Vec<(String, Expression)>),
+        Variant10(Option<Vec<(String, Expression)>>),
+        Variant11(Vec<Expression>),
+        Variant12(Option<Vec<Expression>>),
+        Variant13(Literal),
+        Variant14(Postfix),
+        Variant15(alloc::vec::Vec<Postfix>),
+        Variant16(Prefix),
+        Variant17(Module),
+        Variant18(Statement),
+        Variant19(alloc::vec::Vec<Statement>),
+        Variant20(Terminal),
+        Variant21(TopStatement),
+        Variant22(alloc::vec::Vec<TopStatement>),
+        Variant23(VariableDecl),
+        Variant24(VariablesDeclare),
+    }
+    const __ACTION: &[i8] = &[
+        // State 0
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 38, 39, 40, 41, 42, 6, 0,
+        // State 1
+        0, 0, 0, 0, -56, -56, 8, 0, -56, 0, 0, 0, 9, -56, 0, 0, 0, 0, 0, 0, -56,
+        // State 2
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 38, 39, 40, 41, 42, 6, 0,
+        // State 3
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 38, 0, 40, 41, 0, 10, 0,
+        // State 4
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 51, 38, 0, 40, 41, 0, 10, 0,
+        // State 5
+        56, 44, 57, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 38, 39, 40, 41, 42, 10, 55,
+        // State 6
+        0, 0, 0, 0, -57, -57, 8, 0, -57, 0, 0, 0, 9, -57, 0, 0, 0, 0, 0, 0, -57,
+        // State 7
+        0, 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 8
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 38, 0, 40, 41, 0, 10, 0,
+        // State 9
+        61, 0, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 55,
+        // State 10
+        0, 0, 0, 0, 0, 17, 0, 0, 0, 0, 0, 0, 0, -27, 0, 0, 0, 0, 0, 0, 0,
+        // State 11
+        0, 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 12
+        0, 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 13
+        0, 0, 0, 0, 0, 19, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -21,
+        // State 14
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 38, 39, 40, 41, 42, 10, 70,
+        // State 15
+        0, 0, 0, 0, 0, 20, 0, 0, 0, 0, 0, 0, 0, 72, 0, 0, 0, 0, 0, 0, 0,
+        // State 16
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, -25, 38, 0, 40, 41, 0, 10, 0,
+        // State 17
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 38, 0, 40, 41, 0, 10, 0,
+        // State 18
+        61, 0, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -19,
+        // State 19
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 38, 0, 40, 41, 0, 10, 0,
+        // State 20
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, -26, 38, 0, 40, 41, 0, 10, 0,
+        // State 21
+        0, 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 22
+        0, 0, 45, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 23
+        61, 0, 62, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -20,
+        // State 24
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 38, 0, 40, 41, 0, 10, 0,
+        // State 25
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 38, 0, 40, 41, 0, 10, 0,
+        // State 26
+        43, 44, 45, 4, 0, 0, 0, 0, 0, 0, 0, 0, 5, 0, 38, 0, 40, 41, 0, 10, 0,
+        // State 27
+        0, 0, 0, 0, 0, 0, 0, 0, 46, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 28
+        -67, -67, -67, -67, 0, 0, 0, 0, 0, 0, 0, 0, -67, 0, -67, -67, -67, -67, -67, -67, -67,
+        // State 29
+        0, 0, 0, 0, -48, -48, -48, 0, -48, 0, 0, 0, -48, -48, 0, 0, 0, 0, 0, 0, -48,
+        // State 30
+        0, 0, 0, 0, -47, -47, -47, 0, -47, 0, 0, 0, -47, -47, 0, 0, 0, 0, 0, 0, -47,
+        // State 31
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 32
+        -59, -59, -59, -59, 0, 0, 0, 0, 0, 0, 0, 0, -59, 0, -59, -59, -59, -59, -59, -59, 0,
+        // State 33
+        0, 0, 0, 0, -16, -16, 0, 0, -16, 0, 0, 0, 0, -16, 0, 0, 0, 0, 0, 0, -16,
+        // State 34
+        -62, -62, -62, -62, 0, 0, 0, 0, 0, 0, 0, 0, -62, 0, -62, -62, -62, -62, -62, -62, 0,
+        // State 35
+        -66, -66, -66, -66, 0, 0, 0, 0, 0, 0, 0, 0, -66, 0, -66, -66, -66, -66, -66, -66, -66,
+        // State 36
+        -52, -52, -52, -52, 0, 0, 0, 0, 0, 0, 0, 0, -52, 0, -52, -52, -52, -52, -52, -52, -52,
+        // State 37
+        0, 0, 0, 0, -33, -33, -33, 0, -33, 0, 0, 0, -33, -33, 0, 0, 0, 0, 0, 0, -33,
+        // State 38
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 12, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 39
+        0, 0, 0, 0, -35, -35, -35, 0, -35, 0, 0, 0, -35, -35, 0, 0, 0, 0, 0, 0, -35,
+        // State 40
+        0, 0, 0, 0, -34, -34, -34, 0, -34, 0, 0, 0, -34, -34, 0, 0, 0, 0, 0, 0, -34,
+        // State 41
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 42
+        0, 0, 0, 0, -31, -31, -31, 0, -31, 0, 0, 0, -31, -31, 0, 0, 0, 0, 0, 0, -31,
+        // State 43
+        0, 0, 0, 0, -32, -32, -32, 0, -32, 0, 0, 0, -32, -32, 0, 0, 0, 0, 0, 0, -32,
+        // State 44
+        0, 0, 0, 0, -18, -18, -18, 0, -18, 0, -18, -18, -18, -18, 0, 0, 0, 0, 0, 0, -18,
+        // State 45
+        -53, -53, -53, -53, 0, 0, 0, 0, 0, 0, 0, 0, -53, 0, -53, -53, -53, -53, -53, -53, -53,
+        // State 46
+        0, 0, 0, 0, -45, -45, -45, 0, -45, 0, 0, 0, -45, -45, 0, 0, 0, 0, 0, 0, -45,
+        // State 47
+        -63, -63, -63, -63, 0, 0, 0, 0, 0, 0, 0, 0, -63, 0, -63, -63, -63, -63, -63, -63, 0,
+        // State 48
+        0, 0, 0, 0, 60, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 49
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 64, 0, 0, 0, 0, 0, 0, 0,
+        // State 50
+        0, 0, 0, 0, -37, -37, -37, 0, -37, 0, 0, 0, -37, -37, 0, 0, 0, 0, 0, 0, -37,
+        // State 51
+        0, 0, 0, 0, 0, 0, 0, 18, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 52
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 68,
+        // State 53
+        -54, -54, -54, -54, 0, 0, 0, 0, 0, 0, 0, 0, -54, 0, -54, -54, -54, -54, -54, -54, -54,
+        // State 54
+        0, 0, 0, 0, -39, -39, -39, 0, -39, 0, 0, 0, -39, -39, 0, 0, 0, 0, 0, 0, -39,
+        // State 55
+        0, 0, 0, 0, 0, 0, -31, -13, -31, 0, 0, 0, -31, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 56
+        0, 0, 0, 0, 0, 0, -18, -14, -18, 0, 0, 0, -18, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 57
+        0, 0, 0, 0, -46, -46, -46, 0, -46, 0, 0, 0, -46, -46, 0, 0, 0, 0, 0, 0, -46,
+        // State 58
+        0, 0, 0, 0, -40, -40, -40, 0, -40, 0, 0, 0, -40, -40, 0, 0, 0, 0, 0, 0, -40,
+        // State 59
+        0, 0, 0, 0, -49, -49, -49, 0, -49, 0, 0, 0, -49, -49, 0, 0, 0, 0, 0, 0, -49,
+        // State 60
+        0, 0, 0, 0, 0, 0, 0, -13, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 61
+        0, 0, 0, 0, 0, 0, 0, -14, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 62
+        0, 0, 0, 0, 0, 21, 0, 0, 0, 0, 0, 0, 0, -28, 0, 0, 0, 0, 0, 0, 0,
+        // State 63
+        0, 0, 0, 0, -36, -36, -36, 0, -36, 0, 0, 0, -36, -36, 0, 0, 0, 0, 0, 0, -36,
+        // State 64
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 22, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 65
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 23, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 66
+        0, 0, 0, 0, 0, 24, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -22,
+        // State 67
+        0, 0, 0, 0, -38, -38, -38, 0, -38, 0, 0, 0, -38, -38, 0, 0, 0, 0, 0, 0, -38,
+        // State 68
+        -55, -55, -55, -55, 0, 0, 0, 0, 0, 0, 0, 0, -55, 0, -55, -55, -55, -55, -55, -55, -55,
+        // State 69
+        -58, -58, -58, -58, 0, 0, 0, 0, 0, 0, 0, 0, -58, 0, -58, -58, -58, -58, -58, -58, 0,
+        // State 70
+        0, 0, 0, 0, 0, 25, 0, 0, 0, 0, 0, 0, 0, 76, 0, 0, 0, 0, 0, 0, 0,
+        // State 71
+        0, 0, 0, 0, -41, -41, -41, 0, -41, 0, 0, 0, -41, -41, 0, 0, 0, 0, 0, 0, -41,
+        // State 72
+        0, 0, 0, 0, 0, -11, 0, 0, 0, 0, 0, 0, 0, -11, 0, 0, 0, 0, 0, 0, 0,
+        // State 73
+        0, 0, 0, 0, 0, -15, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -15,
+        // State 74
+        0, 0, 0, 0, 0, -6, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -6,
+        // State 75
+        0, 0, 0, 0, -42, -42, -42, 0, -42, 0, 0, 0, -42, -42, 0, 0, 0, 0, 0, 0, -42,
+        // State 76
+        0, 0, 0, 0, 0, -12, 0, 0, 0, 0, 0, 0, 0, -12, 0, 0, 0, 0, 0, 0, 0,
+        // State 77
+        0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 78
+        0, 0, 0, 0, 0, 0, 0, 0, 81, 0, 27, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 79
+        0, 0, 0, 0, 0, -7, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, -7,
+        // State 80
+        -65, -65, -65, -65, 0, 0, 0, 0, 0, 0, 0, 0, -65, 0, -65, -65, -65, -65, -65, -65, -65,
+        // State 81
+        0, 0, 0, 0, 0, 0, 0, 0, 84, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 82
+        0, 0, 0, 0, 0, 0, 0, 0, 85, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+        // State 83
+        -17, -17, -17, -17, 0, 0, 0, 0, 0, 0, 0, 0, -17, 0, -17, -17, -17, -17, -17, -17, -17,
+        // State 84
+        -64, -64, -64, -64, 0, 0, 0, 0, 0, 0, 0, 0, -64, 0, -64, -64, -64, -64, -64, -64, -64,
+    ];
+    fn __action(state: i8, integer: usize) -> i8 {
+        __ACTION[(state as usize) * 21 + integer]
+    }
+    const __EOF_ACTION: &[i8] = &[
+        // State 0
+        -50,
+        // State 1
+        0,
+        // State 2
+        -51,
+        // State 3
+        0,
+        // State 4
+        0,
+        // State 5
+        0,
+        // State 6
+        0,
+        // State 7
+        0,
+        // State 8
+        0,
+        // State 9
+        0,
+        // State 10
+        0,
+        // State 11
+        0,
+        // State 12
+        0,
+        // State 13
+        0,
+        // State 14
+        0,
+        // State 15
+        0,
+        // State 16
+        0,
+        // State 17
+        0,
+        // State 18
+        0,
+        // State 19
+        0,
+        // State 20
+        0,
+        // State 21
+        0,
+        // State 22
+        0,
+        // State 23
+        0,
+        // State 24
+        0,
+        // State 25
+        0,
+        // State 26
+        0,
+        // State 27
+        0,
+        // State 28
+        -67,
+        // State 29
+        0,
+        // State 30
+        0,
+        // State 31
+        -68,
+        // State 32
+        -59,
+        // State 33
+        0,
+        // State 34
+        -62,
+        // State 35
+        -66,
+        // State 36
+        -52,
+        // State 37
+        0,
+        // State 38
+        0,
+        // State 39
+        0,
+        // State 40
+        0,
+        // State 41
+        0,
+        // State 42
+        0,
+        // State 43
+        0,
+        // State 44
+        0,
+        // State 45
+        -53,
+        // State 46
+        0,
+        // State 47
+        -63,
+        // State 48
+        0,
+        // State 49
+        0,
+        // State 50
+        0,
+        // State 51
+        0,
+        // State 52
+        0,
+        // State 53
+        0,
+        // State 54
+        0,
+        // State 55
+        0,
+        // State 56
+        0,
+        // State 57
+        0,
+        // State 58
+        0,
+        // State 59
+        0,
+        // State 60
+        0,
+        // State 61
+        0,
+        // State 62
+        0,
+        // State 63
+        0,
+        // State 64
+        0,
+        // State 65
+        0,
+        // State 66
+        0,
+        // State 67
+        0,
+        // State 68
+        0,
+        // State 69
+        -58,
+        // State 70
+        0,
+        // State 71
+        0,
+        // State 72
+        0,
+        // State 73
+        0,
+        // State 74
+        0,
+        // State 75
+        0,
+        // State 76
+        0,
+        // State 77
+        0,
+        // State 78
+        0,
+        // State 79
+        0,
+        // State 80
+        -65,
+        // State 81
+        0,
+        // State 82
+        0,
+        // State 83
+        -17,
+        // State 84
+        -64,
+    ];
+    fn __goto(state: i8, nt: usize) -> i8 {
+        match nt {
+            3 => 66,
+            6 => match state {
+                15 => 70,
+                _ => 62,
+            },
+            7 => 51,
+            8 => match state {
+                18 => 74,
+                23 => 79,
+                _ => 13,
+            },
+            9 => match state {
+                4 => 10,
+                8 => 15,
+                3 => 48,
+                16 | 19 => 72,
+                17 => 73,
+                20 | 24 => 76,
+                25 => 81,
+                26 => 82,
+                _ => 27,
+            },
+            10 => 28,
+            11 => match state {
+                7 => 58,
+                11 => 64,
+                12 => 65,
+                21 => 77,
+                22 => 78,
+                _ => 29,
+            },
+            12 => 52,
+            14 => 49,
+            16 => 30,
+            17 => match state {
+                6 => 57,
+                _ => 46,
+            },
+            19 => 6,
+            20 => 1,
+            21 => 31,
+            22 => match state {
+                5 => 53,
+                14 => 68,
+                _ => 32,
+            },
+            23 => 14,
+            24 => 33,
+            25 => match state {
+                2 => 47,
+                _ => 34,
+            },
+            27 => 2,
+            28 => 35,
+            29 => 36,
+            _ => 0,
+        }
+    }
+    #[allow(clippy::needless_raw_string_hashes)]
+    const __TERMINAL: &[&str] = &[
+        r###"r#"\"[^\"]*\""#"###,
+        r###"r#"[0-9]+"#"###,
+        r###"r#"[a-zA-Z_][a-zA-Z0-9_]*"#"###,
+        r###""(""###,
+        r###"")""###,
+        r###"",""###,
+        r###"".""###,
+        r###"":""###,
+        r###"";""###,
+        r###""<""###,
+        r###""=""###,
+        r###"">""###,
+        r###""[""###,
+        r###""]""###,
+        r###""benar""###,
+        r###""final""###,
+        r###""kosong""###,
+        r###""salah""###,
+        r###""var""###,
+        r###""{""###,
+        r###""}""###,
+    ];
+    fn __expected_tokens(__state: i8) -> alloc::vec::Vec<alloc::string::String> {
+        __TERMINAL.iter().enumerate().filter_map(|(index, terminal)| {
+            let next_state = __action(__state, index);
+            if next_state == 0 {
+                None
+            } else {
+                Some(alloc::string::ToString::to_string(terminal))
+            }
+        }).collect()
+    }
+    fn __expected_tokens_from_states<
+        'input,
+    >(
+        __states: &[i8],
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> alloc::vec::Vec<alloc::string::String>
+    {
+        __TERMINAL.iter().enumerate().filter_map(|(index, terminal)| {
+            if __accepts(None, __states, Some(index), core::marker::PhantomData::<(&())>) {
+                Some(alloc::string::ToString::to_string(terminal))
+            } else {
+                None
+            }
+        }).collect()
+    }
+    struct __StateMachine<'input>
+    where 
+    {
+        input: &'input str,
+        __phantom: core::marker::PhantomData<(&'input ())>,
+    }
+    impl<'input> __state_machine::ParserDefinition for __StateMachine<'input>
+    where 
+    {
+        type Location = usize;
+        type Error = &'static str;
+        type Token = Token<'input>;
+        type TokenIndex = usize;
+        type Symbol = __Symbol<'input>;
+        type Success = Module;
+        type StateIndex = i8;
+        type Action = i8;
+        type ReduceIndex = i8;
+        type NonterminalIndex = usize;
+
+        #[inline]
+        fn start_location(&self) -> Self::Location {
+              Default::default()
+        }
+
+        #[inline]
+        fn start_state(&self) -> Self::StateIndex {
+              0
+        }
+
+        #[inline]
+        fn token_to_index(&self, token: &Self::Token) -> Option<usize> {
+            __token_to_integer(token, core::marker::PhantomData::<(&())>)
+        }
+
+        #[inline]
+        fn action(&self, state: i8, integer: usize) -> i8 {
+            __action(state, integer)
+        }
+
+        #[inline]
+        fn error_action(&self, state: i8) -> i8 {
+            __action(state, 21 - 1)
+        }
+
+        #[inline]
+        fn eof_action(&self, state: i8) -> i8 {
+            __EOF_ACTION[state as usize]
+        }
+
+        #[inline]
+        fn goto(&self, state: i8, nt: usize) -> i8 {
+            __goto(state, nt)
+        }
+
+        fn token_to_symbol(&self, token_index: usize, token: Self::Token) -> Self::Symbol {
+            __token_to_symbol(token_index, token, core::marker::PhantomData::<(&())>)
+        }
+
+        fn expected_tokens(&self, state: i8) -> alloc::vec::Vec<alloc::string::String> {
+            __expected_tokens(state)
+        }
+
+        fn expected_tokens_from_states(&self, states: &[i8]) -> alloc::vec::Vec<alloc::string::String> {
+            __expected_tokens_from_states(states, core::marker::PhantomData::<(&())>)
+        }
+
+        #[inline]
+        fn uses_error_recovery(&self) -> bool {
+            false
+        }
+
+        #[inline]
+        fn error_recovery_symbol(
+            &self,
+            recovery: __state_machine::ErrorRecovery<Self>,
+        ) -> Self::Symbol {
+            panic!("error recovery not enabled for this grammar")
+        }
+
+        fn reduce(
+            &mut self,
+            action: i8,
+            start_location: Option<&Self::Location>,
+            states: &mut alloc::vec::Vec<i8>,
+            symbols: &mut alloc::vec::Vec<__state_machine::SymbolTriple<Self>>,
+        ) -> Option<__state_machine::ParseResult<Self>> {
+            __reduce(
+                self.input,
+                action,
+                start_location,
+                states,
+                symbols,
+                core::marker::PhantomData::<(&())>,
+            )
+        }
+
+        fn simulate_reduce(&self, action: i8) -> __state_machine::SimulatedReduce<Self> {
+            __simulate_reduce(action, core::marker::PhantomData::<(&())>)
+        }
+    }
+    fn __token_to_integer<
+        'input,
+    >(
+        __token: &Token<'input>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> Option<usize>
+    {
+        #[warn(unused_variables)]
+        match __token {
+            Token(0, _) if true => Some(0),
+            Token(1, _) if true => Some(1),
+            Token(2, _) if true => Some(2),
+            Token(3, _) if true => Some(3),
+            Token(4, _) if true => Some(4),
+            Token(5, _) if true => Some(5),
+            Token(6, _) if true => Some(6),
+            Token(7, _) if true => Some(7),
+            Token(8, _) if true => Some(8),
+            Token(9, _) if true => Some(9),
+            Token(10, _) if true => Some(10),
+            Token(11, _) if true => Some(11),
+            Token(12, _) if true => Some(12),
+            Token(13, _) if true => Some(13),
+            Token(14, _) if true => Some(14),
+            Token(15, _) if true => Some(15),
+            Token(16, _) if true => Some(16),
+            Token(17, _) if true => Some(17),
+            Token(18, _) if true => Some(18),
+            Token(19, _) if true => Some(19),
+            Token(20, _) if true => Some(20),
+            _ => None,
+        }
+    }
+    fn __token_to_symbol<
+        'input,
+    >(
+        __token_index: usize,
+        __token: Token<'input>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> __Symbol<'input>
+    {
+        #[allow(clippy::manual_range_patterns)]match __token_index {
+            0 | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 => match __token {
+                Token(0, __tok0) | Token(1, __tok0) | Token(2, __tok0) | Token(3, __tok0) | Token(4, __tok0) | Token(5, __tok0) | Token(6, __tok0) | Token(7, __tok0) | Token(8, __tok0) | Token(9, __tok0) | Token(10, __tok0) | Token(11, __tok0) | Token(12, __tok0) | Token(13, __tok0) | Token(14, __tok0) | Token(15, __tok0) | Token(16, __tok0) | Token(17, __tok0) | Token(18, __tok0) | Token(19, __tok0) | Token(20, __tok0) if true => __Symbol::Variant0(__tok0),
+                _ => unreachable!(),
+            },
+            _ => unreachable!(),
+        }
+    }
+    fn __simulate_reduce<
+        'input,
+    >(
+        __reduce_index: i8,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> __state_machine::SimulatedReduce<__StateMachine<'input>>
+    {
+        match __reduce_index {
+            0 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 0,
+                }
+            }
+            1 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 0,
+                    nonterminal_produced: 0,
+                }
+            }
+            2 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 1,
+                }
+            }
+            3 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 0,
+                    nonterminal_produced: 2,
+                }
+            }
+            4 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 2,
+                }
+            }
+            5 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 3,
+                }
+            }
+            6 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 3,
+                    nonterminal_produced: 3,
+                }
+            }
+            7 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 4,
+                }
+            }
+            8 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 0,
+                    nonterminal_produced: 5,
+                }
+            }
+            9 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 5,
+                }
+            }
+            10 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 6,
+                }
+            }
+            11 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 3,
+                    nonterminal_produced: 6,
+                }
+            }
+            12 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 7,
+                }
+            }
+            13 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 7,
+                }
+            }
+            14 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 3,
+                    nonterminal_produced: 8,
+                }
+            }
+            15 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 9,
+                }
+            }
+            16 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 8,
+                    nonterminal_produced: 10,
+                }
+            }
+            17 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 11,
+                }
+            }
+            18 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 12,
+                }
+            }
+            19 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 3,
+                    nonterminal_produced: 12,
+                }
+            }
+            20 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 12,
+                }
+            }
+            21 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 12,
+                }
+            }
+            22 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 13,
+                }
+            }
+            23 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 0,
+                    nonterminal_produced: 13,
+                }
+            }
+            24 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 14,
+                }
+            }
+            25 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 3,
+                    nonterminal_produced: 14,
+                }
+            }
+            26 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 14,
+                }
+            }
+            27 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 14,
+                }
+            }
+            28 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 15,
+                }
+            }
+            29 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 0,
+                    nonterminal_produced: 15,
+                }
+            }
+            30 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 16,
+                }
+            }
+            31 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 16,
+                }
+            }
+            32 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 16,
+                }
+            }
+            33 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 16,
+                }
+            }
+            34 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 16,
+                }
+            }
+            35 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 3,
+                    nonterminal_produced: 16,
+                }
+            }
+            36 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 16,
+                }
+            }
+            37 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 3,
+                    nonterminal_produced: 16,
+                }
+            }
+            38 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 16,
+                }
+            }
+            39 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 17,
+                }
+            }
+            40 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 3,
+                    nonterminal_produced: 17,
+                }
+            }
+            41 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 4,
+                    nonterminal_produced: 17,
+                }
+            }
+            42 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 0,
+                    nonterminal_produced: 18,
+                }
+            }
+            43 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 18,
+                }
+            }
+            44 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 19,
+                }
+            }
+            45 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 19,
+                }
+            }
+            46 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 20,
+                }
+            }
+            47 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 20,
+                }
+            }
+            48 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 3,
+                    nonterminal_produced: 20,
+                }
+            }
+            49 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 0,
+                    nonterminal_produced: 21,
+                }
+            }
+            50 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 21,
+                }
+            }
+            51 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 22,
+                }
+            }
+            52 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 22,
+                }
+            }
+            53 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 23,
+                }
+            }
+            54 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 23,
+                }
+            }
+            55 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 24,
+                }
+            }
+            56 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 24,
+                }
+            }
+            57 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 3,
+                    nonterminal_produced: 25,
+                }
+            }
+            58 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 25,
+                }
+            }
+            59 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 0,
+                    nonterminal_produced: 26,
+                }
+            }
+            60 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 26,
+                }
+            }
+            61 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 27,
+                }
+            }
+            62 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 2,
+                    nonterminal_produced: 27,
+                }
+            }
+            63 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 8,
+                    nonterminal_produced: 28,
+                }
+            }
+            64 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 6,
+                    nonterminal_produced: 28,
+                }
+            }
+            65 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 29,
+                }
+            }
+            66 => {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop: 1,
+                    nonterminal_produced: 29,
+                }
+            }
+            67 => __state_machine::SimulatedReduce::Accept,
+            _ => panic!("invalid reduction index {__reduce_index}")
+        }
+    }
+    pub struct ProgramParser {
+        builder: __lalrpop_util::lexer::MatcherBuilder,
+        _priv: (),
+    }
+
+    impl Default for ProgramParser { fn default() -> Self { Self::new() } }
+    impl ProgramParser {
+        pub fn new() -> ProgramParser {
+            let __builder = super::__intern_token::new_builder();
+            ProgramParser {
+                builder: __builder,
+                _priv: (),
+            }
+        }
+
+        #[allow(dead_code)]
+        pub fn parse<
+            'input,
+        >(
+            &self,
+            input: &'input str,
+        ) -> Result<Module, __lalrpop_util::ParseError<usize, Token<'input>, &'static str>>
+        {
+            let mut __tokens = self.builder.matcher(input);
+            __state_machine::Parser::drive(
+                __StateMachine {
+                    input,
+                    __phantom: core::marker::PhantomData::<(&())>,
+                },
+                __tokens,
+            )
+        }
+    }
+    fn __accepts<
+        'input,
+    >(
+        __error_state: Option<i8>,
+        __states: &[i8],
+        __opt_integer: Option<usize>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> bool
+    {
+        let mut __states = __states.to_vec();
+        __states.extend(__error_state);
+        loop {
+            let mut __states_len = __states.len();
+            let __top = __states[__states_len - 1];
+            let __action = match __opt_integer {
+                None => __EOF_ACTION[__top as usize],
+                Some(__integer) => __action(__top, __integer),
+            };
+            if __action == 0 { return false; }
+            if __action > 0 { return true; }
+            let (__to_pop, __nt) = match __simulate_reduce(-(__action + 1), core::marker::PhantomData::<(&())>) {
+                __state_machine::SimulatedReduce::Reduce {
+                    states_to_pop, nonterminal_produced
+                } => (states_to_pop, nonterminal_produced),
+                __state_machine::SimulatedReduce::Accept => return true,
+            };
+            __states_len -= __to_pop;
+            __states.truncate(__states_len);
+            let __top = __states[__states_len - 1];
+            let __next_state = __goto(__top, __nt);
+            __states.push(__next_state);
+        }
+    }
+    fn __reduce<
+        'input,
+    >(
+        input: &'input str,
+        __action: i8,
+        __lookahead_start: Option<&usize>,
+        __states: &mut alloc::vec::Vec<i8>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> Option<Result<Module,__lalrpop_util::ParseError<usize, Token<'input>, &'static str>>>
+    {
+        let (__pop_states, __nonterminal) = match __action {
+            0 => {
+                __reduce0(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            1 => {
+                __reduce1(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            2 => {
+                __reduce2(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            3 => {
+                __reduce3(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            4 => {
+                __reduce4(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            5 => {
+                __reduce5(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            6 => {
+                __reduce6(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            7 => {
+                __reduce7(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            8 => {
+                __reduce8(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            9 => {
+                __reduce9(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            10 => {
+                __reduce10(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            11 => {
+                __reduce11(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            12 => {
+                __reduce12(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            13 => {
+                __reduce13(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            14 => {
+                __reduce14(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            15 => {
+                __reduce15(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            16 => {
+                __reduce16(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            17 => {
+                __reduce17(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            18 => {
+                __reduce18(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            19 => {
+                __reduce19(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            20 => {
+                __reduce20(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            21 => {
+                __reduce21(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            22 => {
+                __reduce22(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            23 => {
+                __reduce23(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            24 => {
+                __reduce24(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            25 => {
+                __reduce25(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            26 => {
+                __reduce26(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            27 => {
+                __reduce27(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            28 => {
+                __reduce28(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            29 => {
+                __reduce29(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            30 => {
+                __reduce30(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            31 => {
+                __reduce31(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            32 => {
+                __reduce32(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            33 => {
+                __reduce33(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            34 => {
+                __reduce34(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            35 => {
+                __reduce35(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            36 => {
+                __reduce36(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            37 => {
+                __reduce37(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            38 => {
+                __reduce38(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            39 => {
+                __reduce39(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            40 => {
+                __reduce40(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            41 => {
+                __reduce41(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            42 => {
+                __reduce42(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            43 => {
+                __reduce43(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            44 => {
+                __reduce44(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            45 => {
+                __reduce45(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            46 => {
+                __reduce46(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            47 => {
+                __reduce47(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            48 => {
+                __reduce48(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            49 => {
+                __reduce49(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            50 => {
+                __reduce50(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            51 => {
+                __reduce51(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            52 => {
+                __reduce52(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            53 => {
+                __reduce53(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            54 => {
+                __reduce54(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            55 => {
+                __reduce55(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            56 => {
+                __reduce56(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            57 => {
+                __reduce57(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            58 => {
+                __reduce58(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            59 => {
+                __reduce59(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            60 => {
+                __reduce60(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            61 => {
+                __reduce61(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            62 => {
+                __reduce62(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            63 => {
+                __reduce63(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            64 => {
+                __reduce64(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            65 => {
+                __reduce65(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            66 => {
+                __reduce66(input, __lookahead_start, __symbols, core::marker::PhantomData::<(&())>)
+            }
+            67 => {
+                // __Program = Program => ActionFn(0);
+                let __sym0 = __pop_Variant17(__symbols);
+                let __start = __sym0.0.clone();
+                let __end = __sym0.2.clone();
+                let __nt = super::__action0::<>(input, __sym0);
+                return Some(Ok(__nt));
+            }
+            _ => panic!("invalid action code {__action}")
+        };
+        let __states_len = __states.len();
+        __states.truncate(__states_len - __pop_states);
+        let __state = *__states.last().unwrap();
+        let __next_state = __goto(__state, __nonterminal);
+        __states.push(__next_state);
+        None
+    }
+    #[inline(never)]
+    fn __symbol_type_mismatch() -> ! {
+        panic!("symbol type mismatch")
+    }
+    fn __pop_Variant2<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, (String, Expression), usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant2(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant4<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Expression, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant4(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant7<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, FinalDecl, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant7(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant8<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Identifier, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant8(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant13<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Literal, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant13(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant17<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Module, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant17(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant10<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Option<Vec<(String, Expression)>>, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant10(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant12<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Option<Vec<Expression>>, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant12(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant1<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Option<&'input str>, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant1(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant14<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Postfix, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant14(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant16<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Prefix, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant16(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant18<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Statement, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant18(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant6<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, String, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant6(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant20<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Terminal, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant20(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant21<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, TopStatement, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant21(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant23<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, VariableDecl, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant23(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant24<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, VariablesDeclare, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant24(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant9<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Vec<(String, Expression)>, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant9(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant11<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, Vec<Expression>, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant11(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant3<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, alloc::vec::Vec<(String, Expression)>, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant3(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant5<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, alloc::vec::Vec<Expression>, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant5(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant15<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, alloc::vec::Vec<Postfix>, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant15(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant19<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, alloc::vec::Vec<Statement>, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant19(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant22<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, alloc::vec::Vec<TopStatement>, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant22(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __pop_Variant0<
+      'input,
+    >(
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>
+    ) -> (usize, &'input str, usize)
+     {
+        match __symbols.pop() {
+            Some((__l, __Symbol::Variant0(__v), __r)) => (__l, __v, __r),
+            _ => __symbol_type_mismatch()
+        }
+    }
+    fn __reduce0<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ","? = "," => ActionFn(50);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action50::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant1(__nt), __end));
+        (1, 0)
+    }
+    fn __reduce1<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ","? =  => ActionFn(51);
+        let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2)).unwrap_or_default();
+        let __end = __start;
+        let __nt = super::__action51::<>(input, &__start, &__end);
+        __symbols.push((__start, __Symbol::Variant1(__nt), __end));
+        (0, 0)
+    }
+    fn __reduce2<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ("," <DictPair>) = ",", DictPair => ActionFn(54);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant2(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action54::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant2(__nt), __end));
+        (2, 1)
+    }
+    fn __reduce3<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ("," <DictPair>)* =  => ActionFn(52);
+        let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2)).unwrap_or_default();
+        let __end = __start;
+        let __nt = super::__action52::<>(input, &__start, &__end);
+        __symbols.push((__start, __Symbol::Variant3(__nt), __end));
+        (0, 2)
+    }
+    fn __reduce4<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ("," <DictPair>)* = ("," <DictPair>)+ => ActionFn(53);
+        let __sym0 = __pop_Variant3(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action53::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant3(__nt), __end));
+        (1, 2)
+    }
+    fn __reduce5<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ("," <DictPair>)+ = ",", DictPair => ActionFn(61);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant2(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action61::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant3(__nt), __end));
+        (2, 3)
+    }
+    fn __reduce6<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ("," <DictPair>)+ = ("," <DictPair>)+, ",", DictPair => ActionFn(62);
+        assert!(__symbols.len() >= 3);
+        let __sym2 = __pop_Variant2(__symbols);
+        let __sym1 = __pop_Variant0(__symbols);
+        let __sym0 = __pop_Variant3(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym2.2.clone();
+        let __nt = super::__action62::<>(input, __sym0, __sym1, __sym2);
+        __symbols.push((__start, __Symbol::Variant3(__nt), __end));
+        (3, 3)
+    }
+    fn __reduce7<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ("," <Expression>) = ",", Expression => ActionFn(37);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant4(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action37::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant4(__nt), __end));
+        (2, 4)
+    }
+    fn __reduce8<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ("," <Expression>)* =  => ActionFn(35);
+        let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2)).unwrap_or_default();
+        let __end = __start;
+        let __nt = super::__action35::<>(input, &__start, &__end);
+        __symbols.push((__start, __Symbol::Variant5(__nt), __end));
+        (0, 5)
+    }
+    fn __reduce9<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ("," <Expression>)* = ("," <Expression>)+ => ActionFn(36);
+        let __sym0 = __pop_Variant5(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action36::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant5(__nt), __end));
+        (1, 5)
+    }
+    fn __reduce10<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ("," <Expression>)+ = ",", Expression => ActionFn(67);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant4(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action67::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant5(__nt), __end));
+        (2, 6)
+    }
+    fn __reduce11<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ("," <Expression>)+ = ("," <Expression>)+, ",", Expression => ActionFn(68);
+        assert!(__symbols.len() >= 3);
+        let __sym2 = __pop_Variant4(__symbols);
+        let __sym1 = __pop_Variant0(__symbols);
+        let __sym0 = __pop_Variant5(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym2.2.clone();
+        let __nt = super::__action68::<>(input, __sym0, __sym1, __sym2);
+        __symbols.push((__start, __Symbol::Variant5(__nt), __end));
+        (3, 6)
+    }
+    fn __reduce12<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // DictKey = r#"\"[^\"]*\""# => ActionFn(26);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action26::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant6(__nt), __end));
+        (1, 7)
+    }
+    fn __reduce13<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // DictKey = r#"[a-zA-Z_][a-zA-Z0-9_]*"# => ActionFn(27);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action27::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant6(__nt), __end));
+        (1, 7)
+    }
+    fn __reduce14<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // DictPair = DictKey, ":", Expression => ActionFn(28);
+        assert!(__symbols.len() >= 3);
+        let __sym2 = __pop_Variant4(__symbols);
+        let __sym1 = __pop_Variant0(__symbols);
+        let __sym0 = __pop_Variant6(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym2.2.clone();
+        let __nt = super::__action28::<>(input, __sym0, __sym1, __sym2);
+        __symbols.push((__start, __Symbol::Variant2(__nt), __end));
+        (3, 8)
+    }
+    fn __reduce15<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Expression = Term => ActionFn(11);
+        let __sym0 = __pop_Variant20(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action11::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant4(__nt), __end));
+        (1, 9)
+    }
+    fn __reduce16<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // FinalDecl = "final", "<", Id, ">", Id, "=", Expression, ";" => ActionFn(10);
+        assert!(__symbols.len() >= 8);
+        let __sym7 = __pop_Variant0(__symbols);
+        let __sym6 = __pop_Variant4(__symbols);
+        let __sym5 = __pop_Variant0(__symbols);
+        let __sym4 = __pop_Variant8(__symbols);
+        let __sym3 = __pop_Variant0(__symbols);
+        let __sym2 = __pop_Variant8(__symbols);
+        let __sym1 = __pop_Variant0(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym7.2.clone();
+        let __nt = super::__action10::<>(input, __sym0, __sym1, __sym2, __sym3, __sym4, __sym5, __sym6, __sym7);
+        __symbols.push((__start, __Symbol::Variant7(__nt), __end));
+        (8, 10)
+    }
+    fn __reduce17<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Id = r#"[a-zA-Z_][a-zA-Z0-9_]*"# => ActionFn(18);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action18::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant8(__nt), __end));
+        (1, 11)
+    }
+    fn __reduce18<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<DictPair> = DictPair, "," => ActionFn(63);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant0(__symbols);
+        let __sym0 = __pop_Variant2(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action63::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant9(__nt), __end));
+        (2, 12)
+    }
+    fn __reduce19<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<DictPair> = DictPair, ("," <DictPair>)+, "," => ActionFn(64);
+        assert!(__symbols.len() >= 3);
+        let __sym2 = __pop_Variant0(__symbols);
+        let __sym1 = __pop_Variant3(__symbols);
+        let __sym0 = __pop_Variant2(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym2.2.clone();
+        let __nt = super::__action64::<>(input, __sym0, __sym1, __sym2);
+        __symbols.push((__start, __Symbol::Variant9(__nt), __end));
+        (3, 12)
+    }
+    fn __reduce20<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<DictPair> = DictPair => ActionFn(65);
+        let __sym0 = __pop_Variant2(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action65::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant9(__nt), __end));
+        (1, 12)
+    }
+    fn __reduce21<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<DictPair> = DictPair, ("," <DictPair>)+ => ActionFn(66);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant3(__symbols);
+        let __sym0 = __pop_Variant2(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action66::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant9(__nt), __end));
+        (2, 12)
+    }
+    fn __reduce22<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<DictPair>? = ListPlus<DictPair> => ActionFn(29);
+        let __sym0 = __pop_Variant9(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action29::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant10(__nt), __end));
+        (1, 13)
+    }
+    fn __reduce23<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<DictPair>? =  => ActionFn(30);
+        let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2)).unwrap_or_default();
+        let __end = __start;
+        let __nt = super::__action30::<>(input, &__start, &__end);
+        __symbols.push((__start, __Symbol::Variant10(__nt), __end));
+        (0, 13)
+    }
+    fn __reduce24<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<Expression> = Expression, "," => ActionFn(69);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant0(__symbols);
+        let __sym0 = __pop_Variant4(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action69::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant11(__nt), __end));
+        (2, 14)
+    }
+    fn __reduce25<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<Expression> = Expression, ("," <Expression>)+, "," => ActionFn(70);
+        assert!(__symbols.len() >= 3);
+        let __sym2 = __pop_Variant0(__symbols);
+        let __sym1 = __pop_Variant5(__symbols);
+        let __sym0 = __pop_Variant4(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym2.2.clone();
+        let __nt = super::__action70::<>(input, __sym0, __sym1, __sym2);
+        __symbols.push((__start, __Symbol::Variant11(__nt), __end));
+        (3, 14)
+    }
+    fn __reduce26<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<Expression> = Expression => ActionFn(71);
+        let __sym0 = __pop_Variant4(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action71::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant11(__nt), __end));
+        (1, 14)
+    }
+    fn __reduce27<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<Expression> = Expression, ("," <Expression>)+ => ActionFn(72);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant5(__symbols);
+        let __sym0 = __pop_Variant4(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action72::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant11(__nt), __end));
+        (2, 14)
+    }
+    fn __reduce28<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<Expression>? = ListPlus<Expression> => ActionFn(32);
+        let __sym0 = __pop_Variant11(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action32::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant12(__nt), __end));
+        (1, 15)
+    }
+    fn __reduce29<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // ListPlus<Expression>? =  => ActionFn(33);
+        let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2)).unwrap_or_default();
+        let __end = __start;
+        let __nt = super::__action33::<>(input, &__start, &__end);
+        __symbols.push((__start, __Symbol::Variant12(__nt), __end));
+        (0, 15)
+    }
+    fn __reduce30<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Lit = r#"\"[^\"]*\""# => ActionFn(19);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action19::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant13(__nt), __end));
+        (1, 16)
+    }
+    fn __reduce31<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Lit = r#"[0-9]+"# => ActionFn(20);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action20::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant13(__nt), __end));
+        (1, 16)
+    }
+    fn __reduce32<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Lit = "benar" => ActionFn(21);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action21::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant13(__nt), __end));
+        (1, 16)
+    }
+    fn __reduce33<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Lit = "salah" => ActionFn(22);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action22::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant13(__nt), __end));
+        (1, 16)
+    }
+    fn __reduce34<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Lit = "kosong" => ActionFn(23);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action23::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant13(__nt), __end));
+        (1, 16)
+    }
+    fn __reduce35<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Lit = "[", ListPlus<Expression>, "]" => ActionFn(77);
+        assert!(__symbols.len() >= 3);
+        let __sym2 = __pop_Variant0(__symbols);
+        let __sym1 = __pop_Variant11(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym2.2.clone();
+        let __nt = super::__action77::<>(input, __sym0, __sym1, __sym2);
+        __symbols.push((__start, __Symbol::Variant13(__nt), __end));
+        (3, 16)
+    }
+    fn __reduce36<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Lit = "[", "]" => ActionFn(78);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant0(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action78::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant13(__nt), __end));
+        (2, 16)
+    }
+    fn __reduce37<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Lit = "{", ListPlus<DictPair>, "}" => ActionFn(75);
+        assert!(__symbols.len() >= 3);
+        let __sym2 = __pop_Variant0(__symbols);
+        let __sym1 = __pop_Variant9(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym2.2.clone();
+        let __nt = super::__action75::<>(input, __sym0, __sym1, __sym2);
+        __symbols.push((__start, __Symbol::Variant13(__nt), __end));
+        (3, 16)
+    }
+    fn __reduce38<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Lit = "{", "}" => ActionFn(76);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant0(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action76::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant13(__nt), __end));
+        (2, 16)
+    }
+    fn __reduce39<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Postfix = ".", Id => ActionFn(16);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant8(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action16::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant14(__nt), __end));
+        (2, 17)
+    }
+    fn __reduce40<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Postfix = "[", Expression, "]" => ActionFn(73);
+        assert!(__symbols.len() >= 3);
+        let __sym2 = __pop_Variant0(__symbols);
+        let __sym1 = __pop_Variant4(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym2.2.clone();
+        let __nt = super::__action73::<>(input, __sym0, __sym1, __sym2);
+        __symbols.push((__start, __Symbol::Variant14(__nt), __end));
+        (3, 17)
+    }
+    fn __reduce41<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Postfix = "[", Expression, ("," <Expression>)+, "]" => ActionFn(74);
+        assert!(__symbols.len() >= 4);
+        let __sym3 = __pop_Variant0(__symbols);
+        let __sym2 = __pop_Variant5(__symbols);
+        let __sym1 = __pop_Variant4(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym3.2.clone();
+        let __nt = super::__action74::<>(input, __sym0, __sym1, __sym2, __sym3);
+        __symbols.push((__start, __Symbol::Variant14(__nt), __end));
+        (4, 17)
+    }
+    fn __reduce42<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Postfix* =  => ActionFn(38);
+        let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2)).unwrap_or_default();
+        let __end = __start;
+        let __nt = super::__action38::<>(input, &__start, &__end);
+        __symbols.push((__start, __Symbol::Variant15(__nt), __end));
+        (0, 18)
+    }
+    fn __reduce43<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Postfix* = Postfix+ => ActionFn(39);
+        let __sym0 = __pop_Variant15(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action39::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant15(__nt), __end));
+        (1, 18)
+    }
+    fn __reduce44<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Postfix+ = Postfix => ActionFn(46);
+        let __sym0 = __pop_Variant14(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action46::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant15(__nt), __end));
+        (1, 19)
+    }
+    fn __reduce45<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Postfix+ = Postfix+, Postfix => ActionFn(47);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant14(__symbols);
+        let __sym0 = __pop_Variant15(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action47::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant15(__nt), __end));
+        (2, 19)
+    }
+    fn __reduce46<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Prefix = Lit => ActionFn(13);
+        let __sym0 = __pop_Variant13(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action13::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant16(__nt), __end));
+        (1, 20)
+    }
+    fn __reduce47<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Prefix = Id => ActionFn(14);
+        let __sym0 = __pop_Variant8(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action14::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant16(__nt), __end));
+        (1, 20)
+    }
+    fn __reduce48<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Prefix = "(", Expression, ")" => ActionFn(15);
+        assert!(__symbols.len() >= 3);
+        let __sym2 = __pop_Variant0(__symbols);
+        let __sym1 = __pop_Variant4(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym2.2.clone();
+        let __nt = super::__action15::<>(input, __sym0, __sym1, __sym2);
+        __symbols.push((__start, __Symbol::Variant16(__nt), __end));
+        (3, 20)
+    }
+    fn __reduce49<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Program =  => ActionFn(81);
+        let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2)).unwrap_or_default();
+        let __end = __start;
+        let __nt = super::__action81::<>(input, &__start, &__end);
+        __symbols.push((__start, __Symbol::Variant17(__nt), __end));
+        (0, 21)
+    }
+    fn __reduce50<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Program = TopStmt+ => ActionFn(82);
+        let __sym0 = __pop_Variant22(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action82::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant17(__nt), __end));
+        (1, 21)
+    }
+    fn __reduce51<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Stmt = VarsDecl => ActionFn(4);
+        let __sym0 = __pop_Variant24(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action4::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant18(__nt), __end));
+        (1, 22)
+    }
+    fn __reduce52<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Stmt = Expression, ";" => ActionFn(5);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant0(__symbols);
+        let __sym0 = __pop_Variant4(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action5::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant18(__nt), __end));
+        (2, 22)
+    }
+    fn __reduce53<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Stmt+ = Stmt => ActionFn(40);
+        let __sym0 = __pop_Variant18(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action40::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant19(__nt), __end));
+        (1, 23)
+    }
+    fn __reduce54<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Stmt+ = Stmt+, Stmt => ActionFn(41);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant18(__symbols);
+        let __sym0 = __pop_Variant19(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action41::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant19(__nt), __end));
+        (2, 23)
+    }
+    fn __reduce55<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Term = Prefix => ActionFn(79);
+        let __sym0 = __pop_Variant16(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action79::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant20(__nt), __end));
+        (1, 24)
+    }
+    fn __reduce56<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // Term = Prefix, Postfix+ => ActionFn(80);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant15(__symbols);
+        let __sym0 = __pop_Variant16(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action80::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant20(__nt), __end));
+        (2, 24)
+    }
+    fn __reduce57<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // TopStmt = "{", Stmt+, "}" => ActionFn(2);
+        assert!(__symbols.len() >= 3);
+        let __sym2 = __pop_Variant0(__symbols);
+        let __sym1 = __pop_Variant19(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym2.2.clone();
+        let __nt = super::__action2::<>(input, __sym0, __sym1, __sym2);
+        __symbols.push((__start, __Symbol::Variant21(__nt), __end));
+        (3, 25)
+    }
+    fn __reduce58<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // TopStmt = Stmt => ActionFn(3);
+        let __sym0 = __pop_Variant18(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action3::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant21(__nt), __end));
+        (1, 25)
+    }
+    fn __reduce59<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // TopStmt* =  => ActionFn(42);
+        let __start = __lookahead_start.cloned().or_else(|| __symbols.last().map(|s| s.2)).unwrap_or_default();
+        let __end = __start;
+        let __nt = super::__action42::<>(input, &__start, &__end);
+        __symbols.push((__start, __Symbol::Variant22(__nt), __end));
+        (0, 26)
+    }
+    fn __reduce60<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // TopStmt* = TopStmt+ => ActionFn(43);
+        let __sym0 = __pop_Variant22(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action43::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant22(__nt), __end));
+        (1, 26)
+    }
+    fn __reduce61<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // TopStmt+ = TopStmt => ActionFn(44);
+        let __sym0 = __pop_Variant21(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action44::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant22(__nt), __end));
+        (1, 27)
+    }
+    fn __reduce62<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // TopStmt+ = TopStmt+, TopStmt => ActionFn(45);
+        assert!(__symbols.len() >= 2);
+        let __sym1 = __pop_Variant21(__symbols);
+        let __sym0 = __pop_Variant22(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym1.2.clone();
+        let __nt = super::__action45::<>(input, __sym0, __sym1);
+        __symbols.push((__start, __Symbol::Variant22(__nt), __end));
+        (2, 27)
+    }
+    fn __reduce63<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // VarDecl = "var", "<", Id, ">", Id, "=", Expression, ";" => ActionFn(8);
+        assert!(__symbols.len() >= 8);
+        let __sym7 = __pop_Variant0(__symbols);
+        let __sym6 = __pop_Variant4(__symbols);
+        let __sym5 = __pop_Variant0(__symbols);
+        let __sym4 = __pop_Variant8(__symbols);
+        let __sym3 = __pop_Variant0(__symbols);
+        let __sym2 = __pop_Variant8(__symbols);
+        let __sym1 = __pop_Variant0(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym7.2.clone();
+        let __nt = super::__action8::<>(input, __sym0, __sym1, __sym2, __sym3, __sym4, __sym5, __sym6, __sym7);
+        __symbols.push((__start, __Symbol::Variant23(__nt), __end));
+        (8, 28)
+    }
+    fn __reduce64<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // VarDecl = "var", "<", Id, ">", Id, ";" => ActionFn(9);
+        assert!(__symbols.len() >= 6);
+        let __sym5 = __pop_Variant0(__symbols);
+        let __sym4 = __pop_Variant8(__symbols);
+        let __sym3 = __pop_Variant0(__symbols);
+        let __sym2 = __pop_Variant8(__symbols);
+        let __sym1 = __pop_Variant0(__symbols);
+        let __sym0 = __pop_Variant0(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym5.2.clone();
+        let __nt = super::__action9::<>(input, __sym0, __sym1, __sym2, __sym3, __sym4, __sym5);
+        __symbols.push((__start, __Symbol::Variant23(__nt), __end));
+        (6, 28)
+    }
+    fn __reduce65<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // VarsDecl = VarDecl => ActionFn(6);
+        let __sym0 = __pop_Variant23(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action6::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant24(__nt), __end));
+        (1, 29)
+    }
+    fn __reduce66<
+        'input,
+    >(
+        input: &'input str,
+        __lookahead_start: Option<&usize>,
+        __symbols: &mut alloc::vec::Vec<(usize,__Symbol<'input>,usize)>,
+        _: core::marker::PhantomData<(&'input ())>,
+    ) -> (usize, usize)
+    {
+        // VarsDecl = FinalDecl => ActionFn(7);
+        let __sym0 = __pop_Variant7(__symbols);
+        let __start = __sym0.0.clone();
+        let __end = __sym0.2.clone();
+        let __nt = super::__action7::<>(input, __sym0);
+        __symbols.push((__start, __Symbol::Variant24(__nt), __end));
+        (1, 29)
+    }
+}
+#[allow(unused_imports)]
+pub use self::__parse__Program::ProgramParser;
+#[rustfmt::skip]
+mod __intern_token {
+    #![allow(unused_imports)]
+    use crate::lib::transformer::*;
+    use std::collections::HashMap;
+    use std::str::FromStr;
+    #[allow(unused_extern_crates)]
+    extern crate lalrpop_util as __lalrpop_util;
+    #[allow(unused_imports)]
+    use self::__lalrpop_util::state_machine as __state_machine;
+    #[allow(unused_extern_crates)]
+    extern crate alloc;
+    pub fn new_builder() -> __lalrpop_util::lexer::MatcherBuilder {
+        let __strs: &[(&str, bool)] = &[
+            ("(?:\"[\0-!\\#-\u{10ffff}]*\")", false),
+            ("[0-9]+", false),
+            ("(?:[A-Z_a-z][0-9A-Z_a-z]*)", false),
+            ("\\(", false),
+            ("\\)", false),
+            (",", false),
+            ("\\.", false),
+            (":", false),
+            (";", false),
+            ("<", false),
+            ("=", false),
+            (">", false),
+            ("\\[", false),
+            ("\\]", false),
+            ("(?:benar)", false),
+            ("(?:final)", false),
+            ("(?:kosong)", false),
+            ("(?:salah)", false),
+            ("(?:var)", false),
+            ("\\{", false),
+            ("\\}", false),
+            (r"\s+", true),
+        ];
+        __lalrpop_util::lexer::MatcherBuilder::new(__strs.iter().copied()).unwrap()
+    }
+}
+pub(crate) use self::__lalrpop_util::lexer::Token;
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action0<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, Module, usize),
+) -> Module
+{
+    __0
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action1<
+    'input,
+>(
+    input: &'input str,
+    (_, t, _): (usize, alloc::vec::Vec<TopStatement>, usize),
+) -> Module
+{
+    Module::Program(t)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action2<
+    'input,
+>(
+    input: &'input str,
+    (_, _, _): (usize, &'input str, usize),
+    (_, s, _): (usize, alloc::vec::Vec<Statement>, usize),
+    (_, _, _): (usize, &'input str, usize),
+) -> TopStatement
+{
+    TopStatement::Block(s)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action3<
+    'input,
+>(
+    input: &'input str,
+    (_, s, _): (usize, Statement, usize),
+) -> TopStatement
+{
+    TopStatement::NonBlock(s)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action4<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, VariablesDeclare, usize),
+) -> Statement
+{
+    Statement::VarsDecl(v)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action5<
+    'input,
+>(
+    input: &'input str,
+    (_, e, _): (usize, Expression, usize),
+    (_, _, _): (usize, &'input str, usize),
+) -> Statement
+{
+    Statement::Expr(e)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action6<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, VariableDecl, usize),
+) -> VariablesDeclare
+{
+    VariablesDeclare::VarDecl(v)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action7<
+    'input,
+>(
+    input: &'input str,
+    (_, f, _): (usize, FinalDecl, usize),
+) -> VariablesDeclare
+{
+    VariablesDeclare::FinalDecl(f)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action8<
+    'input,
+>(
+    input: &'input str,
+    (_, _, _): (usize, &'input str, usize),
+    (_, _, _): (usize, &'input str, usize),
+    (_, t, _): (usize, Identifier, usize),
+    (_, _, _): (usize, &'input str, usize),
+    (_, n, _): (usize, Identifier, usize),
+    (_, _, _): (usize, &'input str, usize),
+    (_, v, _): (usize, Expression, usize),
+    (_, _, _): (usize, &'input str, usize),
+) -> VariableDecl
+{
+    VariableDecl { name: n, type_ann: t, value: v }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action9<
+    'input,
+>(
+    input: &'input str,
+    (_, _, _): (usize, &'input str, usize),
+    (_, _, _): (usize, &'input str, usize),
+    (_, t, _): (usize, Identifier, usize),
+    (_, _, _): (usize, &'input str, usize),
+    (_, n, _): (usize, Identifier, usize),
+    (_, _, _): (usize, &'input str, usize),
+) -> VariableDecl
+{
+    {
+        let v = _default_value(&t); // Fungsi pembantu di Rust
+        VariableDecl { name: n, type_ann: t, value: v }
+    }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action10<
+    'input,
+>(
+    input: &'input str,
+    (_, _, _): (usize, &'input str, usize),
+    (_, _, _): (usize, &'input str, usize),
+    (_, t, _): (usize, Identifier, usize),
+    (_, _, _): (usize, &'input str, usize),
+    (_, n, _): (usize, Identifier, usize),
+    (_, _, _): (usize, &'input str, usize),
+    (_, v, _): (usize, Expression, usize),
+    (_, _, _): (usize, &'input str, usize),
+) -> FinalDecl
+{
+    FinalDecl { name: n, type_ann: t, value: v }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action11<
+    'input,
+>(
+    input: &'input str,
+    (_, t, _): (usize, Terminal, usize),
+) -> Expression
+{
+    Expression::Term(t)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action12<
+    'input,
+>(
+    input: &'input str,
+    (_, pre, _): (usize, Prefix, usize),
+    (_, post, _): (usize, alloc::vec::Vec<Postfix>, usize),
+) -> Terminal
+{
+    Terminal { prefix: pre, postfix: post }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action13<
+    'input,
+>(
+    input: &'input str,
+    (_, l, _): (usize, Literal, usize),
+) -> Prefix
+{
+    Prefix::Literal(l)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action14<
+    'input,
+>(
+    input: &'input str,
+    (_, i, _): (usize, Identifier, usize),
+) -> Prefix
+{
+    Prefix::Id(i)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action15<
+    'input,
+>(
+    input: &'input str,
+    (_, _, _): (usize, &'input str, usize),
+    (_, e, _): (usize, Expression, usize),
+    (_, _, _): (usize, &'input str, usize),
+) -> Prefix
+{
+    Prefix::Expr(Box::new(e))
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action16<
+    'input,
+>(
+    input: &'input str,
+    (_, _, _): (usize, &'input str, usize),
+    (_, i, _): (usize, Identifier, usize),
+) -> Postfix
+{
+    Postfix::Attr(i)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action17<
+    'input,
+>(
+    input: &'input str,
+    (_, _, _): (usize, &'input str, usize),
+    (_, e, _): (usize, Expression, usize),
+    (_, mut v, _): (usize, alloc::vec::Vec<Expression>, usize),
+    (_, _, _): (usize, &'input str, usize),
+) -> Postfix
+{
+    {
+        v.insert(0, e);
+        Postfix::Index(v)
+    }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action18<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, &'input str, usize),
+) -> Identifier
+{
+    Identifier(__0.to_string())
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action19<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, &'input str, usize),
+) -> Literal
+{
+    Literal::Teks(__0.trim_matches('"').to_string())
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action20<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, &'input str, usize),
+) -> Literal
+{
+    Literal::Angka(i64::from_str(__0).unwrap())
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action21<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, &'input str, usize),
+) -> Literal
+{
+    Literal::Boolean(true)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action22<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, &'input str, usize),
+) -> Literal
+{
+    Literal::Boolean(false)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action23<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, &'input str, usize),
+) -> Literal
+{
+    Literal::Null
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action24<
+    'input,
+>(
+    input: &'input str,
+    (_, _, _): (usize, &'input str, usize),
+    (_, e, _): (usize, Option<Vec<Expression>>, usize),
+    (_, _, _): (usize, &'input str, usize),
+) -> Literal
+{
+    {
+        Literal::Daftar(e.unwrap_or_default())
+    }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action25<
+    'input,
+>(
+    input: &'input str,
+    (_, _, _): (usize, &'input str, usize),
+    (_, p, _): (usize, Option<Vec<(String, Expression)>>, usize),
+    (_, _, _): (usize, &'input str, usize),
+) -> Literal
+{
+    {
+        let mut map = HashMap::new();
+        if let Some(pairs) = p {
+            for (k, v) in pairs {
+                map.insert(k, v);
+            }
+        }
+        Literal::Kamus(map)
+    }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action26<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, &'input str, usize),
+) -> String
+{
+    __0.trim_matches('"').to_string()
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action27<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, &'input str, usize),
+) -> String
+{
+    __0.to_string()
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action28<
+    'input,
+>(
+    input: &'input str,
+    (_, k, _): (usize, String, usize),
+    (_, _, _): (usize, &'input str, usize),
+    (_, v, _): (usize, Expression, usize),
+) -> (String, Expression)
+{
+    (k, v)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action29<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, Vec<(String, Expression)>, usize),
+) -> Option<Vec<(String, Expression)>>
+{
+    Some(__0)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action30<
+    'input,
+>(
+    input: &'input str,
+    __lookbehind: &usize,
+    __lookahead: &usize,
+) -> Option<Vec<(String, Expression)>>
+{
+    None
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action31<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, (String, Expression), usize),
+    (_, mut e, _): (usize, alloc::vec::Vec<(String, Expression)>, usize),
+    (_, _, _): (usize, Option<&'input str>, usize),
+) -> Vec<(String, Expression)>
+{
+    {
+        e.insert(0, v);
+        e
+    }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action32<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, Vec<Expression>, usize),
+) -> Option<Vec<Expression>>
+{
+    Some(__0)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action33<
+    'input,
+>(
+    input: &'input str,
+    __lookbehind: &usize,
+    __lookahead: &usize,
+) -> Option<Vec<Expression>>
+{
+    None
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action34<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, Expression, usize),
+    (_, mut e, _): (usize, alloc::vec::Vec<Expression>, usize),
+    (_, _, _): (usize, Option<&'input str>, usize),
+) -> Vec<Expression>
+{
+    {
+        e.insert(0, v);
+        e
+    }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action35<
+    'input,
+>(
+    input: &'input str,
+    __lookbehind: &usize,
+    __lookahead: &usize,
+) -> alloc::vec::Vec<Expression>
+{
+    alloc::vec![]
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action36<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, alloc::vec::Vec<Expression>, usize),
+) -> alloc::vec::Vec<Expression>
+{
+    v
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action37<
+    'input,
+>(
+    input: &'input str,
+    (_, _, _): (usize, &'input str, usize),
+    (_, __0, _): (usize, Expression, usize),
+) -> Expression
+{
+    __0
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action38<
+    'input,
+>(
+    input: &'input str,
+    __lookbehind: &usize,
+    __lookahead: &usize,
+) -> alloc::vec::Vec<Postfix>
+{
+    alloc::vec![]
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action39<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, alloc::vec::Vec<Postfix>, usize),
+) -> alloc::vec::Vec<Postfix>
+{
+    v
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action40<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, Statement, usize),
+) -> alloc::vec::Vec<Statement>
+{
+    alloc::vec![__0]
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action41<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, alloc::vec::Vec<Statement>, usize),
+    (_, e, _): (usize, Statement, usize),
+) -> alloc::vec::Vec<Statement>
+{
+    { let mut v = v; v.push(e); v }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action42<
+    'input,
+>(
+    input: &'input str,
+    __lookbehind: &usize,
+    __lookahead: &usize,
+) -> alloc::vec::Vec<TopStatement>
+{
+    alloc::vec![]
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action43<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, alloc::vec::Vec<TopStatement>, usize),
+) -> alloc::vec::Vec<TopStatement>
+{
+    v
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action44<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, TopStatement, usize),
+) -> alloc::vec::Vec<TopStatement>
+{
+    alloc::vec![__0]
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action45<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, alloc::vec::Vec<TopStatement>, usize),
+    (_, e, _): (usize, TopStatement, usize),
+) -> alloc::vec::Vec<TopStatement>
+{
+    { let mut v = v; v.push(e); v }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action46<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, Postfix, usize),
+) -> alloc::vec::Vec<Postfix>
+{
+    alloc::vec![__0]
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action47<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, alloc::vec::Vec<Postfix>, usize),
+    (_, e, _): (usize, Postfix, usize),
+) -> alloc::vec::Vec<Postfix>
+{
+    { let mut v = v; v.push(e); v }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action48<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, Expression, usize),
+) -> alloc::vec::Vec<Expression>
+{
+    alloc::vec![__0]
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action49<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, alloc::vec::Vec<Expression>, usize),
+    (_, e, _): (usize, Expression, usize),
+) -> alloc::vec::Vec<Expression>
+{
+    { let mut v = v; v.push(e); v }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action50<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, &'input str, usize),
+) -> Option<&'input str>
+{
+    Some(__0)
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action51<
+    'input,
+>(
+    input: &'input str,
+    __lookbehind: &usize,
+    __lookahead: &usize,
+) -> Option<&'input str>
+{
+    None
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action52<
+    'input,
+>(
+    input: &'input str,
+    __lookbehind: &usize,
+    __lookahead: &usize,
+) -> alloc::vec::Vec<(String, Expression)>
+{
+    alloc::vec![]
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action53<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, alloc::vec::Vec<(String, Expression)>, usize),
+) -> alloc::vec::Vec<(String, Expression)>
+{
+    v
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action54<
+    'input,
+>(
+    input: &'input str,
+    (_, _, _): (usize, &'input str, usize),
+    (_, __0, _): (usize, (String, Expression), usize),
+) -> (String, Expression)
+{
+    __0
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action55<
+    'input,
+>(
+    input: &'input str,
+    (_, __0, _): (usize, (String, Expression), usize),
+) -> alloc::vec::Vec<(String, Expression)>
+{
+    alloc::vec![__0]
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes, clippy::just_underscores_and_digits)]
+fn __action56<
+    'input,
+>(
+    input: &'input str,
+    (_, v, _): (usize, alloc::vec::Vec<(String, Expression)>, usize),
+    (_, e, _): (usize, (String, Expression), usize),
+) -> alloc::vec::Vec<(String, Expression)>
+{
+    { let mut v = v; v.push(e); v }
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action57<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, (String, Expression), usize),
+    __1: (usize, alloc::vec::Vec<(String, Expression)>, usize),
+    __2: (usize, &'input str, usize),
+) -> Vec<(String, Expression)>
+{
+    let __start0 = __2.0;
+    let __end0 = __2.2;
+    let __temp0 = __action50(
+        input,
+        __2,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action31(
+        input,
+        __0,
+        __1,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action58<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, (String, Expression), usize),
+    __1: (usize, alloc::vec::Vec<(String, Expression)>, usize),
+) -> Vec<(String, Expression)>
+{
+    let __start0 = __1.2;
+    let __end0 = __1.2;
+    let __temp0 = __action51(
+        input,
+        &__start0,
+        &__end0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action31(
+        input,
+        __0,
+        __1,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action59<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, Expression, usize),
+    __1: (usize, alloc::vec::Vec<Expression>, usize),
+    __2: (usize, &'input str, usize),
+) -> Vec<Expression>
+{
+    let __start0 = __2.0;
+    let __end0 = __2.2;
+    let __temp0 = __action50(
+        input,
+        __2,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action34(
+        input,
+        __0,
+        __1,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action60<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, Expression, usize),
+    __1: (usize, alloc::vec::Vec<Expression>, usize),
+) -> Vec<Expression>
+{
+    let __start0 = __1.2;
+    let __end0 = __1.2;
+    let __temp0 = __action51(
+        input,
+        &__start0,
+        &__end0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action34(
+        input,
+        __0,
+        __1,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action61<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, &'input str, usize),
+    __1: (usize, (String, Expression), usize),
+) -> alloc::vec::Vec<(String, Expression)>
+{
+    let __start0 = __0.0;
+    let __end0 = __1.2;
+    let __temp0 = __action54(
+        input,
+        __0,
+        __1,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action55(
+        input,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action62<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, alloc::vec::Vec<(String, Expression)>, usize),
+    __1: (usize, &'input str, usize),
+    __2: (usize, (String, Expression), usize),
+) -> alloc::vec::Vec<(String, Expression)>
+{
+    let __start0 = __1.0;
+    let __end0 = __2.2;
+    let __temp0 = __action54(
+        input,
+        __1,
+        __2,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action56(
+        input,
+        __0,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action63<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, (String, Expression), usize),
+    __1: (usize, &'input str, usize),
+) -> Vec<(String, Expression)>
+{
+    let __start0 = __0.2;
+    let __end0 = __1.0;
+    let __temp0 = __action52(
+        input,
+        &__start0,
+        &__end0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action57(
+        input,
+        __0,
+        __temp0,
+        __1,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action64<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, (String, Expression), usize),
+    __1: (usize, alloc::vec::Vec<(String, Expression)>, usize),
+    __2: (usize, &'input str, usize),
+) -> Vec<(String, Expression)>
+{
+    let __start0 = __1.0;
+    let __end0 = __1.2;
+    let __temp0 = __action53(
+        input,
+        __1,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action57(
+        input,
+        __0,
+        __temp0,
+        __2,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action65<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, (String, Expression), usize),
+) -> Vec<(String, Expression)>
+{
+    let __start0 = __0.2;
+    let __end0 = __0.2;
+    let __temp0 = __action52(
+        input,
+        &__start0,
+        &__end0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action58(
+        input,
+        __0,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action66<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, (String, Expression), usize),
+    __1: (usize, alloc::vec::Vec<(String, Expression)>, usize),
+) -> Vec<(String, Expression)>
+{
+    let __start0 = __1.0;
+    let __end0 = __1.2;
+    let __temp0 = __action53(
+        input,
+        __1,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action58(
+        input,
+        __0,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action67<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, &'input str, usize),
+    __1: (usize, Expression, usize),
+) -> alloc::vec::Vec<Expression>
+{
+    let __start0 = __0.0;
+    let __end0 = __1.2;
+    let __temp0 = __action37(
+        input,
+        __0,
+        __1,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action48(
+        input,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action68<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, alloc::vec::Vec<Expression>, usize),
+    __1: (usize, &'input str, usize),
+    __2: (usize, Expression, usize),
+) -> alloc::vec::Vec<Expression>
+{
+    let __start0 = __1.0;
+    let __end0 = __2.2;
+    let __temp0 = __action37(
+        input,
+        __1,
+        __2,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action49(
+        input,
+        __0,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action69<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, Expression, usize),
+    __1: (usize, &'input str, usize),
+) -> Vec<Expression>
+{
+    let __start0 = __0.2;
+    let __end0 = __1.0;
+    let __temp0 = __action35(
+        input,
+        &__start0,
+        &__end0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action59(
+        input,
+        __0,
+        __temp0,
+        __1,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action70<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, Expression, usize),
+    __1: (usize, alloc::vec::Vec<Expression>, usize),
+    __2: (usize, &'input str, usize),
+) -> Vec<Expression>
+{
+    let __start0 = __1.0;
+    let __end0 = __1.2;
+    let __temp0 = __action36(
+        input,
+        __1,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action59(
+        input,
+        __0,
+        __temp0,
+        __2,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action71<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, Expression, usize),
+) -> Vec<Expression>
+{
+    let __start0 = __0.2;
+    let __end0 = __0.2;
+    let __temp0 = __action35(
+        input,
+        &__start0,
+        &__end0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action60(
+        input,
+        __0,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action72<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, Expression, usize),
+    __1: (usize, alloc::vec::Vec<Expression>, usize),
+) -> Vec<Expression>
+{
+    let __start0 = __1.0;
+    let __end0 = __1.2;
+    let __temp0 = __action36(
+        input,
+        __1,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action60(
+        input,
+        __0,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action73<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, &'input str, usize),
+    __1: (usize, Expression, usize),
+    __2: (usize, &'input str, usize),
+) -> Postfix
+{
+    let __start0 = __1.2;
+    let __end0 = __2.0;
+    let __temp0 = __action35(
+        input,
+        &__start0,
+        &__end0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action17(
+        input,
+        __0,
+        __1,
+        __temp0,
+        __2,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action74<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, &'input str, usize),
+    __1: (usize, Expression, usize),
+    __2: (usize, alloc::vec::Vec<Expression>, usize),
+    __3: (usize, &'input str, usize),
+) -> Postfix
+{
+    let __start0 = __2.0;
+    let __end0 = __2.2;
+    let __temp0 = __action36(
+        input,
+        __2,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action17(
+        input,
+        __0,
+        __1,
+        __temp0,
+        __3,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action75<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, &'input str, usize),
+    __1: (usize, Vec<(String, Expression)>, usize),
+    __2: (usize, &'input str, usize),
+) -> Literal
+{
+    let __start0 = __1.0;
+    let __end0 = __1.2;
+    let __temp0 = __action29(
+        input,
+        __1,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action25(
+        input,
+        __0,
+        __temp0,
+        __2,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action76<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, &'input str, usize),
+    __1: (usize, &'input str, usize),
+) -> Literal
+{
+    let __start0 = __0.2;
+    let __end0 = __1.0;
+    let __temp0 = __action30(
+        input,
+        &__start0,
+        &__end0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action25(
+        input,
+        __0,
+        __temp0,
+        __1,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action77<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, &'input str, usize),
+    __1: (usize, Vec<Expression>, usize),
+    __2: (usize, &'input str, usize),
+) -> Literal
+{
+    let __start0 = __1.0;
+    let __end0 = __1.2;
+    let __temp0 = __action32(
+        input,
+        __1,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action24(
+        input,
+        __0,
+        __temp0,
+        __2,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action78<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, &'input str, usize),
+    __1: (usize, &'input str, usize),
+) -> Literal
+{
+    let __start0 = __0.2;
+    let __end0 = __1.0;
+    let __temp0 = __action33(
+        input,
+        &__start0,
+        &__end0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action24(
+        input,
+        __0,
+        __temp0,
+        __1,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action79<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, Prefix, usize),
+) -> Terminal
+{
+    let __start0 = __0.2;
+    let __end0 = __0.2;
+    let __temp0 = __action38(
+        input,
+        &__start0,
+        &__end0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action12(
+        input,
+        __0,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action80<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, Prefix, usize),
+    __1: (usize, alloc::vec::Vec<Postfix>, usize),
+) -> Terminal
+{
+    let __start0 = __1.0;
+    let __end0 = __1.2;
+    let __temp0 = __action39(
+        input,
+        __1,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action12(
+        input,
+        __0,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action81<
+    'input,
+>(
+    input: &'input str,
+    __lookbehind: &usize,
+    __lookahead: &usize,
+) -> Module
+{
+    let __start0 = *__lookbehind;
+    let __end0 = *__lookahead;
+    let __temp0 = __action42(
+        input,
+        &__start0,
+        &__end0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action1(
+        input,
+        __temp0,
+    )
+}
+
+#[allow(unused_variables)]
+#[allow(clippy::too_many_arguments, clippy::needless_lifetimes,
+    clippy::just_underscores_and_digits)]
+fn __action82<
+    'input,
+>(
+    input: &'input str,
+    __0: (usize, alloc::vec::Vec<TopStatement>, usize),
+) -> Module
+{
+    let __start0 = __0.0;
+    let __end0 = __0.2;
+    let __temp0 = __action43(
+        input,
+        __0,
+    );
+    let __temp0 = (__start0, __temp0, __end0);
+    __action1(
+        input,
+        __temp0,
+    )
+}
+
+#[allow(clippy::type_complexity, dead_code)]
+pub trait __ToTriple<'input, >
+{
+    fn to_triple(self) -> Result<(usize,Token<'input>,usize), __lalrpop_util::ParseError<usize, Token<'input>, &'static str>>;
+}
+
+impl<'input, > __ToTriple<'input, > for (usize, Token<'input>, usize)
+{
+    fn to_triple(self) -> Result<(usize,Token<'input>,usize), __lalrpop_util::ParseError<usize, Token<'input>, &'static str>> {
+        Ok(self)
+    }
+}
+impl<'input, > __ToTriple<'input, > for Result<(usize, Token<'input>, usize), &'static str>
+{
+    fn to_triple(self) -> Result<(usize,Token<'input>,usize), __lalrpop_util::ParseError<usize, Token<'input>, &'static str>> {
+        self.map_err(|error| __lalrpop_util::ParseError::User { error })
+    }
+}

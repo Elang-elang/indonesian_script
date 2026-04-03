@@ -1,0 +1,29 @@
+export name="new_interp"
+export dir="$HOME/is/NewInterpreter"
+export target="$dir/target/debug/$name"
+clear
+
+if lalrpop "$dir/src/grammar.lalrpop"; then
+    if cargo run --manifest-path "$dir/Cargo.toml"; then
+        if [[ -f "$target" ]]; then
+            cp "$target" "$dir/"
+            clear
+            echo ""
+            echo "is running '$name': "
+            echo "=============================="
+            eval "./$name"
+            echo "=============================="
+        else
+            echo "warning file $name is not found!"
+        fi
+    else
+        echo "error runtime '$name': on 'cargo run ...'"
+    fi
+else
+    # cleaning log and cache
+    rm "$dir/err.txt"
+    lalrpop "$dir/src/grammar.lalrpop" >> "$dir/err.txt"
+    clear
+    echo "error runtime '$name': on parsering grammar.lalrpop 'lalrpop grammar.lalrpop'"
+    echo "log in $dir/err.txt"
+fi

@@ -1,0 +1,1084 @@
+processing file `/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop`
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Local ambiguity detected
+
+  The problem arises after having observed the following symbols in the input:
+    Stmt+
+  At that point, if the next token is a `"("`, then the parser can proceed in two different ways.
+
+  First, the parser could execute the production at
+  /data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42, which would consume
+  the top 1 token(s) from the stack and produce a `TopStmt`. This might then yield a parse tree like
+    Stmt+      ╷ TopStmt
+    ├─TopStmt──┤       │
+    ├─TopStmt+─┘       │
+    └─TopStmt+─────────┘
+
+  Alternatively, the parser could shift the `"("` token and later use it to construct a `Prefix`. This might
+  then yield a parse tree like
+    Stmt+ "(" Expression ")" ";"
+    │     ├─Prefix─────────┤   │
+    │     ├─Term───────────┤   │
+    │     ├─Expression─────┘   │
+    │     └─Stmt───────────────┤
+    └─Stmt+────────────────────┘
+
+  See the LALRPOP manual for advice on making your grammar LR(1).
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Local ambiguity detected
+
+  The problem arises after having observed the following symbols in the input:
+    Stmt+
+  At that point, if the next token is a `"["`, then the parser can proceed in two different ways.
+
+  First, the parser could execute the production at
+  /data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42, which would consume
+  the top 1 token(s) from the stack and produce a `TopStmt`. This might then yield a parse tree like
+    Stmt+      ╷ TopStmt
+    ├─TopStmt──┤       │
+    ├─TopStmt+─┘       │
+    └─TopStmt+─────────┘
+
+  Alternatively, the parser could shift the `"["` token and later use it to construct a `Lit`. This might
+  then yield a parse tree like
+    Stmt+ "["        "]" ";"
+    │     ├─Lit────────┤   │
+    │     ├─Prefix─────┤   │
+    │     ├─Term───────┤   │
+    │     ├─Expression─┘   │
+    │     └─Stmt───────────┤
+    └─Stmt+────────────────┘
+
+  See the LALRPOP manual for advice on making your grammar LR(1).
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Local ambiguity detected
+
+  The problem arises after having observed the following symbols in the input:
+    Stmt+
+  At that point, if the next token is a `"benar"`, then the parser can proceed in two different ways.
+
+  First, the parser could execute the production at
+  /data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42, which would consume
+  the top 1 token(s) from the stack and produce a `TopStmt`. This might then yield a parse tree like
+    Stmt+      ╷ TopStmt
+    ├─TopStmt──┤       │
+    ├─TopStmt+─┘       │
+    └─TopStmt+─────────┘
+
+  Alternatively, the parser could shift the `"benar"` token and later use it to construct a `Lit`. This
+  might then yield a parse tree like
+    Stmt+ "benar"      ╷ ";"
+    │     ├─Lit────────┤   │
+    │     ├─Prefix─────┤   │
+    │     ├─Term───────┤   │
+    │     ├─Expression─┘   │
+    │     └─Stmt───────────┤
+    └─Stmt+────────────────┘
+
+  See the LALRPOP manual for advice on making your grammar LR(1).
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Local ambiguity detected
+
+  The problem arises after having observed the following symbols in the input:
+    Stmt+
+  At that point, if the next token is a `"final"`, then the parser can proceed in two different ways.
+
+  First, the parser could execute the production at
+  /data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42, which would consume
+  the top 1 token(s) from the stack and produce a `TopStmt`. This might then yield a parse tree like
+    Stmt+      ╷ TopStmt
+    ├─TopStmt──┤       │
+    ├─TopStmt+─┘       │
+    └─TopStmt+─────────┘
+
+  Alternatively, the parser could shift the `"final"` token and later use it to construct a `FinalDecl`.
+  This might then yield a parse tree like
+    Stmt+ "final" "<" Id ">" Id "=" Expression ";"
+    │     ├─FinalDecl────────────────────────────┤
+    │     ├─VarsDecl─────────────────────────────┤
+    │     └─Stmt─────────────────────────────────┤
+    └─Stmt+──────────────────────────────────────┘
+
+  See the LALRPOP manual for advice on making your grammar LR(1).
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Local ambiguity detected
+
+  The problem arises after having observed the following symbols in the input:
+    Stmt+
+  At that point, if the next token is a `"kosong"`, then the parser can proceed in two different ways.
+
+  First, the parser could execute the production at
+  /data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42, which would consume
+  the top 1 token(s) from the stack and produce a `TopStmt`. This might then yield a parse tree like
+    Stmt+      ╷ TopStmt
+    ├─TopStmt──┤       │
+    ├─TopStmt+─┘       │
+    └─TopStmt+─────────┘
+
+  Alternatively, the parser could shift the `"kosong"` token and later use it to construct a `Lit`. This
+  might then yield a parse tree like
+    Stmt+ "kosong"     ╷ ";"
+    │     ├─Lit────────┤   │
+    │     ├─Prefix─────┤   │
+    │     ├─Term───────┤   │
+    │     ├─Expression─┘   │
+    │     └─Stmt───────────┤
+    └─Stmt+────────────────┘
+
+  See the LALRPOP manual for advice on making your grammar LR(1).
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Local ambiguity detected
+
+  The problem arises after having observed the following symbols in the input:
+    Stmt+
+  At that point, if the next token is a `"salah"`, then the parser can proceed in two different ways.
+
+  First, the parser could execute the production at
+  /data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42, which would consume
+  the top 1 token(s) from the stack and produce a `TopStmt`. This might then yield a parse tree like
+    Stmt+      ╷ TopStmt
+    ├─TopStmt──┤       │
+    ├─TopStmt+─┘       │
+    └─TopStmt+─────────┘
+
+  Alternatively, the parser could shift the `"salah"` token and later use it to construct a `Lit`. This
+  might then yield a parse tree like
+    Stmt+ "salah"      ╷ ";"
+    │     ├─Lit────────┤   │
+    │     ├─Prefix─────┤   │
+    │     ├─Term───────┤   │
+    │     ├─Expression─┘   │
+    │     └─Stmt───────────┤
+    └─Stmt+────────────────┘
+
+  See the LALRPOP manual for advice on making your grammar LR(1).
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Local ambiguity detected
+
+  The problem arises after having observed the following symbols in the input:
+    Stmt+
+  At that point, if the next token is a `"var"`, then the parser can proceed in two different ways.
+
+  First, the parser could execute the production at
+  /data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42, which would consume
+  the top 1 token(s) from the stack and produce a `TopStmt`. This might then yield a parse tree like
+    Stmt+      ╷ TopStmt
+    ├─TopStmt──┤       │
+    ├─TopStmt+─┘       │
+    └─TopStmt+─────────┘
+
+  Alternatively, the parser could shift the `"var"` token and later use it to construct a `VarDecl`. This
+  might then yield a parse tree like
+    Stmt+ "var" "<" Id ">" Id ";"
+    │     ├─VarDecl─────────────┤
+    │     ├─VarsDecl────────────┤
+    │     └─Stmt────────────────┤
+    └─Stmt+─────────────────────┘
+
+  See the LALRPOP manual for advice on making your grammar LR(1).
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Local ambiguity detected
+
+  The problem arises after having observed the following symbols in the input:
+    Stmt+
+  At that point, if the next token is a `"{"`, then the parser can proceed in two different ways.
+
+  First, the parser could execute the production at
+  /data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42, which would consume
+  the top 1 token(s) from the stack and produce a `TopStmt`. This might then yield a parse tree like
+    Stmt+      ╷ TopStmt
+    ├─TopStmt──┤       │
+    ├─TopStmt+─┘       │
+    └─TopStmt+─────────┘
+
+  Alternatively, the parser could shift the `"{"` token and later use it to construct a `Lit`. This might
+  then yield a parse tree like
+    Stmt+ "{"        "}" ";"
+    │     ├─Lit────────┤   │
+    │     ├─Prefix─────┤   │
+    │     ├─Term───────┤   │
+    │     ├─Expression─┘   │
+    │     └─Stmt───────────┤
+    └─Stmt+────────────────┘
+
+  See the LALRPOP manual for advice on making your grammar LR(1).
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Local ambiguity detected
+
+  The problem arises after having observed the following symbols in the input:
+    Stmt+
+  At that point, if the next token is a `r#"\"[^\"]*\""#`, then the parser can proceed in two different
+  ways.
+
+  First, the parser could execute the production at
+  /data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42, which would consume
+  the top 1 token(s) from the stack and produce a `TopStmt`. This might then yield a parse tree like
+    Stmt+      ╷ TopStmt
+    ├─TopStmt──┤       │
+    ├─TopStmt+─┘       │
+    └─TopStmt+─────────┘
+
+  Alternatively, the parser could shift the `r#"\"[^\"]*\""#` token and later use it to construct a
+  `Lit`. This might then yield a parse tree like
+    Stmt+ r#"\"[^\"]*\""# ";"
+    │     ├─Lit─────────┤   │
+    │     ├─Prefix──────┤   │
+    │     ├─Term────────┤   │
+    │     ├─Expression──┘   │
+    │     └─Stmt────────────┤
+    └─Stmt+─────────────────┘
+
+  See the LALRPOP manual for advice on making your grammar LR(1).
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Local ambiguity detected
+
+  The problem arises after having observed the following symbols in the input:
+    Stmt+
+  At that point, if the next token is a `r#"[0-9]+"#`, then the parser can proceed in two different ways.
+
+  First, the parser could execute the production at
+  /data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42, which would consume
+  the top 1 token(s) from the stack and produce a `TopStmt`. This might then yield a parse tree like
+    Stmt+      ╷ TopStmt
+    ├─TopStmt──┤       │
+    ├─TopStmt+─┘       │
+    └─TopStmt+─────────┘
+
+  Alternatively, the parser could shift the `r#"[0-9]+"#` token and later use it to construct a `Lit`. This
+  might then yield a parse tree like
+    Stmt+ r#"[0-9]+"#  ╷ ";"
+    │     ├─Lit────────┤   │
+    │     ├─Prefix─────┤   │
+    │     ├─Term───────┤   │
+    │     ├─Expression─┘   │
+    │     └─Stmt───────────┤
+    └─Stmt+────────────────┘
+
+  See the LALRPOP manual for advice on making your grammar LR(1).
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Local ambiguity detected
+
+  The problem arises after having observed the following symbols in the input:
+    Stmt+
+  At that point, if the next token is a `r#"[a-zA-Z_][a-zA-Z0-9_]*"#`, then the parser can proceed in two
+  different ways.
+
+  First, the parser could execute the production at
+  /data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42, which would consume
+  the top 1 token(s) from the stack and produce a `TopStmt`. This might then yield a parse tree like
+    Stmt+      ╷ TopStmt
+    ├─TopStmt──┤       │
+    ├─TopStmt+─┘       │
+    └─TopStmt+─────────┘
+
+  Alternatively, the parser could shift the `r#"[a-zA-Z_][a-zA-Z0-9_]*"#` token and later use it to
+  construct a `Id`. This might then yield a parse tree like
+    Stmt+ r#"[a-zA-Z_][a-zA-Z0-9_]*"# ";"
+    │     ├─Id──────────────────────┤   │
+    │     ├─Prefix──────────────────┤   │
+    │     ├─Term────────────────────┤   │
+    │     ├─Expression──────────────┘   │
+    │     └─Stmt────────────────────────┤
+    └─Stmt+─────────────────────────────┘
+
+  See the LALRPOP manual for advice on making your grammar LR(1).
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:9:5: 9:38: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Program = TopStmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt+ Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) Stmt+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) "{" Stmt+ "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt+ = TopStmt+ (*) TopStmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"("` we can reduce to a `Program` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:9:5: 9:38: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Program = TopStmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt+ Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) Stmt+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) "{" Stmt+ "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt+ = TopStmt+ (*) TopStmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"["` we can reduce to a `Program` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:9:5: 9:38: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Program = TopStmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt+ Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) Stmt+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) "{" Stmt+ "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt+ = TopStmt+ (*) TopStmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"benar"` we can reduce to a `Program` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:9:5: 9:38: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Program = TopStmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt+ Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) Stmt+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) "{" Stmt+ "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt+ = TopStmt+ (*) TopStmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"final"` we can reduce to a `Program` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:9:5: 9:38: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Program = TopStmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt+ Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) Stmt+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) "{" Stmt+ "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt+ = TopStmt+ (*) TopStmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"kosong"` we can reduce to a `Program` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:9:5: 9:38: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Program = TopStmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt+ Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) Stmt+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) "{" Stmt+ "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt+ = TopStmt+ (*) TopStmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"salah"` we can reduce to a `Program` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:9:5: 9:38: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Program = TopStmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt+ Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) Stmt+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) "{" Stmt+ "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt+ = TopStmt+ (*) TopStmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"var"` we can reduce to a `Program` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:9:5: 9:38: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Program = TopStmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt+ Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) Stmt+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) "{" Stmt+ "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt+ = TopStmt+ (*) TopStmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"{"` we can reduce to a `Program` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:9:5: 9:38: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Program = TopStmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt+ Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) Stmt+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) "{" Stmt+ "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt+ = TopStmt+ (*) TopStmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `r#"\"[^\"]*\""#` we can reduce to a `Program` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:9:5: 9:38: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Program = TopStmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt+ Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) Stmt+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) "{" Stmt+ "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt+ = TopStmt+ (*) TopStmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `r#"[0-9]+"#` we can reduce to a `Program` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:9:5: 9:38: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Program = TopStmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = (*) Stmt+ Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) Stmt+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = (*) "{" Stmt+ "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt+ = TopStmt+ (*) TopStmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `r#"[a-zA-Z_][a-zA-Z0-9_]*"#` we can reduce to a `Program` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:50:5: 50:75: Conflict detected
+
+    when in this state:
+  Postfix = (*) "." Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Postfix = (*) "[" Expression ("," <Expression>)+ "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Postfix = (*) "[" Expression "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Postfix+ = Postfix+ (*) Postfix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = Prefix Postfix+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"."` we can reduce to a `Term` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:50:5: 50:75: Conflict detected
+
+    when in this state:
+  Postfix = (*) "." Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Postfix = (*) "[" Expression ("," <Expression>)+ "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Postfix = (*) "[" Expression "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Postfix+ = Postfix+ (*) Postfix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = Prefix Postfix+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"["` we can reduce to a `Term` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:79:12: 79:31: Conflict detected
+
+    when in this state:
+  ("," <Expression>)+ = (*) ("," <Expression>)+ "," Expression [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  ("," <Expression>)+ = (*) "," Expression [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  ListPlus<Expression> = Expression (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  ListPlus<Expression> = Expression (*) ("," <Expression>)+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `","` we can reduce to a `ListPlus<Expression>` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:85:12: 85:29: Conflict detected
+
+    when in this state:
+  ("," <DictPair>)+ = (*) ("," <DictPair>)+ "," DictPair [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  ("," <DictPair>)+ = (*) "," DictPair [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  ListPlus<DictPair> = DictPair (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  ListPlus<DictPair> = DictPair (*) ("," <DictPair>)+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `","` we can reduce to a `ListPlus<DictPair>` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:98:5: 98:17: Conflict detected
+
+    when in this state:
+  DictKey = Id (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = Id (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `r#"\"[^\"]*\""#` we can reduce to a `DictKey` but we can also reduce to a `Prefix`
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:97:5: 97:52: Conflict detected
+
+    when in this state:
+  DictKey = r#"\"[^\"]*\""# (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = r#"\"[^\"]*\""# (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `r#"\"[^\"]*\""#` we can reduce to a `DictKey` but we can also reduce to a `Lit`
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:79:12: 79:31: Conflict detected
+
+    when in this state:
+  ("," <Expression>)+ = ("," <Expression>)+ (*) "," Expression [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  ListPlus<Expression> = Expression ("," <Expression>)+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `","` we can reduce to a `ListPlus<Expression>` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:85:12: 85:29: Conflict detected
+
+    when in this state:
+  ("," <DictPair>)+ = ("," <DictPair>)+ (*) "," DictPair [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  ListPlus<DictPair> = DictPair ("," <DictPair>)+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `","` we can reduce to a `ListPlus<DictPair>` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = Stmt+ (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = Stmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"("` we can reduce to a `TopStmt` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = Stmt+ (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = Stmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"["` we can reduce to a `TopStmt` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = Stmt+ (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = Stmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"benar"` we can reduce to a `TopStmt` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = Stmt+ (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = Stmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"final"` we can reduce to a `TopStmt` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = Stmt+ (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = Stmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"kosong"` we can reduce to a `TopStmt` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = Stmt+ (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = Stmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"salah"` we can reduce to a `TopStmt` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = Stmt+ (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = Stmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"var"` we can reduce to a `TopStmt` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = Stmt+ (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = Stmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `"{"` we can reduce to a `TopStmt` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = Stmt+ (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = Stmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `r#"\"[^\"]*\""#` we can reduce to a `TopStmt` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = Stmt+ (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = Stmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `r#"[0-9]+"#` we can reduce to a `TopStmt` but we can also shift
+
+/data/data/com.termux/files/home/is/NewInterpreter/src/grammar.lalrpop:15:5: 15:42: Conflict detected
+
+    when in this state:
+  Expression = (*) Term [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  FinalDecl = (*) "final" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Id = (*) r#"[a-zA-Z_][a-zA-Z0-9_]*"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" ListPlus<Expression> "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "[" "]" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "benar" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "kosong" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "salah" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" ListPlus<DictPair> "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) "{" "}" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"\"[^\"]*\""# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Lit = (*) r#"[0-9]+"# [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Id [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) Lit [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Prefix = (*) "(" Expression ")" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt = (*) VarsDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Stmt+ = Stmt+ (*) Stmt [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  Term = (*) Prefix Postfix+ [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  TopStmt = Stmt+ (*) [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarDecl = (*) "var" "<" Id ">" Id "=" Expression ";" [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) FinalDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+  VarsDecl = (*) VarDecl [r#"\"[^\"]*\""#, r#"[0-9]+"#, r#"[a-zA-Z_][a-zA-Z0-9_]*"#, "(", ")", ",", ".", ":", ";", "<", "=", ">", "[", "]", "benar", "final", "kosong", "salah", "var", "{", "}", Eof]
+
+  and looking at a token `r#"[a-zA-Z_][a-zA-Z0-9_]*"#` we can reduce to a `TopStmt` but we can also shift
+
