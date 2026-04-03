@@ -1,0 +1,1 @@
+/data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/target/debug/NewInterpreter: /data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/lib.rs /data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/main.rs

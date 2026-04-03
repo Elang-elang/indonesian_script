@@ -1,0 +1,9 @@
+/data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/target/debug/deps/lalrpop_util-6cfb604acc032d9d.d: /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/lib.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/lexer.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/state_machine.rs
+
+/data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/target/debug/deps/liblalrpop_util-6cfb604acc032d9d.rlib: /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/lib.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/lexer.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/state_machine.rs
+
+/data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/target/debug/deps/liblalrpop_util-6cfb604acc032d9d.rmeta: /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/lib.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/lexer.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/state_machine.rs
+
+/data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/lib.rs:
+/data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/lexer.rs:
+/data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/lalrpop-util-0.20.2/src/state_machine.rs:

@@ -1,0 +1,111 @@
+use crate::lib::transformer::*; 
+use std::collections::HashMap;
+use std::str::FromStr;
+
+grammar;
+
+// 1. Program adalah daftar TopStatement
+pub Program: Module = {
+    <t:TopStmt*> => Module::Program(t),
+}
+
+// 2. TopStmt dibedakan antara Blok (dengan {}) dan Satu Statement
+TopStmt: TopStatement = {
+    "{" <s:Stmt+> "}" => TopStatement::Block(s),
+    <s:Stmt> => TopStatement::NonBlock(s), // Ubah ke Vec agar konsisten
+}
+
+// 3. Stmt tetap seperti sebelumnya, tapi pastikan tidak menggunakan '*' di sini
+Stmt: Statement = {
+    <v:VarsDecl> => Statement::VarsDecl(v),
+    <e:Expression> ";" => Statement::Expr(e),
+}
+
+VarsDecl: VariablesDeclare = {
+    <v:VarDecl> => VariablesDeclare::VarDecl(v),
+    <f:FinalDecl> => VariablesDeclare::FinalDecl(f),
+}
+
+VarDecl: VariableDecl = {
+    "var" "<" <t:Id> ">" <n:Id> "=" <v:Expression> ";" => 
+        VariableDecl { name: n, type_ann: t, value: v },
+
+    "var" "<" <t:Id> ">" <n:Id> ";" => {
+        let v = _default_value(&t); // Fungsi pembantu di Rust
+        VariableDecl { name: n, type_ann: t, value: v }
+    }
+}
+
+
+FinalDecl: FinalDecl = {
+    "final" "<" <t:Id> ">" <n:Id> "=" <v:Expression> ";" => 
+        FinalDecl { name: n, type_ann: t, value: v },
+}
+
+Expression: Expression = {
+    <t:Term> => Expression::Term(t),
+}
+
+Term: Terminal = {
+    <pre:Prefix> <post:Postfix*> => Terminal { prefix: pre, postfix: post },
+}
+
+Prefix: Prefix = {
+    <l:Lit> => Prefix::Literal(l),
+    <i:Id> => Prefix::Id(i),
+    "(" <e:Expression> ")" => Prefix::Expr(Box::new(e)),
+}
+
+Postfix: Postfix = {
+    "." <i:Id> => Postfix::Attr(i),
+    "[" <e:Expression> <mut v:("," <Expression>)*> "]" => {
+        v.insert(0, e);
+        Postfix::Index(v)
+    }
+}
+
+Id: Identifier = {
+    r"[a-zA-Z_][a-zA-Z0-9_]*" => Identifier(<>.to_string()),
+}
+
+Lit: Literal = {
+    r#""[^"]*""# => Literal::Teks(<>.trim_matches('"').to_string()),
+    r"[0-9]+" => Literal::Angka(i64::from_str(<>).unwrap()),
+    "benar" => Literal::Boolean(true),
+    "salah" => Literal::Boolean(false),
+    "kosong" => Literal::Null,
+    
+    // Array: [1, 2, 3] atau []
+    "[" <e:ListPlus<Expression>?> "]" => {
+        Literal::Daftar(e.unwrap_or_default())
+    },
+    
+    // Dictionary: {"a": 1, b: 2} atau {}
+    // Perhatikan: 'b' di sini adalah Identifier yang diubah jadi String
+    "{" <p:ListPlus<DictPair>?> "}" => {
+        let mut map = HashMap::new();
+        if let Some(pairs) = p {
+            for (k, v) in pairs {
+                map.insert(k, v);
+            }
+        }
+        Literal::Kamus(map)
+    }
+}
+
+DictKey: String = {
+    r#""[^"]*""# => <>.trim_matches('"').to_string(),
+    r"[a-zA-Z_][a-zA-Z0-9_]*" => <>.to_string(), // Mengambil string dari struct Identifier(pub String)
+}
+
+// Menggunakan DictKey pada DictPair
+DictPair: (String, Expression) = {
+    <k:DictKey> ":" <v:Expression> => (k, v),
+}
+
+ListPlus<T>: Vec<T> = {
+    <v:T> <mut e:("," <T>)*> ","? => {
+        e.insert(0, v);
+        e
+    }
+};

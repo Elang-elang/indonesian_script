@@ -1,0 +1,9 @@
+/data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/target/debug/deps/tiny_keccak-5eea35c230c7533a.d: /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/lib.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/keccakf.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/sha3.rs
+
+/data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/target/debug/deps/libtiny_keccak-5eea35c230c7533a.rlib: /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/lib.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/keccakf.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/sha3.rs
+
+/data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/target/debug/deps/libtiny_keccak-5eea35c230c7533a.rmeta: /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/lib.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/keccakf.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/sha3.rs
+
+/data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/lib.rs:
+/data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/keccakf.rs:
+/data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/tiny-keccak-2.0.2/src/sha3.rs:

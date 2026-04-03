@@ -1,0 +1,9 @@
+/data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/target/debug/deps/ascii_canvas-c44e5adb6941e157.d: /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/lib.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/row.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/style.rs
+
+/data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/target/debug/deps/libascii_canvas-c44e5adb6941e157.rlib: /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/lib.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/row.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/style.rs
+
+/data/data/com.termux/files/home/is/indonesian_script/Interpreter/NewInterpreter/target/debug/deps/libascii_canvas-c44e5adb6941e157.rmeta: /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/lib.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/row.rs /data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/style.rs
+
+/data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/lib.rs:
+/data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/row.rs:
+/data/data/com.termux/files/home/.cargo/registry/src/index.crates.io-1949cf8c6b5b557f/ascii-canvas-3.0.0/src/style.rs:

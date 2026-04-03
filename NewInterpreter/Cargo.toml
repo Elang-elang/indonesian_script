@@ -1,0 +1,20 @@
+[package]
+name = "new_interp"
+version = "0.1.14"
+edition = "2024"
+
+[[bin]]
+name = "new_interp"
+path = "src/main.rs"
+
+[dependencies]
+# pyo3 = "0.28.3"
+lalrpop-util = { version = "0.20.2", features = ["lexer"] }
+regex = "1" # LALRPOP butuh ini untuk regex lexer
+
+[build-dependencies]
+lalrpop = "0.20.2"
+# 
+# [lib]
+# path = "lib/mod.rs"
+# 
