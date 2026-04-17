@@ -211,14 +211,13 @@ value_params: expression
 
 unpack: "..." (literal | VAR_NAME)
 
-%import common.SIGNED_INT
 %import common.DECIMAL
 %import common.ESCAPED_STRING
 
 string: ESCAPED_STRING
-integer: SIGNED_INT
-float: DECIMAL
-character: "'" /[^']/ "'"
+integer: /\+[1-9_]/ | /\-[1-9_]/ | /[1-9_]/
+float:  /\+[1-9_]\.[1-9_]/ | /\-[1-9_]\.[1-9_]/
+character: "'" /[^']+/ "'"
 
 boolean: /benar|salah/
 

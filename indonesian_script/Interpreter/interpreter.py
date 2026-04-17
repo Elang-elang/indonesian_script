@@ -2,8 +2,10 @@
 from ..Exceptions import *
 from .AST_node.ast_nodes import *
 from .transformer import *
-from ..Builtins import BUILTINS, TYPES, BUILTINS_FUNCTIONS, Fungsi, Lambda, KEYWORD, SOFT_KEYWORD, Karakter
-from decimal import Decimal
+from ..Builtins import (
+    BUILTINS, TYPES, BUILTINS_FUNCTIONS, Fungsi, Lambda,
+    KEYWORD, SOFT_KEYWORD, Karakter,
+)
 from pathlib import Path
 import types as T1
 import typing as T2
@@ -74,7 +76,9 @@ class Scope:
         return name in self.vars
 
 class Interpreter:
-    def __init__(self, filename='<utama>', ismodule=False):
+    def __init__(self, filename='<utama>', ismodule=False, ObjectDict=None):
+        init_except(ObjectDict)
+        
         self.global_scope = Scope()
         self.current_scope = self.global_scope
         self._init_builtins()
@@ -84,6 +88,7 @@ class Interpreter:
             'impor': {},
             'berkas': 'utama' if not ismodule else filename
         }
+        
         
         self._isloop = False
         self._infunction = False
@@ -158,7 +163,7 @@ class Interpreter:
                     result = None
                 
         else:
-            result = self.visit(stmt)
+            result = self.visit(node)
             if not isinstance(type(stmt), Expression):
                 result = None
             
@@ -168,7 +173,6 @@ class Interpreter:
     def visit(self, node):
         method_name = f'visit_{type(node).__name__}'
         visitor = getattr(self, method_name, self.generic_visit)
-        #print(node)
         return visitor(node)
     
     def generic_visit(self, node):
@@ -1244,15 +1248,9 @@ class Interpreter:
     def _check_type(self, value, type_ann):
         if not self._check_instance(value, type_ann):
             raise TipeGalat(f'Tipe dari {type_ann.name!r} tidak sesuai dengan isi-nya \'{str(value)}\'')
-        
     
     def _check_instance(self, value, type_ann):
         inspect = I
-        
-#         print("inspek isi:")
-#         print(value)
-#         print("\ninspek tipe:")
-#         print(type_ann, end='\n\n')
         
         if type(value) is type_ann:
             return True
@@ -1272,8 +1270,6 @@ class Interpreter:
                 
             if data_type['name'] == 'kekosongan' and value == None:
                 return True
-#             print('tipe b: ', type(value))
-#             print('isinstance: ', isinstance(value, data_type['value']))
             return isinstance(value, data_type['value'])
         
         elif type_ann['type'] == 'dict' and isinstance(value, dict):
@@ -1314,8 +1310,6 @@ class Interpreter:
                         return False
             
             if signature:
-#                 print("inspek tanda tangannya")
-#                 print(signature, end='\n'*2)
                 
                 args_type = [t for t in data_type['arguments']]
                 args_ann = []
@@ -1364,27 +1358,21 @@ class Interpreter:
                 return isinstance(value, type_ann)
             return False
         
-        
     def _default_value(self, type_ann):
         if isinstance(type_ann, BasicType):
-            if type_ann.name == 'teks':
-                return ""
-            elif type_ann.name == 'angka':
-                return 0
-            elif type_ann.name == 'desimal':
-                return Decimal('0.0')
-            elif type_ann.name == 'boolean':
-                return False
-            elif type_ann.name == 'kekosongan':
-                return None
-            elif type_ann.name == 'daftar':
+            type_ann = self.visit(type_ann)
+            data_type = type_ann['data_type']
+            
+            if type_ann['type'] == 'basic':
+                if data_type['name'] in ('apapun', 'kekosongan'):
+                    return None
+                return data_type['value']()
+            elif type_ann['type'] == 'array':
                 return []
-            elif type_ann.name == 'kamus':
+            elif type_ann['type'] == 'dict':
                 return {}
-            elif type_ann.name == 'panggilan':
+            elif type_ann['type'] == 'function':
                 return lambda: None
-            elif type_ann.name == 'karakter':
-                return Karakter(0)
         return None
     
     def _convert(self, s, type_ann):

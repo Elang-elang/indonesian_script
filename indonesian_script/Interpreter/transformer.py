@@ -1,35 +1,47 @@
 # transformer.py
-from lark import Transformer, v_args, Token, Lark
+from lark import Transformer, v_args, Token, Lark, UnexpectedInput, v_args
 from .AST_node.ast_nodes import *
 from ..Exceptions import *
 from ..Builtins import get_builtin_type
-import lark_rust
+from .utils import Object
+from pathlib import Path as p
 
 class ASTBuilder(Transformer):
     def __init__(self):
-        pass
+        self.object = Object(True)
     
     def load(self, code):
+        gramm_path = p(__file__).parent / 'grammar.txt'
         gramm = None
-        with open('grammar.txt', 'r') as f:
+        with open(gramm_path, 'r') as f:
             gramm = f.read()
         
         parser = Lark(
             gramm,
-            parser='lalr', # 'earley',
+            regex=True,
+            parser='earley', # 'earley',
+            lexer="dynamic",
             start='program',
-            _plugins=lark_rust.plugins
+            ambiguity="resolve",
+            propagate_positions=True,
         )
-        tree = parser.parse(code)
-        ast = self.transformer(tree)
-        return ast
+        
+        def func():
+            tree = parser.parse(code)
+            ast = self.transform(tree)
+            return ast
+        
+        res = func()
+        return res
     
     # --- Program & Blocks ---
-    
-    def program(self, items):
+    @v_args(meta=True)
+    def program(self, meta, items):
         # items: list dari hasil top_stmt
         if not items:
-            return Program(statements=[])
+           res = Program(statements=[])
+           self.object.set(res, meta.__dict__)
+           return res
         all_stmts = []
         for item in items:
             if isinstance(item, list):
@@ -38,40 +50,55 @@ class ASTBuilder(Transformer):
                 all_stmts.append(item)       # jika item adalah Statement tunggal (block/ctrl_flow)
                 
             # Abaikan None
-        return Program(statements=all_stmts)
+        res = Program(statements=all_stmts)
+        self.object.set(res, meta.__dict__)
+        return res
         
-    def top_stmt(self, items):
+    @v_args(meta=True)
+    def top_stmt(self, meta, items):
         # items: [hasil dari non_block/block/ctrl_flow]
         return items[0]  # bisa berupa list, Statement, atau None
     
-    def non_block(self, items):
+    @v_args(meta=True)
+    def non_block(self, meta, items):
         # items: list of hasil buttom_stmt (bisa None jika buttom_stmt kosong)
         # Kembalikan list statement yang tidak None
         return [item for item in items if item is not None]
         
-    def block(self, items):
+    @v_args(meta=True)
+    def block(self, meta, items):
         # items adalah list of buttom_stmt
         if not items:
-            return Block(statements=[])
+           res = Block(statements=[])
+           self.object.set(res, meta.__dict__)
+           return res
         statements = [item for item in items if item is not None]
-        return Block(statements=statements)
+        res = Block(statements=statements)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def stmt(self, items):
+    @v_args(meta=True)
+    def stmt(self, meta, items):
         return items[0]
     
-    def buttom_stmt(self, items):
+    @v_args(meta=True)
+    def buttom_stmt(self, meta, items):
         return items[0] if items else None
     
-    def ctrl_flow(self, items):
+    @v_args(meta=True)
+    def ctrl_flow(self, meta, items):
         return items[0]
     
-    def if_ctrl(self, items):
+    @v_args(meta=True)
+    def if_ctrl(self, meta, items):
         index = 0
         if_stmt = items[index]
         index += 1
         
         if len(items) < 2:
-            return IfCtrl(if_stmt=if_stmt, elif_stmt=[], else_stmt=None)
+           res = IfCtrl(if_stmt=if_stmt, elif_stmt=[], else_stmt=None)
+           self.object.set(res, meta.__dict__)
+           return res
         
         elif_stmt = []
         else_stmt = None
@@ -82,105 +109,174 @@ class ASTBuilder(Transformer):
                 else_stmt = item
         
         
-        return IfCtrl(if_stmt=if_stmt, elif_stmt=elif_stmt, else_stmt=else_stmt)
+        res = IfCtrl(if_stmt=if_stmt, elif_stmt=elif_stmt, else_stmt=else_stmt)
         
-    def if_stmt(self, items):
+        
+        self.object.set(res, meta.__dict__)
+        
+        
+        return res
+        
+    @v_args(meta=True)
+    def if_stmt(self, meta, items):
         cond, body = items
-        return IfStmt(condition=cond, body=body)
+        res = IfStmt(condition=cond, body=body)
+        self.object.set(res, meta.__dict__)
+        return res
         
-    def elif_stmt(self, items):
+    @v_args(meta=True)
+    def elif_stmt(self, meta, items):
         cond, body = items
-        return ElifStmt(condition=cond, body=body)
+        res = ElifStmt(condition=cond, body=body)
+        self.object.set(res, meta.__dict__)
+        return res
         
-    def else_stmt(self, items):
-        return ElseStmt(body=items[0])
+    @v_args(meta=True)
+    def else_stmt(self, meta, items):
+        res = ElseStmt(body=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def while_ctrl(self, items):
+    @v_args(meta=True)
+    def while_ctrl(self, meta, items):
         return items[0]
     
-    def while_stmt(self, items):
+    @v_args(meta=True)
+    def while_stmt(self, meta, items):
         cond, body = items
-        return WhileStmt(condition=cond, body=body)
+        res = WhileStmt(condition=cond, body=body)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def for_ctrl(self, items):
+    @v_args(meta=True)
+    def for_ctrl(self, meta, items):
         return items[0]
         
-    def for_stmt(self, items):
+    @v_args(meta=True)
+    def for_stmt(self, meta, items):
         expr, body = items
-        return ForStmt(expr=expr, body=body)
+        res = ForStmt(expr=expr, body=body)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def for_expr(self, items):
+    @v_args(meta=True)
+    def for_expr(self, meta, items):
         name, target = items
-        return ForExpr(name=str(name), target=target)
+        res = ForExpr(name=str(name), target=target)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def try_ctrl(self, items):
+    @v_args(meta=True)
+    def try_ctrl(self, meta, items):
         try_stmt, catch_stmt = items[0], items[1]
         finally_stmt = None
         
         if len(items) == 3:
             finally_stmt = items[2]
-        return TryCtrl(try_stmt=try_stmt, catch_stmt=catch_stmt, finally_stmt=finally_stmt)
+        res = TryCtrl(try_stmt=try_stmt, catch_stmt=catch_stmt, finally_stmt=finally_stmt)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def try_stmt(self, items):
-        return TryStmt(body=items[0])
+    @v_args(meta=True)
+    def try_stmt(self, meta, items):
+        res = TryStmt(body=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def catch_stmt(self, items):
-        return CatchStmt(name=str(items[0]), body=items[1])
+    @v_args(meta=True)
+    def catch_stmt(self, meta, items):
+        res = CatchStmt(name=str(items[0]), body=items[1])
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def finally_stmt(self, items):
-        return FinallyStmt(body=items[0])
+    @v_args(meta=True)
+    def finally_stmt(self, meta, items):
+        res = FinallyStmt(body=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def switch_ctrl(self, items):
+    @v_args(meta=True)
+    def switch_ctrl(self, meta, items):
         return items[0]
     
-    def switch_stmt(self, items):
+    @v_args(meta=True)
+    def switch_stmt(self, meta, items):
         expr, body = items
-        return SwitchStmt(expr=expr, body=list(body))
+        res = SwitchStmt(expr=expr, body=list(body))
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def block_switch(self, items):
+    @v_args(meta=True)
+    def block_switch(self, meta, items):
         return items[0]
     
-    def body_switch(self, items):
+    @v_args(meta=True)
+    def body_switch(self, meta, items):
         return items
     
-    def case_stmt(self, items):
+    @v_args(meta=True)
+    def case_stmt(self, meta, items):
         expr, stmt = items
-        return CaseStmt(expr=list(expr), body=list(stmt))
+        res = CaseStmt(expr=list(expr), body=list(stmt))
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def default_stmt(self, items):
-        return CaseStmt(expr=['_'], body=list(items[0]))
+    @v_args(meta=True)
+    def default_stmt(self, meta, items):
+        res = CaseStmt(expr=['_'], body=list(items[0]))
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def case_expr(self, items):
+    @v_args(meta=True)
+    def case_expr(self, meta, items):
         return items
     
-    def body_case(self, items):
+    @v_args(meta=True)
+    def body_case(self, meta, items):
         return items
     
     # --- Statements ---
-    def vars_stmt(self, items):
+    @v_args(meta=True)
+    def vars_stmt(self, meta, items):
         return items[0]
     
-    def var_decl(self, items):
+    @v_args(meta=True)
+    def var_decl(self, meta, items):
         type_ann, name, value = items
-        return VarDecl(type_ann=type_ann, name=str(name), value=value)
+        res = VarDecl(type_ann=type_ann, name=str(name), value=value)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def final_decl(self, items):
+    @v_args(meta=True)
+    def final_decl(self, meta, items):
         type_ann, name, value = items
-        return FinalDecl(type_ann=type_ann, name=str(name), value=value)
+        res = FinalDecl(type_ann=type_ann, name=str(name), value=value)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def def_decl(self, items):
+    @v_args(meta=True)
+    def def_decl(self, meta, items):
         type_ann, name = items
-        return DefDecl(type_ann=type_ann, name=str(name))
+        res = DefDecl(type_ann=type_ann, name=str(name))
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def alias_decl(self, items):
+    @v_args(meta=True)
+    def alias_decl(self, meta, items):
         target, alias = items
-        return AliasDecl(alias=str(alias), target=str(target))
+        res = AliasDecl(alias=str(alias), target=str(target))
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def redecl(self, items):
+    @v_args(meta=True)
+    def redecl(self, meta, items):
         name, value = items
-        return Redecl(name=str(name), value=value)
+        res = Redecl(name=str(name), value=value)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def setobj(self, items):
+    @v_args(meta=True)
+    def setobj(self, meta, items):
         obj = items[0]
         
         idx = 1
@@ -193,9 +289,14 @@ class ASTBuilder(Transformer):
         
         value = items[idx]
         
-        return SetObj(obj=obj, value=value)
+        res = SetObj(obj=obj, value=value)
+        
+        self.object.set(res, meta.__dict__)
+        
+        return res
     
-    def decoreted_stmt(self, items):
+    @v_args(meta=True)
+    def decoreted_stmt(self, meta, items):
         """# [decorator] function_definition """
         # items: [ decorator, postfix*, '\n', func_def]
         
@@ -249,7 +350,8 @@ class ASTBuilder(Transformer):
             func_target=func_def
         )
     
-    def func_def(self, items):
+    @v_args(meta=True)
+    def func_def(self, meta, items):
         index = 0
         
         type_ann = items[index]
@@ -275,118 +377,181 @@ class ASTBuilder(Transformer):
             inner=inner
         )
     
-    def block_func(self, items):
+    @v_args(meta=True)
+    def block_func(self, meta, items):
         return [item for item in items if item is not None]
     
-    def func_stmts(self, items):
+    @v_args(meta=True)
+    def func_stmts(self, meta, items):
         return items[0]
         
-    def func_stmt(self, items):
+    @v_args(meta=True)
+    def func_stmt(self, meta, items):
         return items[0]
 
-    def return_stmt(self, items):
+    @v_args(meta=True)
+    def return_stmt(self, meta, items):
         expr = items[0]
-        return Return(expr=expr)  # Langsung Return node
+        res = Return(expr=expr)
+        self.object.set(res, meta.__dict__)
+        return res  # Langsung Return node
 
-    def throw_stmt(self, items):
+    @v_args(meta=True)
+    def throw_stmt(self, meta, items):
         expr = items
-        return Throw(expr=expr)
+        res = Throw(expr=expr)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def cli_stmt(self, items):
+    @v_args(meta=True)
+    def cli_stmt(self, meta, items):
         return items[0]
     
-    def write_stmt(self, items):
-        return WriteStmt(target=items[0])
+    @v_args(meta=True)
+    def write_stmt(self, meta, items):
+        res = WriteStmt(target=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def read_stmt(self, items):
-        return ReadStmt(expr=items[0])
+    @v_args(meta=True)
+    def read_stmt(self, meta, items):
+        res = ReadStmt(expr=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
     # --- Module ---
-    def module_stmt(self, items):
+    @v_args(meta=True)
+    def module_stmt(self, meta, items):
         return items[0]
     
-    def export_stmt(self, items):
-        return Export(exports=items[0])
+    @v_args(meta=True)
+    def export_stmt(self, meta, items):
+        res = Export(exports=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def exp_params(self, items):
+    @v_args(meta=True)
+    def exp_params(self, meta, items):
         return items
     
-    def exp_arg(self, items):
+    @v_args(meta=True)
+    def exp_arg(self, meta, items):
         name = items[0].name
         alias = None
         if len(items) == 2:
             alias = str(items[1])
         
-        return ExportArgument(name=name, alias=alias)
+        res = ExportArgument(name=name, alias=alias)
+        
+        self.object.set(res, meta.__dict__)
+        
+        return res
     
-    def import_stmt(self, items):
+    @v_args(meta=True)
+    def import_stmt(self, meta, items):
         imports, _from = items
-        return Import(imports=imports, from_path=_from)
+        res = Import(imports=imports, from_path=_from)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def imp_params(self, items):
+    @v_args(meta=True)
+    def imp_params(self, meta, items):
         return items
     
-    def imp_arg(self, items):
+    @v_args(meta=True)
+    def imp_arg(self, meta, items):
         name = str(items[0])
         alias = None
         if len(items) == 2:
             alias = str(items[1])
         
-        return ImportArgument(name=name, alias=alias)
+        res = ImportArgument(name=name, alias=alias)
+        
+        self.object.set(res, meta.__dict__)
+        
+        return res
     
-    def path_stmt(self, items):
-        return PathID(path=items[0])
+    @v_args(meta=True)
+    def path_stmt(self, meta, items):
+        res = PathID(path=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def path_params(self, items):
+    @v_args(meta=True)
+    def path_params(self, meta, items):
         return items
     
-    def path_args(self, items):
-        return PathArg(arg=str(items[0]))
+    @v_args(meta=True)
+    def path_args(self, meta, items):
+        res = PathArg(arg=str(items[0]))
+        self.object.set(res, meta.__dict__)
+        return res
         
-    def path_arg(self, items):
+    @v_args(meta=True)
+    def path_arg(self, meta, items):
         return '.'.join(items)
     
-    def parent_path(self, items):
-        return str(items[0])
+    @v_args(meta=True)
+    def parent_path(self, meta, items):
+        res = str(items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def once_dot(self, items):
-        return str(".")
+    @v_args(meta=True)
+    def once_dot(self, meta, items):
+        res = str(".")
+        self.object.set(res, meta.__dict__)
+        return res
         
-    def two_dot(self, items):
-        return str("..")
+    @v_args(meta=True)
+    def two_dot(self, meta, items):
+        res = str("..")
+        self.object.set(res, meta.__dict__)
+        return res
     
     # --- Expressions (Binary, Unary, etc.) ---
-    def expression(self, items):
+    @v_args(meta=True)
+    def expression(self, meta, items):
         return items[0]
         
-    def equal(self, items):
+    @v_args(meta=True)
+    def equal(self, meta, items):
         return self._binop(items, '==')
     
-    def not_equal(self, items):
+    @v_args(meta=True)
+    def not_equal(self, meta, items):
         return self._binop(items, '!=')
     
-    def great_equal(self, items):
+    @v_args(meta=True)
+    def great_equal(self, meta, items):
         return self._binop(items, '>=')
     
-    def great_than(self, items):
+    @v_args(meta=True)
+    def great_than(self, meta, items):
         return self._binop(items, '>')
     
-    def less_equal(self, items):
+    @v_args(meta=True)
+    def less_equal(self, meta, items):
         return self._binop(items, '<=')
     
-    def less_than(self, items):
+    @v_args(meta=True)
+    def less_than(self, meta, items):
         return self._binop(items, '<')
     
-    def or_bool(self, items):
+    @v_args(meta=True)
+    def or_bool(self, meta, items):
         return self._binop(items, 'atau')
     
-    def and_bool(self, items):
+    @v_args(meta=True)
+    def and_bool(self, meta, items):
         return self._binop(items, 'dan')
     
-    def in_bool(self, items):
+    @v_args(meta=True)
+    def in_bool(self, meta, items):
         return self._binop(items, 'dalam')
     
-    def not_in(self, items):
+    @v_args(meta=True)
+    def not_in(self, meta, items):
         # items: [left, 'tidak', 'dalam', right]? perlu disesuaikan dengan grammar
         # Di grammar: not_in: add ("tidak" "dalam" add)? -> ini menghasilkan dua node jika ada
         if len(items) == 1:
@@ -394,27 +559,36 @@ class ASTBuilder(Transformer):
         else:
             # items[0] adalah left, items[1] adalah right (karena 'tidak dalam' dianggap token?)
             # Tergantung bagaimana Lark mem-parsing. Kita asumsikan items = [left, right]
-            return BinaryOp(op='tidak dalam', left=items[0], right=items[1])
+           res = BinaryOp(op='tidak dalam', left=items[0], right=items[1])
+           self.object.set(res, meta.__dict__)
+           return res
     
-    def add(self, items):
+    @v_args(meta=True)
+    def add(self, meta, items):
         return self._binop(items, '+')
     
-    def minus(self, items):
+    @v_args(meta=True)
+    def minus(self, meta, items):
         return self._binop(items, '-')
     
-    def multi(self, items):
+    @v_args(meta=True)
+    def multi(self, meta, items):
         return self._binop(items, '*')
     
-    def divide(self, items):
+    @v_args(meta=True)
+    def divide(self, meta, items):
         return self._binop(items, '/')
     
-    def modular(self, items):
+    @v_args(meta=True)
+    def modular(self, meta, items):
         return self._binop(items, '%')
         
-    def pow(self, items):
+    @v_args(meta=True)
+    def pow(self, meta, items):
         return self._binop(items, '**')
         
-    def floor_divide(self, items):
+    @v_args(meta=True)
+    def floor_divide(self, meta, items):
         return self._binop(items, '//')
     
     def _binop(self, items, op):
@@ -430,14 +604,18 @@ class ASTBuilder(Transformer):
             left = BinaryOp(op=op, left=left, right=right)
         return left
     
-    def not_bool(self, items):
+    @v_args(meta=True)
+    def not_bool(self, meta, items):
         if len(items) == 1:
             return items[0]
         else:
             # items: ['tidak', expr]
-            return UnaryOp(op='tidak', expr=items[1])
+           res = UnaryOp(op='tidak', expr=items[1])
+           self.object.set(res, meta.__dict__)
+           return res
     
-    def term(self, items):
+    @v_args(meta=True)
+    def term(self, meta, items):
         # items: [prefix, postfix1, postfix2, ...]
         if len(items) == 1:
             return items[0]
@@ -450,7 +628,8 @@ class ASTBuilder(Transformer):
                 base = CallFunc(func=base, params=post)
         return base
     
-    def prefix(self, items):
+    @v_args(meta=True)
+    def prefix(self, meta, items):
         # items: bisa '(' expression ')' atau literal atau expr_id
         # Setelah filter '(', ')', ambil yang bukan tanda kurung
         for item in items:
@@ -458,125 +637,210 @@ class ASTBuilder(Transformer):
                 return item
         return None
     
-    def postfix(self, items):
+    @v_args(meta=True)
+    def postfix(self, meta, items):
         return items[0]
     
-    def getobj(self, items):
+    @v_args(meta=True)
+    def getobj(self, meta, items):
         return items[0]
     
-    def getattr(self, items):
+    @v_args(meta=True)
+    def getattr(self, meta, items):
         # items: [ID] setelah titik
-        return GetObj(obj=object, target=items[0])
+        res = GetObj(obj=object, target=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def getindex(self, items):
+    @v_args(meta=True)
+    def getindex(self, meta, items):
         # items: [expression]
-        return GetObj(obj={}, target=items[0])
+        res = GetObj(obj={}, target=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def crement(self, items):
-        return Crement(obj=items[1], negated=items[0].negated)
+    @v_args(meta=True)
+    def crement(self, meta, items):
+        res = Crement(obj=items[1], negated=items[0].negated)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def decrement(self, items):
-        return Crement(obj=0, negated=True)
+    @v_args(meta=True)
+    def decrement(self, meta, items):
+        res = Crement(obj=0, negated=True)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def increment(self, items):
-        return Crement(obj=0, negated=False)
+    @v_args(meta=True)
+    def increment(self, meta, items):
+        res = Crement(obj=0, negated=False)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def call_params(self, items):
+    @v_args(meta=True)
+    def call_params(self, meta, items):
         # items adalah list of call_args atau None
         if items:
             # items[0] adalah hasil dari call_args (list of CallArgument)
             if isinstance(items[0], list):
-                return CallParameter(args=items[0])
+               res = CallParameter(args=items[0])
+               self.object.set(res, meta.__dict__)
+               return res
             else:
-                return CallParameter(args=[items[0]])
+               res = CallParameter(args=[items[0]])
+               self.object.set(res, meta.__dict__)
+               return res
         else:
-            return CallParameter(args=[])
+           res = CallParameter(args=[])
+           self.object.set(res, meta.__dict__)
+           return res
     
-    def call_args(self, items):
+    @v_args(meta=True)
+    def call_args(self, meta, items):
         # items adalah list of call_arg
         return items  # Sudah berupa list
     
-    def call_arg(self, items):
+    @v_args(meta=True)
+    def call_arg(self, meta, items):
         name, value = None, None
         if len(items) > 1:
             name, value = items
         else:
             value = items[0]
         
-        return CallArgument(name=name, value=value)
+        res = CallArgument(name=name, value=value)
+        
+        self.object.set(res, meta.__dict__)
+        
+        return res
     
-    def lambda_func(self, items):
+    @v_args(meta=True)
+    def lambda_func(self, meta, items):
         params, expr = items
-        return LambdaFunc(params=params, expr=expr)
+        res = LambdaFunc(params=params, expr=expr)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def type_of(self, items):
-        return TypeOf(var=items[0])
+    @v_args(meta=True)
+    def type_of(self, meta, items):
+        res = TypeOf(var=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def pointer(self, items):
-        return GetAddr(var=str(items[0]), negated=False)
+    @v_args(meta=True)
+    def pointer(self, meta, items):
+        res = GetAddr(var=str(items[0]), negated=False)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def unpointer(self, items):
-        return GetAddr(var=str(items[0]), negated=True)
+    @v_args(meta=True)
+    def unpointer(self, meta, items):
+        res = GetAddr(var=str(items[0]), negated=True)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def is_stmt(self, items):
+    @v_args(meta=True)
+    def is_stmt(self, meta, items):
         return items[0]
     
-    def is_bool(self, items):
+    @v_args(meta=True)
+    def is_bool(self, meta, items):
         # items: [ID, 'adalah', ID]
-        return IsStmt(left=str(items[0]), right=str(items[1]), negated=False)
+        res = IsStmt(left=str(items[0]), right=str(items[1]), negated=False)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def is_not_bool(self, items):
+    @v_args(meta=True)
+    def is_not_bool(self, meta, items):
         # items: [ID, 'bukanlah', ID]
-        return IsStmt(left=str(items[0]), right=str(items[1]), negated=True)
+        res = IsStmt(left=str(items[0]), right=str(items[1]), negated=True)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def continue_stmt(self, items):
-        return Looping(is_continue=True)
+    @v_args(meta=True)
+    def continue_stmt(self, meta, items):
+        res = Looping(is_continue=True)
+        self.object.set(res, meta.__dict__)
+        return res
         
-    def break_stmt(self, items):
-        return Looping(is_continue=False)
+    @v_args(meta=True)
+    def break_stmt(self, meta, items):
+        res = Looping(is_continue=False)
+        self.object.set(res, meta.__dict__)
+        return res
     
     def VAR_NAME(self, items):
-        return Variable(name=str(items))
+        res = Variable(name=str(items))
+        self.object.set(res, None)
+        return res
     
     # --- Literals ---
-    def literal(self, items):
+    @v_args(meta=True)
+    def literal(self, meta, items):
         return items[0]
     
-    def basic_literal(self, items):
+    @v_args(meta=True)
+    def basic_literal(self, meta, items):
         return items[0]
         
-    def object_literal(self, items):
+    @v_args(meta=True)
+    def object_literal(self, meta, items):
         return items[0]
         
-    def string(self, items):
+    @v_args(meta=True)
+    def string(self, meta, items):
         # items[0] adalah token string dengan quotes
         s = items[0][1:-1]  # buang quotes
-        return Literal(value=s)
+        res = Literal(value=s)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def character(self, items):
+    @v_args(meta=True)
+    def character(self, meta, items):
         char = items[0]
-        return Literal(value=Character(id=ord(char), char=char))
+        try:
+           res = Literal(value=Character(id=ord(char), char=str(char)))
+           self.object.set(res, meta.__dict__)
+           return res
+        except:
+           res = PenulisanGalat(f"Tipe karakter harus memiliki 1 karakter")
+           self.object.set(res, meta.__dict__)
+           return res
     
-    def integer(self, items):
-        return Literal(value=int(items[0]))
+    @v_args(meta=True)
+    def integer(self, meta, items):
+        res = Literal(value=int(items[0]))
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def float(self, items):
-        from decimal import Decimal
-        return Literal(value=Decimal(items[0]))
+    @v_args(meta=True)
+    def float(self, meta, items):
+        res = Literal(value=float(items[0]))
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def boolean(self, items):
-        return Literal(value=(items[0] == 'benar'))
+    @v_args(meta=True)
+    def boolean(self, meta, items):
+        res = Literal(value=(items[0] == 'benar'))
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def array(self, items):
-        return Literal(value=Array(values=list(items)))
+    @v_args(meta=True)
+    def array(self, meta, items):
+        res = Literal(value=Array(values=list(items)))
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def array_body(self, items):
+    @v_args(meta=True)
+    def array_body(self, meta, items):
         return items[0]
     
-    def dictinary(self, items):
+    @v_args(meta=True)
+    def dictinary(self, meta, items):
         return items[0]
     
-    def dict_body(self, items):
+    @v_args(meta=True)
+    def dict_body(self, meta, items):
         # items adalah list of dict_bodies yang masing-masing punya satu pasang
         key = []
         value = []
@@ -595,85 +859,130 @@ class ASTBuilder(Transformer):
             keys=key, values=value
         ))
     
-    def dict_bodies(self, items):
+    @v_args(meta=True)
+    def dict_bodies(self, meta, items):
         return items[0]
     
-    def dict_items(self, items):
+    @v_args(meta=True)
+    def dict_items(self, meta, items):
         key, value = items
         if isinstance(key, Literal):
             key = key.value
         return {key: value}
     
-    def key_params(self, items):
+    @v_args(meta=True)
+    def key_params(self, meta, items):
         # bisa basic_literal atau [expr_id] atau ID
         return items[0]  # sudah berupa nilai literal atau string
     
-    def value_params(self, items):
+    @v_args(meta=True)
+    def value_params(self, meta, items):
         return items[0]
     
-    def unpack(self, items):
-        return Unpacking(value=items[0])
+    @v_args(meta=True)
+    def unpack(self, meta, items):
+        res = Unpacking(value=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     # --- Types ---
-    def type_ann(self, items):
+    @v_args(meta=True)
+    def type_ann(self, meta, items):
         return items[0]
     
-    def basic_type(self, items):
+    @v_args(meta=True)
+    def basic_type(self, meta, items):
         # items[0] adalah ID dari tipe (misal 'teks')
         name = items[0]
         if isinstance(name, Token):
             name = name.value
-        return BasicType(name=name)
+        res = BasicType(name=name)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def object_type(self, items):
+    @v_args(meta=True)
+    def object_type(self, meta, items):
         return items[0]
     
-    def dict_type(self, items):
+    @v_args(meta=True)
+    def dict_type(self, meta, items):
         length = items[0]
         key_type = items[1]
         value_type = items[2]
         
-        return DictType(length=int(length.value), key_type=key_type, value_type=value_type)
+        res = DictType(length=int(length.value), key_type=key_type, value_type=value_type)
+        
+        self.object.set(res, meta.__dict__)
+        
+        return res
     
-    def array_type(self, items):
+    @v_args(meta=True)
+    def array_type(self, meta, items):
         length = items[0]
         value_type = items[1]
         
-        return ArrayType(length=int(length.value), value_type=value_type)
+        res = ArrayType(length=int(length.value), value_type=value_type)
+        
+        self.object.set(res, meta.__dict__)
+        
+        return res
     
-    def func_type(self, items):
+    @v_args(meta=True)
+    def func_type(self, meta, items):
         types = []
         if len(items) == 1:
-            return FunctionType(args_type=[], return_type=items[-1])
+           res = FunctionType(args_type=[], return_type=items[-1])
+           self.object.set(res, meta.__dict__)
+           return res
             
         for i in items[:-1]:
             types.append(i)
         
-        return FunctionType(args_type=types, return_type=items[-1])
+        res = FunctionType(args_type=types, return_type=items[-1])
+        
+        self.object.set(res, meta.__dict__)
+        
+        return res
     
-    def union_type(self, items):
-        return UnionType(types=items)
+    @v_args(meta=True)
+    def union_type(self, meta, items):
+        res = UnionType(types=items)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def literal_type(self, items):
-        return LiteralType(literal=items)
+    @v_args(meta=True)
+    def literal_type(self, meta, items):
+        res = LiteralType(literal=items)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def optional_type(self, items):
-        return OptionalType(type_ann=items[0])
+    @v_args(meta=True)
+    def optional_type(self, meta, items):
+        res = OptionalType(type_ann=items[0])
+        self.object.set(res, meta.__dict__)
+        return res
     
     # --- IDs ---
     def ID(self, token):
-        return str(token)
+        res = str(token)
+        self.object.set(res, meta.__dict__)
+        return res
     
     # --- Params ---
-    def params(self, items):
+    @v_args(meta=True)
+    def params(self, meta, items):
         if items:
             return items[0]
         else:
             return items
         
-    def param(self, items):
-        return Parameter(args=items)
+    @v_args(meta=True)
+    def param(self, meta, items):
+        res = Parameter(args=items)
+        self.object.set(res, meta.__dict__)
+        return res
     
-    def args(self, items):
+    @v_args(meta=True)
+    def args(self, meta, items):
         type_ann, name, value = None, None, None
         
         if len(items) > 2:
@@ -681,10 +990,14 @@ class ASTBuilder(Transformer):
         else:
             type_ann, name = items
             
-        return Argument(type_ann=type_ann, name=str(name), value=value)
+        res = Argument(type_ann=type_ann, name=str(name), value=value)
+            
+        self.object.set(res, meta.__dict__)
+            
+        return res
     
     # --- help ---
-    def _del_list(self, items):
+    def _del_list(self, meta, items):
         result = []
         for item in items:
             if isinstance(item, list):

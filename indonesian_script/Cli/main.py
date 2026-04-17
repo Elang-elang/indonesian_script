@@ -13,12 +13,19 @@ app = typer.Typer(
 
 @app.command()
 def run(
-    file: str = typer.Argument(..., help='Masukan berkas untuk dijalankan')
-):
+    filename: str = typer.Argument(..., help='Masukan berkas untuk dijalankan')
+) -> int:
     "Untuk menjalankan berkas"
-    with open(file, 'r') as f:
-        interp = Compile(f, None, False)
-        interp()
+    try:
+        with open(filename, 'r') as _f:
+            interp = Compile(filename, _f.read(), False)
+            interp()
+        return 0
+    except Exception as e:
+        raise e
+        typer.secho(e, fg='cyan')
+        typer.secho(f'Kesalahan {str(type(e))!r} saat menerjemahkan dan menjalankan berkas:', fg='red')
+        return 1
 
 @app.command()
 def repl(
@@ -26,10 +33,17 @@ def repl(
         False, '--debug', '-d',
         help='Untuk mendebug kegalatan'
     )
-): 
+) -> int:
     "Mode interaktif REPL"
-    repl = ISRepl(debug_err)
-    repl.main()
+    try:
+        repl = ISRepl(debug_err)
+        repl.main()
+        return 0
+        
+    except Exception as e:
+        typer.secho(e, fg='cyan')
+        typer.secho(f'Kesalahan {str(type(e))!r} saat menerjemahkan dan menjalankan antarmuka perintah:', fg='red')
+        return 1
 
 @app.command()
 def self(
@@ -43,19 +57,27 @@ def self(
     )
 ):
     "Untuk melihat cs & is"
-    from .. import __version__, __status__
+    try:
+        from .. import __version__, __status__
     
-    if version or not status:
-        typer.secho(f'Version: {__version__}', fg='green', bold=True)
-    if status or not version:
-        typer.secho(f'State: {__status__}', fg='yellow')
+        if version or not status:
+            typer.secho(f'Version: {__version__}', fg='green', bold=True)
+        if status or not version:
+            typer.secho(f'State: {__status__}', fg='yellow')
+        
+        return 0
+        
+    except Exception as e:
+        typer.secho(e, fg='cyan')
+        typer.secho(f'Kesalahan {str(type(e))!r} saat menjalankan perintah:', fg='red')
+        return 1
 
 @app.command()
 def init(
     path: Path = typer.Argument(
         '.', help='Jalur untuk inisiasi paket'
     )
-):
+) -> int:
     try:
         
         with typer.progressbar(
@@ -74,7 +96,9 @@ def init(
             p.update(15)
             time.sleep(0.015)
             
-            src.mkdir()
+            if not src.exists():
+                src.mkdir()
+                
             p.update(15)
             time.sleep(0.015)
             
@@ -96,8 +120,12 @@ jika (modul["berkas"] == "utama") {
             time.sleep(0.3)
         time.sleep(0.5)
         typer.secho(f'Sukses untuk membuat paket, cek berkas utama pada jalur {str(file)!r}', fg='green')
+        return 0
+        
     except Exception as e:
-        typer.secho(f'Kesalahan saat membuat paket: {str(e)!r}', fg='red')
+        typer.secho(e, fg='cyan')
+        typer.secho(f'Kesalahan {str(type(e))!r} saat membuat paket:', fg='red')
+        return 1
 
 if __name__ == '__main__':
-    app()
+    sys.exit(app())

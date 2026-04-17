@@ -1,7 +1,6 @@
 # builtins.py
 from ..Exceptions import VariabelGalat, FinalGalat, TipeGalat
 from ..Interpreter.AST_node.ast_nodes import BasicType
-from decimal import Decimal
 import inspect
 
 def builtins_fungsi(self, function_name=None, /, *, type_ann=None, body=None):
@@ -195,7 +194,7 @@ class Karakter:
     id = 0
     hex = hex(ord('\x00'))
     
-    def __init__(self, Chr):
+    def __init__(self, Chr=0):
         if isinstance(Chr, (int, float, bool)):
             Chr = chr(int(Chr))
         elif isinstance(Chr, str):
@@ -331,6 +330,15 @@ class Karakter:
             return True
         return type(instance) is Karakter
 
+class Daftar:
+    def __init__(self, array=[]):
+        self.__value__ = list(array)
+    
+    def masukan(self, array, obj):
+        if isinstance(obj, list):
+            return array.extend(obj)
+        return array.append(obj)
+
 
 KEYWORD = {
     # CLI
@@ -366,7 +374,7 @@ SOFT_KEYWORD = {
 TYPES = {
     'teks': str,
     'angka': int,
-    'desimal': Decimal,
+    'desimal': float,
     'boolean': bool,
     'kekosongan': type(None),
     'apapun': object,
@@ -375,7 +383,7 @@ TYPES = {
     'fungsi': callable,
     'pointer': str,
     'tipe': type,
-    'karakter': Karakter
+    'karakter': Karakter,
 }
 
 def format(string: str, /, **kwargs) -> str:
@@ -390,6 +398,11 @@ BUILTINS = {
     'format': format,
     'f': format,
     'tampilkan': print,
+    'Daftar': Daftar,
+    'kata_kunci': {
+        'lembut': SOFT_KEYWORD,
+        'keras': KEYWORD,
+    },
     **TYPES
 }
 
