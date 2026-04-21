@@ -22,7 +22,6 @@ def run(
             interp()
         return 0
     except Exception as e:
-        raise e
         typer.secho(e, fg='cyan')
         typer.secho(f'Kesalahan {str(type(e))!r} saat menerjemahkan dan menjalankan berkas:', fg='red')
         return 1

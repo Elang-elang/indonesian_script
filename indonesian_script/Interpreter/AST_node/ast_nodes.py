@@ -9,7 +9,7 @@ class Node:
 # --- Program & Blocks ---
 @dataclass
 class Program(Node):
-    statements: Optional[List['Statement']]
+    statements: Optional[List['Statement']] = None
 
 @dataclass
 class Block(Node):
@@ -27,18 +27,13 @@ class Declare(Statement):
 class VarDecl(Declare):
     type_ann: 'Type'
     name: str
-    value: Optional['Expression']
+    value: Optional['Expression'] = None
 
 @dataclass
 class FinalDecl(Declare):
     type_ann: 'Type'
     name: str
     value: 'Expression'
-
-@dataclass
-class DefDecl(Declare):
-    type_ann: 'Type'
-    name: str
 
 @dataclass
 class AliasDecl(Statement):
@@ -106,7 +101,7 @@ class ForExpr(CtrlFlow):
 class TryCtrl(CtrlFlow):
     try_stmt: 'TryStmt'
     catch_stmt: 'CatchStmt'
-    finnaly_stmt: Optional['FinnalyStmt']
+    finally_stmt: Optional['FinallyStmt']
 
 @dataclass
 class TryStmt(CtrlFlow):
@@ -156,7 +151,7 @@ class Character(Expression):
     char: str
 
 @dataclass
-class Unpacking(Expression):
+class Unpack(Expression):
     value: Union[Dict | List]
 
 @dataclass

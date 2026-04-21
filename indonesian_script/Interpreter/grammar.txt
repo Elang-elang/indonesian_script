@@ -27,7 +27,6 @@ read_stmt: "bacalah" VAR_NAME
 vars_stmt: alias_decl
          | final_decl
          | var_decl
-         | def_decl
          | redecl
          | setobj
 
@@ -35,7 +34,7 @@ redecl: ID "=" expression
 alias_decl: "alias" "[" ID "]" "sebagai" ID
 final_decl: "final" "[" type_ann "]" ID "=" expression
 def_decl: "def" "[" type_ann "]" ID
-var_decl: "var" "[" type_ann "]" ID "=" expression
+var_decl: "var" "[" type_ann "]" ID ("=" expression)?
 setobj: ID getobj+ "=" expression
 
 decoreted_stmt: "#" "[" ID postfix* "]" ";" /\n/ func_def

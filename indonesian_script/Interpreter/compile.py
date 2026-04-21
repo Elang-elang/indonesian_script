@@ -7,7 +7,7 @@ class Compile:
         self._code = str(code)
         self._filename = str(filename)
         self._ast = builder.load(code)
-        self._interp = Interpreter(filename, ismodule)
+        self._interp = Interpreter(filename, ismodule, builder.object)
     
     def __call__(self):
         return self._interp.load(self._ast)

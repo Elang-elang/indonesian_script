@@ -1,1 +1,2 @@
-tampilkan("abc");
+var[angka] a = 1;
+var[teks] a = "abc";

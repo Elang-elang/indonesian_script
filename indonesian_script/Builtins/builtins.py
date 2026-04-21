@@ -251,7 +251,7 @@ class Karakter:
     
     def __ge__(self, val, /):
         if isinstance(val, Karakter):
-            return seld.__id__ >= val.__id__
+            return self.__id__ >= val.__id__
         if isinstance(val, (int, float)):
             return self.__id__ >= val
         else:
@@ -259,7 +259,7 @@ class Karakter:
             
     def __gt__(self, val, /):
         if isinstance(val, Karakter):
-            return seld.__id__ > val.__id__
+            return self.__id__ > val.__id__
         if isinstance(val, (int, float)):
             return self.__id__ > val
         else:
@@ -274,17 +274,17 @@ class Karakter:
     def __invert__(self):
         return NotImplemented
     
-    def __le__(self, val: int, /):
+    def __le__(self, val, /):
         if isinstance(val, Karakter):
-            return seld.__id__ <= val.__id__
+            return self.__id__ <= val.__id__
         if isinstance(val, (int, float)):
             return self.__id__ <= val
         else:
             return NotImplemented
     
-    def __lt__(self, val: int, /):
+    def __lt__(self, val, /):
         if isinstance(val, Karakter):
-            return seld.__id__ < val.__id__
+            return self.__id__ < val.__id__
         if isinstance(val, (int, float)):
             return self.__id__ < val
         else:
